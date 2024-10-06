@@ -1,354 +1,191 @@
-"use client";
-import React, { useRef, useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
-import { cn } from "@/lib/utils";
-import Balancer from "react-wrap-balancer";
-import Link from "next/link";
-import { Button } from "./button";
-import { useCalEmbed } from "@/app/hooks/useCalEmbed";
-import { CONSTANTS } from "@/constants/links";
+"use client"
+
+import React, { useEffect, useRef } from 'react';
+import anime from 'animejs';
+import { motion } from 'framer-motion';
+import Balancer from 'react-wrap-balancer';
+import Link from 'next/link';
+import { Button } from './button';
+
+const fitElementToParent = (el: HTMLElement | SVGElement, padding?: number) => {
+  let timeout: NodeJS.Timeout | null = null;
+  const resize = () => {
+    if (timeout) clearTimeout(timeout);
+    anime.set(el, { scale: 1 });
+    const pad = padding || 0;
+    const parentEl = el.parentNode as HTMLElement | SVGElement;
+    const elOffsetWidth = (el as HTMLElement).offsetWidth || (el as SVGSVGElement).width.baseVal.value;
+    const parentOffsetWidth = (parentEl as HTMLElement).offsetWidth || (parentEl as SVGSVGElement).width.baseVal.value;
+    const ratio = (parentOffsetWidth - pad) / elOffsetWidth;
+    timeout = setTimeout(() => anime.set(el, { scale: ratio }), 10);
+  };
+  resize();
+  window.addEventListener('resize', resize);
+  return () => window.removeEventListener('resize', resize);
+};
+
+const SphereAnimation: React.FC = () => {
+  const sphereRef = useRef<SVGSVGElement>(null);
+
+  useEffect(() => {
+    if (!sphereRef.current) return;
+
+    const sphereEl = sphereRef.current;
+    const spherePathEls = sphereEl.querySelectorAll('.sphere path');
+    const pathLength = spherePathEls.length;
+    const animations: anime.AnimeInstance[] = [];
+
+    const cleanupFitElement = fitElementToParent(sphereEl);
+
+    const breathAnimation = anime({
+      begin: () => {
+        for (let i = 0; i < pathLength; i++) {
+          animations.push(anime({
+            targets: spherePathEls[i],
+            stroke: { value: ['rgba(255,75,75,1)', 'rgba(80,80,80,.35)'], duration: 500 },
+            translateX: [2, -4],
+            translateY: [2, -4],
+            easing: 'easeOutQuad',
+            autoplay: false
+          }));
+        }
+      },
+      update: (ins) => {
+        animations.forEach((animation, i) => {
+          const percent = (1 - Math.sin((i * 0.35) + (0.0022 * ins.currentTime))) / 2;
+          animation.seek(animation.duration * percent);
+        });
+      },
+      duration: Infinity,
+      autoplay: false
+    });
+
+    const introAnimation = anime.timeline({ autoplay: false })
+      .add({
+        targets: spherePathEls,
+        strokeDashoffset: {
+          value: [anime.setDashoffset, 0],
+          duration: 3900,
+          easing: 'easeInOutCirc',
+          delay: anime.stagger(190, { direction: 'reverse' })
+        },
+        duration: 2000,
+        delay: anime.stagger(60, { direction: 'reverse' }),
+        easing: 'linear'
+      }, 0);
+
+    const shadowAnimation = anime({
+      targets: '#sphereGradient',
+      x1: '25%',
+      x2: '25%',
+      y1: '0%',
+      y2: '75%',
+      duration: 30000,
+      easing: 'easeOutQuint',
+      autoplay: false
+    });
+
+    introAnimation.play();
+    breathAnimation.play();
+    shadowAnimation.play();
+
+    return () => {
+      introAnimation.pause();
+      breathAnimation.pause();
+      shadowAnimation.pause();
+      cleanupFitElement();
+    };
+  }, []);
+
+  return (
+    <div className="animation-wrapper">
+      <div className="sphere-animation">
+        <svg ref={sphereRef} className="sphere" viewBox="0 0 440 440" stroke="rgba(80,80,80,.35)">
+          <defs>
+            <linearGradient id="sphereGradient" x1="5%" x2="5%" y1="0%" y2="15%">
+              <stop stopColor="#373734" offset="0%" />
+              <stop stopColor="#242423" offset="50%" />
+              <stop stopColor="#0D0D0C" offset="100%" />
+            </linearGradient>
+          </defs>
+          <path d="M361.604 361.238c-24.407 24.408-51.119 37.27-59.662 28.727-8.542-8.543 4.319-35.255 28.726-59.663 24.408-24.407 51.12-37.269 59.663-28.726 8.542 8.543-4.319 35.255-28.727 59.662z"/>
+          <path d="M360.72 360.354c-35.879 35.88-75.254 54.677-87.946 41.985-12.692-12.692 6.105-52.067 41.985-87.947 35.879-35.879 75.254-54.676 87.946-41.984 12.692 12.692-6.105 52.067-41.984 87.946z"/>
+          <path d="M357.185 356.819c-44.91 44.91-94.376 68.258-110.485 52.149-16.11-16.11 7.238-65.575 52.149-110.485 44.91-44.91 94.376-68.259 110.485-52.15 16.11 16.11-7.239 65.576-52.149 110.486z"/>
+          <path d="M350.998 350.632c-53.21 53.209-111.579 81.107-130.373 62.313-18.794-18.793 9.105-77.163 62.314-130.372 53.209-53.21 111.579-81.108 130.373-62.314 18.794 18.794-9.105 77.164-62.314 130.373z"/>
+          <path d="M343.043 342.677c-59.8 59.799-125.292 91.26-146.283 70.268-20.99-20.99 10.47-86.483 70.269-146.282 59.799-59.8 125.292-91.26 146.283-70.269 20.99 20.99-10.47 86.484-70.27 146.283z"/>
+          <path d="M334.646 334.28c-65.169 65.169-136.697 99.3-159.762 76.235-23.065-23.066 11.066-94.593 76.235-159.762s136.697-99.3 159.762-76.235c23.065 23.065-11.066 94.593-76.235 159.762z"/>
+          <path d="M324.923 324.557c-69.806 69.806-146.38 106.411-171.031 81.76-24.652-24.652 11.953-101.226 81.759-171.032 69.806-69.806 146.38-106.411 171.031-81.76 24.652 24.653-11.953 101.226-81.759 171.032z"/>
+          <path d="M312.99 312.625c-73.222 73.223-153.555 111.609-179.428 85.736-25.872-25.872 12.514-106.205 85.737-179.428s153.556-111.609 179.429-85.737c25.872 25.873-12.514 106.205-85.737 179.429z"/>
+          <path d="M300.175 299.808c-75.909 75.909-159.11 115.778-185.837 89.052-26.726-26.727 13.143-109.929 89.051-185.837 75.908-75.908 159.11-115.778 185.837-89.051 26.726 26.726-13.143 109.928-89.051 185.836z"/>
+          <path d="M284.707 284.34c-77.617 77.617-162.303 118.773-189.152 91.924-26.848-26.848 14.308-111.534 91.924-189.15C265.096 109.496 349.782 68.34 376.63 95.188c26.849 26.849-14.307 111.535-91.923 189.151z"/>
+          <path d="M269.239 267.989c-78.105 78.104-163.187 119.656-190.035 92.807-26.849-26.848 14.703-111.93 92.807-190.035 78.105-78.104 163.187-119.656 190.035-92.807 26.849 26.848-14.703 111.93-92.807 190.035z"/>
+          <path d="M252.887 252.52C175.27 330.138 90.584 371.294 63.736 344.446 36.887 317.596 78.043 232.91 155.66 155.293 233.276 77.677 317.962 36.521 344.81 63.37c26.85 26.848-14.307 111.534-91.923 189.15z"/>
+          <path d="M236.977 236.61C161.069 312.52 77.867 352.389 51.14 325.663c-26.726-26.727 13.143-109.928 89.052-185.837 75.908-75.908 159.11-115.777 185.836-89.05 26.727 26.726-13.143 109.928-89.051 185.836z"/>
+          <path d="M221.067 220.7C147.844 293.925 67.51 332.31 41.639 306.439c-25.873-25.873 12.513-106.206 85.736-179.429C200.6 53.786 280.931 15.4 306.804 41.272c25.872 25.873-12.514 106.206-85.737 179.429z"/>
+          <path d="M205.157 204.79c-69.806 69.807-146.38 106.412-171.031 81.76-24.652-24.652 11.953-101.225 81.759-171.031 69.806-69.807 146.38-106.411 171.031-81.76 24.652 24.652-11.953 101.226-81.759 171.032z"/>
+          <path d="M189.247 188.881c-65.169 65.169-136.696 99.3-159.762 76.235-23.065-23.065 11.066-94.593 76.235-159.762s136.697-99.3 159.762-76.235c23.065 23.065-11.066 94.593-76.235 159.762z"/>
+          <path d="M173.337 172.971c-59.799 59.8-125.292 91.26-146.282 70.269-20.991-20.99 10.47-86.484 70.268-146.283 59.8-59.799 125.292-91.26 146.283-70.269 20.99 20.991-10.47 86.484-70.269 146.283z"/>
+          <path d="M157.427 157.061c-53.209 53.21-111.578 81.108-130.372 62.314-18.794-18.794 9.104-77.164 62.313-130.373 53.21-53.209 111.58-81.108 130.373-62.314 18.794 18.794-9.105 77.164-62.314 130.373z"/>
+          <path d="M141.517 141.151c-44.91 44.91-94.376 68.259-110.485 52.15-16.11-16.11 7.239-65.576 52.15-110.486 44.91-44.91 94.375-68.258 110.485-52.15 16.109 16.11-7.24 65.576-52.15 110.486z"/>
+          <path d="M125.608 125.241c-35.88 35.88-75.255 54.677-87.947 41.985-12.692-12.692 6.105-52.067 41.985-87.947C115.525 43.4 154.9 24.603 167.592 37.295c12.692 12.692-6.105 52.067-41.984 87.946z"/>
+          <path d="M109.698 109.332c-24.408 24.407-51.12 37.268-59.663 28.726-8.542-8.543 4.319-35.255 28.727-59.662 24.407-24.408 51.12-37.27 59.662-28.727 8.543 8.543-4.319 35.255-28.726 59.663z"/>
+        </svg>
+      </div>
+    </div>
+  );
+};
 
 export function Hero() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const parentRef = useRef<HTMLDivElement>(null);
-  const calOptions = useCalEmbed({
-    namespace: CONSTANTS.CALCOM_NAMESPACE,
-    styles: {
-      branding: {
-        brandColor: CONSTANTS.CALCOM_BRAND_COLOR,
-      },
-    },
-    hideEventTypeDetails: CONSTANTS.CALCOM_HIDE_EVENT_TYPE_DETAILS,
-    layout: CONSTANTS.CALCOM_LAYOUT,
-  });
   return (
-    <div
-      ref={parentRef}
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-20 md:px-8 md:py-40 bg-neutral-50 dark:bg-neutral-900"
-    >
-      <BackgroundGrids />
-      <CollisionMechanism
-        beamOptions={{
-          initialX: -400,
-          translateX: 600,
-          duration: 7,
-          repeatDelay: 3,
-        }}
-        containerRef={containerRef}
-        parentRef={parentRef}
-      />
-      <CollisionMechanism
-        beamOptions={{
-          initialX: -200,
-          translateX: 800,
-          duration: 4,
-          repeatDelay: 3,
-        }}
-        containerRef={containerRef}
-        parentRef={parentRef}
-      />
-      <CollisionMechanism
-        beamOptions={{
-          initialX: 200,
-          translateX: 1200,
-          duration: 5,
-          repeatDelay: 3,
-        }}
-        containerRef={containerRef}
-        parentRef={parentRef}
-      />
-      <CollisionMechanism
-        containerRef={containerRef}
-        parentRef={parentRef}
-        beamOptions={{
-          initialX: 400,
-          translateX: 1400,
-          duration: 6,
-          repeatDelay: 3,
-        }}
-      />
-
-      <div className="text-balance relative z-20 mx-auto mb-4 mt-4 max-w-4xl text-center text-3xl font-semibold tracking-tight text-gray-700 dark:text-neutral-300 md:text-7xl">
-        <Balancer>
-          <motion.h2>
-            {"MDL-13"
-              .split(" ")
-              .map((word, index) => (
-                <motion.span
-                  initial={{
-                    filter: "blur(10px)",
-                    opacity: 0,
-                    y: 10,
-                  }}
-                  animate={{
-                    filter: "blur(0px)",
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  transition={{
-                    duration: 0.4,
-                    delay: index * 0.05,
-                  }}
-                  className="inline-block"
-                  key={index}
-                >
-                  {word}&nbsp;
-                </motion.span>
-              ))}
-          </motion.h2>
-        </Balancer>
-      </div>
-      <motion.p
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.2, delay: 0.5 }}
-        className="relative z-20 mx-auto mt-4 max-w-lg px-4 text-center text-base/6 text-gray-600 dark:text-gray-200"
-      >
-      </motion.p>
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.2, delay: 0.7 }}
-        className="mb-10  flex w-full flex-col items-center justify-center gap-4 px-8 sm:flex-row md:mb-20"
-      >
-        <Button
-          as={Link}
-          href="/login"
-          variant="secondary"
-          className="hidden md:block w-full text-center"
+    <div className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-neutral-50 dark:bg-neutral-900">
+      <SphereAnimation />
+      
+      <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
+        <div className="text-balance mx-auto mb-4 mt-4 max-w-4xl text-center text-3xl font-semibold tracking-tight text-gray-700 dark:text-neutral-300 md:text-7xl">
+          <Balancer>
+            <motion.h2>
+              {"MDL-13"
+                .split(" ")
+                .map((word, index) => (
+                  <motion.span
+                    key={index}
+                    initial={{ filter: "blur(10px)", opacity: 0, y: 10 }}
+                    animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    className="inline-block"
+                  >
+                    {word}&nbsp;
+                  </motion.span>
+                ))}
+            </motion.h2>
+          </Balancer>
+        </div>
+        
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2, delay: 0.5 }}
+          className="mx-auto mt-4 max-w-lg px-4 text-center text-base/6 text-gray-600 dark:text-gray-200"
         >
-          Request Admission
-        </Button>
-
-      </motion.div>
+          Applied machine learning for sports analytics.
+        </motion.p>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2, delay: 0.7 }}
+          className="mt-8 flex w-full flex-col items-center justify-center gap-4 px-8 sm:flex-row"
+        >
+          <Button
+            as={Link}
+            href="/login"
+            variant="secondary"
+            className="w-full sm:w-auto text-center"
+          >
+            Request Admission
+          </Button>
+        </motion.div>
+      </div>
     </div>
   );
 }
-
-const BackgroundGrids = () => {
-  return (
-    <div className="pointer-events-none absolute inset-0 z-0 grid h-full w-full -rotate-45 transform select-none grid-cols-2 gap-10 md:grid-cols-4">
-      <div className="relative h-full w-full">
-        <GridLineVertical className="left-0" />
-        <GridLineVertical className="left-auto right-0" />
-      </div>
-      <div className="relative h-full w-full">
-        <GridLineVertical className="left-0" />
-        <GridLineVertical className="left-auto right-0" />
-      </div>
-      <div className="relative h-full w-full bg-gradient-to-b from-transparent via-neutral-100 to-transparent dark:via-neutral-800">
-        <GridLineVertical className="left-0" />
-        <GridLineVertical className="left-auto right-0" />
-      </div>
-      <div className="relative h-full w-full">
-        <GridLineVertical className="left-0" />
-        <GridLineVertical className="left-auto right-0" />
-      </div>
-    </div>
-  );
-};
-
-const CollisionMechanism = React.forwardRef<
-  HTMLDivElement,
-  {
-    containerRef: React.RefObject<HTMLDivElement>;
-    parentRef: React.RefObject<HTMLDivElement>;
-    beamOptions?: {
-      initialX?: number;
-      translateX?: number;
-      initialY?: number;
-      translateY?: number;
-      rotate?: number;
-      className?: string;
-      duration?: number;
-      delay?: number;
-      repeatDelay?: number;
-    };
-  }
->(({ parentRef, containerRef, beamOptions = {} }, ref) => {
-  const beamRef = useRef<HTMLDivElement>(null);
-  const [collision, setCollision] = useState<{
-    detected: boolean;
-    coordinates: { x: number; y: number } | null;
-  }>({
-    detected: false,
-    coordinates: null,
-  });
-  const [beamKey, setBeamKey] = useState(0);
-  const [cycleCollisionDetected, setCycleCollisionDetected] = useState(false);
-
-  useEffect(() => {
-    const checkCollision = () => {
-      if (
-        beamRef.current &&
-        containerRef.current &&
-        parentRef.current &&
-        !cycleCollisionDetected
-      ) {
-        const beamRect = beamRef.current.getBoundingClientRect();
-        const containerRect = containerRef.current.getBoundingClientRect();
-        const parentRect = parentRef.current.getBoundingClientRect();
-
-        if (beamRect.bottom >= containerRect.top) {
-          const relativeX =
-            beamRect.left - parentRect.left + beamRect.width / 2;
-          const relativeY = beamRect.bottom - parentRect.top;
-
-          setCollision({
-            detected: true,
-            coordinates: {
-              x: relativeX,
-              y: relativeY,
-            },
-          });
-          setCycleCollisionDetected(true);
-          if (beamRef.current) {
-            beamRef.current.style.opacity = "0";
-          }
-        }
-      }
-    };
-
-    const animationInterval = setInterval(checkCollision, 50);
-
-    return () => clearInterval(animationInterval);
-  }, [cycleCollisionDetected, containerRef]);
-
-  useEffect(() => {
-    if (collision.detected && collision.coordinates) {
-      setTimeout(() => {
-        setCollision({ detected: false, coordinates: null });
-        setCycleCollisionDetected(false);
-        // Set beam opacity to 0
-        if (beamRef.current) {
-          beamRef.current.style.opacity = "1";
-        }
-      }, 2000);
-
-      // Reset the beam animation after a delay
-      setTimeout(() => {
-        setBeamKey((prevKey) => prevKey + 1);
-      }, 2000);
-    }
-  }, [collision]);
-
-  return (
-    <>
-      <motion.div
-        key={beamKey}
-        ref={beamRef}
-        animate="animate"
-        initial={{
-          translateY: beamOptions.initialY || "-200px",
-          translateX: beamOptions.initialX || "0px",
-          rotate: beamOptions.rotate || -45,
-        }}
-        variants={{
-          animate: {
-            translateY: beamOptions.translateY || "800px",
-            translateX: beamOptions.translateX || "700px",
-            rotate: beamOptions.rotate || -45,
-          },
-        }}
-        transition={{
-          duration: beamOptions.duration || 8,
-          repeat: Infinity,
-          repeatType: "loop",
-          ease: "linear",
-          delay: beamOptions.delay || 0,
-          repeatDelay: beamOptions.repeatDelay || 0,
-        }}
-        className={cn(
-          "absolute left-96 top-20 m-auto h-14 w-px rounded-full bg-gradient-to-t from-orange-500 via-yellow-500 to-transparent",
-          beamOptions.className
-        )}
-      />
-      <AnimatePresence>
-        {collision.detected && collision.coordinates && (
-          <Explosion
-            key={`${collision.coordinates.x}-${collision.coordinates.y}`}
-            className=""
-            style={{
-              left: `${collision.coordinates.x + 20}px`,
-              top: `${collision.coordinates.y}px`,
-              transform: "translate(-50%, -50%)",
-            }}
-          />
-        )}
-      </AnimatePresence>
-    </>
-  );
-});
-
-CollisionMechanism.displayName = "CollisionMechanism";
-
-const Explosion = ({ ...props }: React.HTMLProps<HTMLDivElement>) => {
-  const spans = Array.from({ length: 20 }, (_, index) => ({
-    id: index,
-    initialX: 0,
-    initialY: 0,
-    directionX: Math.floor(Math.random() * 80 - 40),
-    directionY: Math.floor(Math.random() * -50 - 10),
-  }));
-
-  return (
-    <div {...props} className={cn("absolute z-50 h-2 w-2", props.className)}>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: [0, 1, 0] }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        className="absolute -inset-x-10 top-0 m-auto h-[4px] w-10 rounded-full bg-gradient-to-r from-transparent via-orange-500 to-transparent blur-sm"
-      ></motion.div>
-      {spans.map((span) => (
-        <motion.span
-          key={span.id}
-          initial={{ x: span.initialX, y: span.initialY, opacity: 1 }}
-          animate={{
-            x: span.directionX,
-            y: span.directionY,
-            opacity: 0,
-          }}
-          transition={{ duration: Math.random() * 1.5 + 0.5, ease: "easeOut" }}
-          className="absolute h-1 w-1 rounded-full bg-gradient-to-b from-orange-500 to-yellow-500"
-        />
-      ))}
-    </div>
-  );
-};
-
-const GridLineVertical = ({
-  className,
-  offset,
-}: {
-  className?: string;
-  offset?: string;
-}) => {
-  return (
-    <div
-      style={
-        {
-          "--background": "#ffffff",
-          "--color": "rgba(0, 0, 0, 0.2)",
-          "--height": "5px",
-          "--width": "1px",
-          "--fade-stop": "90%",
-          "--offset": offset || "150px", //-100px if you want to keep the line inside
-          "--color-dark": "rgba(255, 255, 255, 0.3)",
-          maskComposite: "exclude",
-        } as React.CSSProperties
-      }
-      className={cn(
-        "absolute top-[calc(var(--offset)/2*-1)] h-[calc(100%+var(--offset))] w-[var(--width)]",
-        "bg-[linear-gradient(to_bottom,var(--color),var(--color)_50%,transparent_0,transparent)]",
-        "[background-size:var(--width)_var(--height)]",
-        "[mask:linear-gradient(to_top,var(--background)_var(--fade-stop),transparent),_linear-gradient(to_bottom,var(--background)_var(--fade-stop),transparent),_linear-gradient(black,black)]",
-        "[mask-composite:exclude]",
-        "z-30",
-        "dark:bg-[linear-gradient(to_bottom,var(--color-dark),var(--color-dark)_50%,transparent_0,transparent)]",
-        className
-      )}
-    ></div>
-  );
-};

@@ -155,16 +155,6 @@ const DesktopNav = ({ navItems, visible }: NavbarProps) => {
             </motion.div>
           )}
         </AnimatePresence>
-        <Button
-          data-cal-namespace={calOptions.namespace}
-          data-cal-link={CONSTANTS.CALCOM_LINK}
-          data-cal-config={`{"layout":"${calOptions.layout}"}`}
-          as="button"
-          variant="primary"
-          className="hidden md:block "
-        >
-          Book a call
-        </Button>
       </div>
     </motion.div>
   );
