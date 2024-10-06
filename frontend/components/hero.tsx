@@ -165,9 +165,9 @@ export function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2, delay: 0.5 }}
-          className="mx-auto mt-4 max-w-lg px-4 text-center text-base/6 text-gray-600 dark:text-gray-200"
+          className="mx-auto max-w-lg px-4 text-center text-base/6 text-gray-600 dark:text-gray-200"
         >
-          Applied machine learning for sports analytics.
+          Machine learning for sports analytics
         </motion.p>
         
         <motion.div
