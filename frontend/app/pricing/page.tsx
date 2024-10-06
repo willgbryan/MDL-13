@@ -8,10 +8,10 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main className="">
-      <Hero />
-      {/* <Features />
+      {/* <Hero />
+      <Features /> */}
       <Pricing />
-      <CTA /> */}
+      {/* <CTA /> */}
     </main>
   );
 }
