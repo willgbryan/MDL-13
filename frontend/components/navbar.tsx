@@ -26,6 +26,10 @@ interface NavbarProps {
 export const Navbar = () => {
   const navItems = [
     {
+      name: "Picks",
+      link: "/picks",
+    },
+    {
       name: "Analytics",
       link: "/core",
     },
@@ -122,7 +126,7 @@ const DesktopNav = ({ navItems, visible }: NavbarProps) => {
         ))}
       </motion.div>
       <div className="flex items-center gap-4">
-        <ModeToggle />
+        {/* <ModeToggle /> */}
 
         <AnimatePresence mode="popLayout" initial={false}>
           {!visible && (
