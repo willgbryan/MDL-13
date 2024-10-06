@@ -72,7 +72,7 @@ export function Hero() {
       <div className="text-balance relative z-20 mx-auto mb-4 mt-4 max-w-4xl text-center text-3xl font-semibold tracking-tight text-gray-700 dark:text-neutral-300 md:text-7xl">
         <Balancer>
           <motion.h2>
-            {"Deploy your website in seconds, not hours."
+            {"MDL-13"
               .split(" ")
               .map((word, index) => (
                 <motion.span
@@ -105,51 +105,22 @@ export function Hero() {
         transition={{ duration: 0.2, delay: 0.5 }}
         className="relative z-20 mx-auto mt-4 max-w-lg px-4 text-center text-base/6 text-gray-600 dark:text-gray-200"
       >
-        With our state of the art, cutting edge, we are so back kinda hosting
-        services, you can deploy your website in seconds.
       </motion.p>
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.2, delay: 0.7 }}
-        className="mb-10 mt-8 flex w-full flex-col items-center justify-center gap-4 px-8 sm:flex-row md:mb-20"
+        className="mb-10  flex w-full flex-col items-center justify-center gap-4 px-8 sm:flex-row md:mb-20"
       >
         <Button
           as={Link}
           href="/login"
-          variant="dark"
-          className="hidden md:block w-40 text-center"
+          variant="secondary"
+          className="hidden md:block w-full text-center"
         >
-          Create account
+          Request Admission
         </Button>
 
-        <Button
-          data-cal-namespace={calOptions.namespace}
-          data-cal-link={CONSTANTS.CALCOM_LINK}
-          data-cal-config={`{"layout":"${calOptions.layout}"}`}
-          as="button"
-          variant="primary"
-          className="hidden md:block w-40"
-        >
-          Book a call
-        </Button>
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.9, ease: "easeOut" }}
-        ref={containerRef}
-        className="relative mx-auto max-w-7xl rounded-[32px] border border-neutral-200/50 bg-neutral-100 p-2 backdrop-blur-lg dark:border-neutral-700 dark:bg-neutral-800/50 md:p-4"
-      >
-        <div className="rounded-[24px] border border-neutral-200 bg-white p-2 dark:border-neutral-700 dark:bg-black">
-          <Image
-            src="https://assets.aceternity.com/pro/dashboard-new.webp"
-            alt="header"
-            width={1920}
-            height={1080}
-            className="rounded-[20px]"
-          />
-        </div>
       </motion.div>
     </div>
   );

@@ -252,17 +252,6 @@ const MobileNav = ({ navItems, visible }: NavbarProps) => {
               >
                 Login
               </Button>
-              <Button
-                data-cal-namespace={calOptions.namespace}
-                data-cal-link={`manu-arora-vesr9s/chat-with-manu-demo`}
-                data-cal-config={`{"layout":"${calOptions.layout}"}`}
-                as="button"
-                onClick={() => setOpen(false)}
-                variant="primary"
-                className="block md:hidden w-full"
-              >
-                Book a call
-              </Button>
             </motion.div>
           )}
         </AnimatePresence>

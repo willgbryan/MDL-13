@@ -9,7 +9,7 @@ import { ThemeProvider } from "@/context/providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Group13",
+  title: "GRP-1.3",
   description:
     "Applied machine learning for sports analytics.",
 };
