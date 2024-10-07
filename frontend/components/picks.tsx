@@ -103,7 +103,7 @@ const Header = ({ children }: { children: React.ReactNode }) => {
 export const description = ""
 export default function Picks() {
   return (
-    <div className="flex min-h-screen w-full flex-col items-center justify-center py-20 dark:bg-neutral-900">
+    <div className="flex min-h-screen w-full flex-col items-center justify-center py-20 bg-gradient-to-bl dark:from-neutral-700 dark:to-neutral-900">
         <Header>
         <h2 className="font-sans text-bold text-xl text-center md:text-4xl w-fit mx-auto font-bold tracking-tight text-neutral-800 dark:text-neutral-100">
           Week 6

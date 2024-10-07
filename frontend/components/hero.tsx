@@ -104,7 +104,7 @@ const SphereAnimation: React.FC = () => {
           <defs>
             <linearGradient id="sphereGradient" x1="5%" x2="5%" y1="0%" y2="15%">
               <stop stopColor="#ffffff" offset="0%" />
-              <stop stopColor="#242423" offset="50%" />
+              <stop stopColor="#1A1A19" offset="50%" />
               <stop stopColor="#121211" offset="100%" />
             </linearGradient>
           </defs>
@@ -137,39 +137,39 @@ const SphereAnimation: React.FC = () => {
 
 export function Hero() {
   return (
-    <div className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-neutral-50 dark:bg-neutral-900">
-      <SphereAnimation />
-      <div className="absolute inset-0 grid grid-cols-12 grid-rows-6 gap-4 p-4 sm:p-8 z-20">
-        <div className="col-start-2 col-span-10 sm:col-start-2 sm:col-span-6 md:col-start-2 md:col-span-5 row-start-2 sm:row-start-2">
-          <div className="text-balance max-w-4xl text-left text-3xl font-semibold tracking-tight text-gray-700 dark:text-neutral-300 sm:text-5xl md:text-7xl">
-            <Balancer>
-              <motion.h2>
-                {"MDL-13"
-                  .split(" ")
-                  .map((word, index) => (
-                    <motion.span
-                      key={index}
-                      initial={{ filter: "blur(10px)", opacity: 0, y: 10 }}
-                      animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.05 }}
-                      className="inline-block"
-                    >
-                      {word}&nbsp;
-                    </motion.span>
-                  ))}
-              </motion.h2>
-            </Balancer>
-          </div>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.2, delay: 0.5 }}
-            className="mt-2 max-w-lg text-left text-sm sm:text-base text-gray-600 dark:text-gray-200"
-          >
-            Machine learning for sports analytics
-          </motion.p>
-        </div>
-      </div>
-    </div>
+     <div className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-bl dark:from-neutral-700 dark:to-neutral-900">
+       <SphereAnimation />
+       <div className="absolute inset-0 grid grid-cols-12 grid-rows-6 gap-4 p-4 sm:p-8 z-20">
+         <div className="col-start-2 col-span-10 sm:col-start-2 sm:col-span-6 md:col-start-2 md:col-span-5 row-start-2 sm:row-start-2">
+           <div className="text-balance max-w-4xl text-left text-3xl font-semibold tracking-tight text-gray-700 dark:text-neutral-300 sm:text-5xl md:text-7xl">
+             <Balancer>
+               <motion.h2>
+                 {"MDL-13"
+                   .split(" ")
+                   .map((word, index) => (
+                     <motion.span
+                       key={index}
+                       initial={{ filter: "blur(10px)", opacity: 0, y: 10 }}
+                       animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
+                       transition={{ duration: 0.4, delay: index * 0.05 }}
+                       className="inline-block"
+                     >
+                       {word}&nbsp;
+                     </motion.span>
+                   ))}
+               </motion.h2>
+             </Balancer>
+           </div>
+           <motion.p
+             initial={{ opacity: 0, y: 10 }}
+             animate={{ opacity: 1, y: 0 }}
+             transition={{ duration: 0.2, delay: 0.5 }}
+             className="mt-2 max-w-lg text-left text-sm sm:text-base text-gray-600 dark:text-gray-200"
+           >
+             Machine learning for sports analytics
+           </motion.p>
+         </div>
+       </div>
+     </div>
   );
-}
+ }

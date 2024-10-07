@@ -7,7 +7,7 @@ import { IconBrandGithub } from "@tabler/icons-react";
 
 export function Login() {
   return (
-    <div className="w-full min-h-screen flex items-center justify-center bg-gray-50 dark:bg-neutral-900">
+    <div className="w-full min-h-screen flex items-center justify-center bg-gray-50 bg-gradient-to-bl dark:from-neutral-700 dark:to-neutral-900">
       <Form />
     </div>
   );
