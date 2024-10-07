@@ -103,18 +103,18 @@ const Header = ({ children }: { children: React.ReactNode }) => {
 export const description = ""
 export default function Picks() {
   return (
-    <div className="flex min-h-screen w-full flex-col items-center justify-center py-20">
+    <div className="flex min-h-screen w-full flex-col items-center justify-center py-20 dark:bg-neutral-900">
         <Header>
         <h2 className="font-sans text-bold text-xl text-center md:text-4xl w-fit mx-auto font-bold tracking-tight text-neutral-800 dark:text-neutral-100">
           Week 6
         </h2>
       </Header>
       <div className="w-full max-w-5xl px-4 py-8">
-        <Card x-chunk="dashboard-06-chunk-0">
+        <Card x-chunk="dashboard-06-chunk-0" className="dark:bg-neutral-900 border shadow-lg">
         <CardHeader>
-            <CardTitle>Products</CardTitle>
+            <CardTitle>MDL Predictions</CardTitle>
             <CardDescription>
-            Manage your products and view their sales performance.
+            Predictions are made by analyzing a diverse set of historical data. Add in your own best judgement to inform your own decisions.
             </CardDescription>
         </CardHeader>
         <CardContent>
@@ -124,19 +124,19 @@ export default function Picks() {
                 <TableHead className="hidden w-[100px] sm:table-cell">
                     <span className="sr-only">Image</span>
                 </TableHead>
-                <TableHead>Name</TableHead>
-                <TableHead>Status</TableHead>
+                <TableHead>Game</TableHead>
+                <TableHead>O/U</TableHead>
                 <TableHead className="hidden md:table-cell">
-                    Price
+                    Spread
                 </TableHead>
                 <TableHead className="hidden md:table-cell">
-                    Total Sales
+                    Winner
                 </TableHead>
                 <TableHead className="hidden md:table-cell">
-                    Created at
+                    Confidence
                 </TableHead>
                 <TableHead>
-                    <span className="sr-only">Actions</span>
+                    <span className="sr-only">Notes</span>
                 </TableHead>
                 </TableRow>
             </TableHeader>

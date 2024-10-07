@@ -4,20 +4,18 @@
 
 /* Light mode variables */
 :root {
-  --foreground-rgb: 0, 0, 0;          /* Black text */
+  --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;              /* HSL notation for black */            /* HSL notation for white */
-  /* Add any other custom properties for light mode here */
+  --background-end-rgb: 255, 255, 255;
 }
 
 /* Dark mode variables */
 .dark {
-  --foreground-rgb: 255, 255, 255;    /* White text */
+  --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 0, 0, 0;
   --background-end-rgb: 0, 0, 0;
-  --foreground: 0 0% 100%;            /* HSL notation for white */
-  --background: 222.2 47.4% 11.2%;    /* Adjust as needed for dark background */
-  /* Add any other custom properties for dark mode here */
+  --foreground: 0 0% 100%;
+  --background: 222.2 47.4% 11.2%;
 }
 
 html {
@@ -28,7 +26,6 @@ body {
   background-color: hsl(var(--background));
 }
 
-/* Additional styles */
 @layer utilities {
   .text-balance {
     text-wrap: balance;

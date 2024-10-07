@@ -29,14 +29,14 @@ export const Navbar = () => {
       name: "Picks",
       link: "/picks",
     },
-    {
-      name: "Analytics",
-      link: "/core",
-    },
-    {
-      name: "Pricing",
-      link: "/pricing",
-    },
+    // {
+    //   name: "Analytics",
+    //   link: "/core",
+    // },
+    // {
+    //   name: "Pricing",
+    //   link: "/pricing",
+    // },
     {
       name: "Apply",
       link: "/apply",
@@ -102,7 +102,7 @@ const DesktopNav = ({ navItems, visible }: NavbarProps) => {
         minWidth: "800px",
       }}
       className={cn(
-        "hidden lg:flex flex-row  self-start bg-transparent dark:bg-transparent items-center justify-between py-2 max-w-7xl mx-auto px-4 rounded-full relative z-[60] w-full",
+        "hidden lg:flex flex-row  self-start bg-transparent dark:bg-transparent items-center justify-between py-2 max-w-7xl mx-auto px-4 rounded-md relative z-[60] w-full",
         visible && "bg-white/80 dark:bg-neutral-950/80"
       )}
     >
@@ -118,7 +118,7 @@ const DesktopNav = ({ navItems, visible }: NavbarProps) => {
             {hovered === idx && (
               <motion.div
                 layoutId="hovered"
-                className="w-full h-full absolute inset-0 bg-gray-100 dark:bg-neutral-800 rounded-full"
+                className="w-full h-full absolute inset-0 bg-gray-100 dark:bg-neutral-800 rounded-md"
               />
             )}
             <span className="relative z-20">{navItem.name}</span>
