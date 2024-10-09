@@ -141,7 +141,7 @@ export function Hero() {
       <SphereAnimation />
       <div className="absolute inset-0 grid grid-cols-12 grid-rows-6 gap-4 p-4 sm:p-8 z-20">
         <div className="col-span-12 row-start-1 sm:col-start-2 sm:col-span-10 sm:row-start-2 md:col-start-2 md:col-span-5">
-          <div className="text-balance max-w-4xl mt-12 text-center sm:text-left text-5xl sm:text-7xl font-semibold tracking-tight text-gray-700 dark:text-neutral-300">
+          <div className="text-balance max-w-4xl text-center sm:text-left text-5xl sm:text-7xl font-semibold tracking-tight text-gray-700 dark:text-neutral-300">
             <Balancer>
               <motion.h2>
                 {"MDL-13"
