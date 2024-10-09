@@ -1,16 +1,16 @@
-import { CTA } from "@/components/cta";
-import { Footer } from "@/components/footer";
-import { Hero } from "@/components/hero";
-import { Pricing } from "@/components/pricing";
-import Image from "next/image";
+import { Apply } from "@/components/apply";
+import { Metadata } from "next";
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: "MDL-13 Login",
+  description:
+    "MDL-13 is the premier invite only data analytics platform for sports betting.",
+};
+
+export default function LoginPage() {
   return (
     <main className="">
-      {/* <Hero />
-      <Features />
-      <Pricing /> */}
-      <CTA />
+      <Apply />
     </main>
   );
 }

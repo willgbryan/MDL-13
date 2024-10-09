@@ -551,7 +551,7 @@ export default function Picks() {
                     DET @ DAL
                 </TableCell>
                 <TableCell>
-                    <Badge variant="outline">Under</Badge>
+                    <Badge variant="secondary">Under</Badge>
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
                     0

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Icon3dCubeSphere } from "@tabler/icons-react";
 
-export function Login() {
+export function Apply() {
   return (
     <div className="w-full min-h-screen flex items-center justify-center bg-gray-50 bg-gradient-to-bl dark:from-neutral-700 dark:to-neutral-900">
       <Form />
@@ -23,21 +23,45 @@ function Form() {
     <form className="w-full max-w-md px-4 py-8 bg-white dark:bg-neutral-900 shadow-lg border rounded-md" onSubmit={onSubmit}>
       <div className="mx-auto w-full">
         <h2 className="text-2xl font-bold leading-9 tracking-tight text-black dark:text-white text-center mb-8">
-          Sign In
+          MDL-13 Application
         </h2>
 
         <div className="space-y-6">
-          {/* <div>
+          <div>
             <label htmlFor="name" className="block text-sm font-medium leading-6 text-neutral-700 dark:text-neutral-400">
               Full name
             </label>
             <input
               id="name"
               type="text"
-              placeholder="Odell"
+              placeholder="OBJ"
               className="mt-2 block w-full px-4 rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 text-black placeholder:text-gray-400 focus:ring-2 focus:ring-neutral-400 sm:text-sm sm:leading-6 dark:bg-neutral-800 dark:ring-neutral-700 dark:text-white"
             />
-          </div> */}
+          </div>
+
+          <div>
+            <label htmlFor="earnings" className="block text-sm font-medium leading-6 text-neutral-700 dark:text-neutral-400">
+              Lifetime sports betting earnings
+            </label>
+            <input
+              id="earnings"
+              type="number"
+              placeholder="10000"
+              className="mt-2 block w-full px-4 rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 text-black placeholder:text-gray-400 focus:ring-2 focus:ring-neutral-400 sm:text-sm sm:leading-6 dark:bg-neutral-800 dark:ring-neutral-700 dark:text-white"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="dev" className="block text-sm font-medium leading-6 text-neutral-700 dark:text-neutral-400">
+              Would you consider yourself a developer?
+            </label>
+            <input
+              id="dev"
+              type="text"
+              placeholder="No"
+              className="mt-2 block w-full px-4 rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 text-black placeholder:text-gray-400 focus:ring-2 focus:ring-neutral-400 sm:text-sm sm:leading-6 dark:bg-neutral-800 dark:ring-neutral-700 dark:text-white"
+            />
+          </div>
 
           <div>
             <label htmlFor="email" className="block text-sm font-medium leading-6 text-neutral-700 dark:text-neutral-400">
@@ -46,25 +70,24 @@ function Form() {
             <input
               id="email"
               type="email"
-              placeholder="1catch1der@gmail.com"
+              placeholder="nota1catch1der@gmail.com"
               className="mt-2 block w-full px-4 rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 text-black placeholder:text-gray-400 focus:ring-2 focus:ring-neutral-400 sm:text-sm sm:leading-6 dark:bg-neutral-800 dark:ring-neutral-700 dark:text-white"
             />
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium leading-6 text-neutral-700 dark:text-neutral-400">
-              Password
+            <label htmlFor="why" className="block text-sm font-medium leading-6 text-neutral-700 dark:text-neutral-400">
+              Tell us about yourself...
             </label>
-            <input
-              id="password"
-              type="password"
-              placeholder="••••••••"
+            <textarea
+              id="why"
+              placeholder=""
               className="mt-2 block w-full px-4 rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 text-black placeholder:text-gray-400 focus:ring-2 focus:ring-neutral-400 sm:text-sm sm:leading-6 dark:bg-neutral-800 dark:ring-neutral-700 dark:text-white"
             />
           </div>
 
           <button className="w-full bg-black hover:bg-black/90 text-white text-sm font-medium rounded-full px-4 py-2 transition duration-200 dark:bg-white dark:text-black dark:hover:bg-neutral-100">
-            Sign In
+            Apply
           </button>
         </div>
 
@@ -75,7 +98,7 @@ function Form() {
           </Link>
         </p> */}
 
-        <div className="mt-8 relative">
+        {/* <div className="mt-8 relative">
           <div className="absolute inset-0 flex items-center" aria-hidden="true">
             <div className="w-full border-t border-neutral-300 dark:border-neutral-700" />
           </div>
@@ -84,9 +107,9 @@ function Form() {
               Or continue with
             </span>
           </div>
-        </div>
+        </div> */}
 
-        <div className="mt-6">
+        {/* <div className="mt-6">
           <button
             onClick={() => {}}
             className="w-full bg-black hover:bg-black/90 text-white text-sm font-medium rounded-full px-4 py-2 transition duration-200 flex items-center justify-center dark:bg-white dark:text-black dark:hover:bg-neutral-100"
@@ -94,10 +117,10 @@ function Form() {
             <Icon3dCubeSphere className="h-5 w-5 mr-2" />
             <span>Auth Code</span>
           </button>
-        </div>
+        </div> */}
 
         <p className="text-neutral-600 dark:text-neutral-400 text-sm text-center mt-8">
-          By clicking on sign in, you agree to our{" "}
+          By clicking on apply, you agree to our{" "}
           <Link href="#" className="text-neutral-500 dark:text-neutral-300">
             Terms of Service
           </Link>{" "}
