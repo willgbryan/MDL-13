@@ -121,13 +121,10 @@ export default function Picks() {
             <Table>
             <TableHeader>
                 <TableRow>
-                <TableHead className="hidden w-[100px] sm:table-cell">
-                    <span className="sr-only">Image</span>
-                </TableHead>
                 <TableHead>Game</TableHead>
                 <TableHead>O/U</TableHead>
                 <TableHead className="hidden md:table-cell">
-                    Spread
+                    Point Difference
                 </TableHead>
                 <TableHead className="hidden md:table-cell">
                     Winner
@@ -142,29 +139,21 @@ export default function Picks() {
             </TableHeader>
             <TableBody>
                 <TableRow>
-                <TableCell className="hidden sm:table-cell">
-                    <Image
-                    alt="Product image"
-                    className="aspect-square rounded-md object-cover"
-                    height="64"
-                    src="/placeholder.svg"
-                    width="64"
-                    />
-                </TableCell>
+                
                 <TableCell className="font-medium">
-                    Laser Lemonade Machine
+                    SF @ SEA
                 </TableCell>
                 <TableCell>
-                    <Badge variant="outline">Draft</Badge>
+                    <Badge variant="outline">Over</Badge>
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                    $499.99
+                    4
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                    25
+                    SF
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                    2023-07-12 10:42 AM
+                    ~
                 </TableCell>
                 <TableCell>
                     <DropdownMenu>
@@ -187,29 +176,21 @@ export default function Picks() {
                 </TableCell>
                 </TableRow>
                 <TableRow>
-                <TableCell className="hidden sm:table-cell">
-                    <Image
-                    alt="Product image"
-                    className="aspect-square rounded-md object-cover"
-                    height="64"
-                    src="/placeholder.svg"
-                    width="64"
-                    />
-                </TableCell>
+                
                 <TableCell className="font-medium">
-                    Hypernova Headphones
+                    JAX @ CHI
                 </TableCell>
                 <TableCell>
-                    <Badge variant="outline">Active</Badge>
+                    <Badge variant="outline">Over</Badge>
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                    $129.99
+                    3
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                    100
+                    CHI
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                    2023-10-18 03:21 PM
+                    ~
                 </TableCell>
                 <TableCell>
                     <DropdownMenu>
@@ -232,29 +213,21 @@ export default function Picks() {
                 </TableCell>
                 </TableRow>
                 <TableRow>
-                <TableCell className="hidden sm:table-cell">
-                    <Image
-                    alt="Product image"
-                    className="aspect-square rounded-md object-cover"
-                    height="64"
-                    src="/placeholder.svg"
-                    width="64"
-                    />
-                </TableCell>
+                
                 <TableCell className="font-medium">
-                    AeroGlow Desk Lamp
+                    WAS @ BAL
                 </TableCell>
                 <TableCell>
-                    <Badge variant="outline">Active</Badge>
+                    <Badge variant="secondary">Under</Badge>
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                    $39.99
+                    6
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                    50
+                    BAL
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                    2023-11-29 08:15 AM
+                    ~
                 </TableCell>
                 <TableCell>
                     <DropdownMenu>
@@ -277,29 +250,317 @@ export default function Picks() {
                 </TableCell>
                 </TableRow>
                 <TableRow>
-                <TableCell className="hidden sm:table-cell">
-                    <Image
-                    alt="Product image"
-                    className="aspect-square rounded-md object-cover"
-                    height="64"
-                    src="/placeholder.svg"
-                    width="64"
-                    />
-                </TableCell>
+                
                 <TableCell className="font-medium">
-                    TechTonic Energy Drink
+                    ARI @ GB
                 </TableCell>
                 <TableCell>
-                    <Badge variant="secondary">Draft</Badge>
+                    <Badge variant="secondary">Under</Badge>
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                    $2.99
+                    6
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                    GB
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                    ~
+                </TableCell>
+                <TableCell>
+                    <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button
+                        aria-haspopup="true"
+                        size="icon"
+                        variant="ghost"
+                        >
+                        <MoreHorizontal className="h-4 w-4" />
+                        <span className="sr-only">Toggle menu</span>
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                        <DropdownMenuItem>Edit</DropdownMenuItem>
+                        <DropdownMenuItem>Delete</DropdownMenuItem>
+                    </DropdownMenuContent>
+                    </DropdownMenu>
+                </TableCell>
+                </TableRow>
+                <TableRow>
+                
+                <TableCell className="font-medium">
+                    HOU @ NE
+                </TableCell>
+                <TableCell>
+                    <Badge variant="outline">Over</Badge>
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                    1.5
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                    NE
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                    Low
+                </TableCell>
+                <TableCell>
+                    <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button
+                        aria-haspopup="true"
+                        size="icon"
+                        variant="ghost"
+                        >
+                        <MoreHorizontal className="h-4 w-4" />
+                        <span className="sr-only">Toggle menu</span>
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                        <DropdownMenuItem>Edit</DropdownMenuItem>
+                        <DropdownMenuItem>Delete</DropdownMenuItem>
+                    </DropdownMenuContent>
+                    </DropdownMenu>
+                </TableCell>
+                </TableRow>
+                <TableRow>
+                
+                <TableCell className="font-medium">
+                    TB @ NO
+                </TableCell>
+                <TableCell>
+                    <Badge variant="outline">Over</Badge>
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                    3
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                    TB
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                    ~
+                </TableCell>
+                <TableCell>
+                    <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button
+                        aria-haspopup="true"
+                        size="icon"
+                        variant="ghost"
+                        >
+                        <MoreHorizontal className="h-4 w-4" />
+                        <span className="sr-only">Toggle menu</span>
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                        <DropdownMenuItem>Edit</DropdownMenuItem>
+                        <DropdownMenuItem>Delete</DropdownMenuItem>
+                    </DropdownMenuContent>
+                    </DropdownMenu>
+                </TableCell>
+                </TableRow>
+                <TableRow>
+                
+                <TableCell className="font-medium">
+                    CLE @ PHI
+                </TableCell>
+                <TableCell>
+                    <Badge variant="secondary">Under</Badge>
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                    6.5
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                    PHI
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                    ~
+                </TableCell>
+                <TableCell>
+                    <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button
+                        aria-haspopup="true"
+                        size="icon"
+                        variant="ghost"
+                        >
+                        <MoreHorizontal className="h-4 w-4" />
+                        <span className="sr-only">Toggle menu</span>
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                        <DropdownMenuItem>Edit</DropdownMenuItem>
+                        <DropdownMenuItem>Delete</DropdownMenuItem>
+                    </DropdownMenuContent>
+                    </DropdownMenu>
+                </TableCell>
+                </TableRow>
+                <TableRow>
+                
+                <TableCell className="font-medium">
+                    IND @ TEN
+                </TableCell>
+                <TableCell>
+                    <Badge variant="secondary">Under</Badge>
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                    1.5
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                    IND
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                    ~
+                </TableCell>
+                <TableCell>
+                    <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button
+                        aria-haspopup="true"
+                        size="icon"
+                        variant="ghost"
+                        >
+                        <MoreHorizontal className="h-4 w-4" />
+                        <span className="sr-only">Toggle menu</span>
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                        <DropdownMenuItem>Edit</DropdownMenuItem>
+                        <DropdownMenuItem>Delete</DropdownMenuItem>
+                    </DropdownMenuContent>
+                    </DropdownMenu>
+                </TableCell>
+                </TableRow>
+                <TableRow>
+                
+                <TableCell className="font-medium">
+                    LAC @ DEN
+                </TableCell>
+                <TableCell>
+                    <Badge variant="secondary">Under</Badge>
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                    1.5
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                    LAC
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                    ~
+                </TableCell>
+                <TableCell>
+                    <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button
+                        aria-haspopup="true"
+                        size="icon"
+                        variant="ghost"
+                        >
+                        <MoreHorizontal className="h-4 w-4" />
+                        <span className="sr-only">Toggle menu</span>
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                        <DropdownMenuItem>Edit</DropdownMenuItem>
+                        <DropdownMenuItem>Delete</DropdownMenuItem>
+                    </DropdownMenuContent>
+                    </DropdownMenu>
+                </TableCell>
+                </TableRow>
+                <TableRow>
+                
+                <TableCell className="font-medium">
+                    PIT @ LV
+                </TableCell>
+                <TableCell>
+                    <Badge variant="outline">Over</Badge>
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                    4.5
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                    LV
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                    ~
+                </TableCell>
+                <TableCell>
+                    <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button
+                        aria-haspopup="true"
+                        size="icon"
+                        variant="ghost"
+                        >
+                        <MoreHorizontal className="h-4 w-4" />
+                        <span className="sr-only">Toggle menu</span>
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                        <DropdownMenuItem>Edit</DropdownMenuItem>
+                        <DropdownMenuItem>Delete</DropdownMenuItem>
+                    </DropdownMenuContent>
+                    </DropdownMenu>
+                </TableCell>
+                </TableRow>
+                <TableRow>
+                
+                <TableCell className="font-medium">
+                    ATL @ CAR
+                </TableCell>
+                <TableCell>
+                    <Badge variant="secondary">Under</Badge>
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                    3.5
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                    ATL
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                    ~
+                </TableCell>
+                <TableCell>
+                    <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button
+                        aria-haspopup="true"
+                        size="icon"
+                        variant="ghost"
+                        >
+                        <MoreHorizontal className="h-4 w-4" />
+                        <span className="sr-only">Toggle menu</span>
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                        <DropdownMenuItem>Edit</DropdownMenuItem>
+                        <DropdownMenuItem>Delete</DropdownMenuItem>
+                    </DropdownMenuContent>
+                    </DropdownMenu>
+                </TableCell>
+                </TableRow>
+                <TableRow>
+                
+                <TableCell className="font-medium">
+                    DET @ DAL
+                </TableCell>
+                <TableCell>
+                    <Badge variant="outline">Under</Badge>
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
                     0
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                    2023-12-25 11:59 PM
+                    DET
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                    Low
                 </TableCell>
                 <TableCell>
                     <DropdownMenu>
@@ -322,29 +583,21 @@ export default function Picks() {
                 </TableCell>
                 </TableRow>
                 <TableRow>
-                <TableCell className="hidden sm:table-cell">
-                    <Image
-                    alt="Product image"
-                    className="aspect-square rounded-md object-cover"
-                    height="64"
-                    src="/placeholder.svg"
-                    width="64"
-                    />
-                </TableCell>
+                
                 <TableCell className="font-medium">
-                    Gamer Gear Pro Controller
+                    CIN @ NYG
                 </TableCell>
                 <TableCell>
-                    <Badge variant="outline">Active</Badge>
+                    <Badge variant="secondary">Under</Badge>
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                    $59.99
+                    5
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                    75
+                    CIN
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                    2024-01-01 12:00 AM
+                    ~
                 </TableCell>
                 <TableCell>
                     <DropdownMenu>
@@ -367,29 +620,21 @@ export default function Picks() {
                 </TableCell>
                 </TableRow>
                 <TableRow>
-                <TableCell className="hidden sm:table-cell">
-                    <Image
-                    alt="Product image"
-                    className="aspect-square rounded-md object-cover"
-                    height="64"
-                    src="/placeholder.svg"
-                    width="64"
-                    />
-                </TableCell>
+                
                 <TableCell className="font-medium">
-                    Luminous VR Headset
+                    BUF @ NYJ
                 </TableCell>
                 <TableCell>
-                    <Badge variant="outline">Active</Badge>
+                    <Badge variant="outline">Over</Badge>
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                    $199.99
+                    3.5
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                    30
+                    BUF
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                    2024-02-14 02:14 PM
+                    ~
                 </TableCell>
                 <TableCell>
                     <DropdownMenu>
