@@ -149,3 +149,15 @@ body {
     padding-right: env(safe-area-inset-right);
   }
 }
+
+:root {
+  --vh: 100vh;
+}
+
+@media (max-width: 767px) {
+  /* Adjust for mobile browsers */
+  :root {
+    --vh: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  }
+}
+
