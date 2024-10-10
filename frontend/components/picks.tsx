@@ -292,16 +292,16 @@ export default function Picks() {
                     HOU @ NE
                 </TableCell>
                 <TableCell>
-                    <Badge variant="outline">Over</Badge>
+                    <Badge variant="secondary">Under</Badge>
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                    1.5
+                    3.5
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                    NE
+                    HOU
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                    Low
+                    ~
                 </TableCell>
                 <TableCell>
                     <DropdownMenu>
