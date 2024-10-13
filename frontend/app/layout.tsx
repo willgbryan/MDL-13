@@ -10,8 +10,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "MDL-13",
-  description: "Applied machine learning for sports analytics.",
-  viewport: "width=device-width, initial-scale=1, viewport-fit=cover",
+  description:
+    "Applied machine learning for sports analytics.",
 };
 
 export default function RootLayout({
@@ -22,12 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={cn(
-          "antialiased dark:bg-black bg-white",
-          inter.className,
-          "min-h-screen",
-          "p-safe"
-        )}
+        className={cn("antialiased dark:bg-black bg-white", inter.className)}
       >
         <ThemeProvider
           attribute="class"
@@ -35,11 +30,9 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          <div className="flex flex-col min-h-screen">
-            <Navbar/>
-            <main className="flex-grow px-safe">{children}</main>
-            <Footer/>
-          </div>
+          <Navbar />
+          {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

@@ -91,7 +91,7 @@ const Header = ({ children }: { children: React.ReactNode }) => {
 
 export default function Analytics() {
   return (
-    <div className="w-full h-full justify-left py-20">
+    <div className="w-full h-full justify-left py-20 bg-gray-50 bg-gradient-to-bl dark:from-neutral-700 dark:to-neutral-900">
       <Header>
         <h2 className="font-sans text-bold text-xl text-center md:text-4xl w-fit mx-auto font-bold tracking-tight text-neutral-800 dark:text-neutral-100">
           Week 6
@@ -100,7 +100,7 @@ export default function Analytics() {
       <div className="chart-wrapper mx-auto flex max-w-6xl flex-col flex-wrap items-start justify-center gap-6 p-6 sm:flex-row sm:p-8">
         <div className="grid w-full gap-6 sm:grid-cols-2 lg:max-w-[22rem] lg:grid-cols-1 xl:max-w-[25rem]">
           {/* First Chart Card */}
-          <Card className="lg:max-w-md">
+          <Card className="lg:max-w-md bg-transparent border-none">
             <CardHeader className="space-y-0 pb-2">
               <CardDescription>Today</CardDescription>
               <CardTitle className="text-4xl tabular-nums">
@@ -228,18 +228,18 @@ export default function Analytics() {
           </Card>
 
           {/* Second Chart Card */}
-          <Card className="flex flex-col lg:max-w-md">
+          <Card className="flex flex-col lg:max-w-md bg-transparent border-none">
             <CardHeader className="flex flex-row items-center gap-4 space-y-0 pb-2 [&>div]:flex-1">
               <div>
-                <CardDescription>Resting HR</CardDescription>
+                <CardDescription>Money Line Accuracy</CardDescription>
                 <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                  62
+                  66
                   <span className="text-sm font-normal tracking-normal text-muted-foreground">
-                    bpm
+                    percent
                   </span>
                 </CardTitle>
               </div>
-              <div>
+              {/* <div>
                 <CardDescription>Variability</CardDescription>
                 <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
                   35
@@ -247,13 +247,13 @@ export default function Analytics() {
                     ms
                   </span>
                 </CardTitle>
-              </div>
+              </div> */}
             </CardHeader>
             <CardContent className="flex flex-1 items-center">
               <ChartContainer
                 config={{
-                  resting: {
-                    label: "Resting",
+                  Moneyline: {
+                    label: "Moneyline",
                     color: "hsl(var(--chart-1))",
                   },
                 }}
@@ -268,33 +268,29 @@ export default function Analytics() {
                   }}
                   data={[
                     {
-                      date: "2024-01-01",
-                      resting: 62,
+                      date: "Week 1",
+                      Moneyline: 71,
                     },
                     {
-                      date: "2024-01-02",
-                      resting: 72,
+                      date: "Week 2",
+                      Moneyline: 63,
                     },
                     {
-                      date: "2024-01-03",
-                      resting: 35,
+                      date: "Week 3",
+                      Moneyline: 65,
                     },
                     {
-                      date: "2024-01-04",
-                      resting: 62,
-                    },
-                    {
-                      date: "2024-01-05",
-                      resting: 52,
-                    },
-                    {
-                      date: "2024-01-06",
-                      resting: 62,
-                    },
-                    {
-                      date: "2024-01-07",
-                      resting: 70,
-                    },
+                        date: "Week 4",
+                        Moneyline: 65,
+                      },
+                      {
+                        date: "Week 5",
+                        Moneyline: 61,
+                      },
+                      {
+                        date: "Week 6",
+                        Moneyline: 68,
+                      },
                   ]}
                 >
                   <CartesianGrid
@@ -309,22 +305,17 @@ export default function Analytics() {
                     tickLine={false}
                     axisLine={false}
                     tickMargin={8}
-                    tickFormatter={(value) => {
-                      return new Date(value).toLocaleDateString("en-US", {
-                        weekday: "short",
-                      });
-                    }}
                   />
                   <Line
-                    dataKey="resting"
+                    dataKey="Moneyline"
                     type="natural"
-                    fill="var(--color-resting)"
-                    stroke="var(--color-resting)"
+                    fill="var(--color-Moneyline)"
+                    stroke="var(--color-Moneyline)"
                     strokeWidth={2}
                     dot={false}
                     activeDot={{
-                      fill: "var(--color-resting)",
-                      stroke: "var(--color-resting)",
+                      fill: "var(--color-Moneyline)",
+                      stroke: "var(--color-Moneyline)",
                       r: 4,
                     }}
                   />
@@ -332,13 +323,7 @@ export default function Analytics() {
                     content={
                       <ChartTooltipContent
                         indicator="line"
-                        labelFormatter={(value) => {
-                          return new Date(value).toLocaleDateString("en-US", {
-                            day: "numeric",
-                            month: "long",
-                            year: "numeric",
-                          });
-                        }}
+
                       />
                     }
                     cursor={false}
@@ -352,7 +337,7 @@ export default function Analytics() {
         {/* Third and Fourth Chart Cards */}
         <div className="grid w-full flex-1 gap-6 lg:max-w-[20rem]">
           {/* Third Chart Card */}
-          <Card className="max-w-xs">
+          <Card className="max-w-xs bg-transparent border-none">
             <CardHeader>
               <CardTitle>Progress</CardTitle>
               <CardDescription>
@@ -466,7 +451,7 @@ export default function Analytics() {
           </Card>
 
           {/* Fourth Chart Card */}
-          <Card className="max-w-xs">
+          <Card className="max-w-xs bg-transparent border-none">
             <CardHeader className="p-4 pb-0">
               <CardTitle>Walking Distance</CardTitle>
               <CardDescription>
@@ -553,7 +538,13 @@ export default function Analytics() {
         {/* Additional Chart Cards */}
         <div className="grid w-full flex-1 gap-6">
           {/* Fifth Chart Card */}
-          <Card className="max-w-xs">
+          <Card className="max-w-xs bg-transparent border-none">
+            <CardHeader>
+                <CardTitle>Feature Importance</CardTitle>
+                <CardDescription>
+                    Highest impact model features for the week.
+                </CardDescription>
+                </CardHeader>
             <CardContent className="flex gap-4 p-4 pb-2">
               <ChartContainer
                 config={{
@@ -660,7 +651,7 @@ export default function Analytics() {
           </Card>
 
           {/* Sixth Chart Card */}
-          <Card className="max-w-xs">
+          <Card className="max-w-xs bg-transparent border-none">
             <CardContent className="flex gap-4 p-4">
               <div className="grid items-center gap-2">
                 <div className="grid flex-1 auto-rows-min gap-0.5">
@@ -750,7 +741,7 @@ export default function Analytics() {
           </Card>
 
           {/* Seventh Chart Card */}
-          <Card className="max-w-xs">
+          <Card className="max-w-xs bg-transparent border-none">
             <CardHeader className="p-4 pb-0">
               <CardTitle>Active Energy</CardTitle>
               <CardDescription>
@@ -833,7 +824,7 @@ export default function Analytics() {
           </Card>
 
           {/* Eighth Chart Card */}
-          <Card className="max-w-xs">
+          <Card className="max-w-xs bg-transparent border-none">
             <CardHeader className="space-y-0 pb-0">
               <CardDescription>Time in Bed</CardDescription>
               <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
