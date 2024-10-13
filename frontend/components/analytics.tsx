@@ -90,145 +90,141 @@ const Header = ({ children }: { children: React.ReactNode }) => {
 };
 
 export default function Analytics() {
-  return (
-    <div className="w-full h-full justify-left py-20 bg-gray-50 bg-gradient-to-bl dark:from-neutral-700 dark:to-neutral-900">
-      <Header>
+return (
+    <div className="w-full h-full py-20 bg-gray-50 bg-gradient-to-bl dark:from-neutral-700 dark:to-neutral-900">
+        <Header>
         <h2 className="font-sans text-bold text-xl text-center md:text-4xl w-fit mx-auto font-bold tracking-tight text-neutral-800 dark:text-neutral-100">
-          Week 6
+            Week 6
         </h2>
-      </Header>
-      <div className="chart-wrapper mx-auto flex max-w-6xl flex-col flex-wrap items-start justify-center gap-6 p-6 sm:flex-row sm:p-8">
-        <div className="grid w-full gap-6 sm:grid-cols-2 lg:max-w-[22rem] lg:grid-cols-1 xl:max-w-[25rem]">
-          {/* First Chart Card */}
-          <Card className="lg:max-w-md bg-zinc-900 border-none">
+        </Header>
+        <div className="chart-wrapper mx-auto max-w-7xl p-6 sm:p-8">
+        <div className="w-full gap-6 columns-1 sm:columns-2 lg:columns-3">
+            <Card className="lg:max-w-xl bg-zinc-900 border-none mb-6 break-inside-avoid">
             <CardHeader className="space-y-0 pb-2">
-              <CardDescription>Today</CardDescription>
-              <CardTitle className="text-4xl tabular-nums">
-                12,584{" "}
-                <span className="font-sans text-sm font-normal tracking-normal text-muted-foreground">
-                  steps
-                </span>
-              </CardTitle>
+                <CardTitle className="text-4xl tabular-nums">
+                Pick Confidence{" "}
+                </CardTitle>
             </CardHeader>
             <CardContent>
-              <ChartContainer
+                <ChartContainer
                 config={{
-                  steps: {
-                    label: "Steps",
+                    teamA: {
+                    label: "Team A",
                     color: "hsl(var(--chart-1))",
-                  },
+                    },
+                    teamB: {
+                    label: "Team B",
+                    color: "hsl(var(--chart-2))",
+                    },
                 }}
-              >
-                <BarChart
-                  accessibilityLayer
-                  margin={{
-                    left: -4,
-                    right: -4,
-                  }}
-                  data={[
-                    {
-                      date: "2024-01-01",
-                      steps: 2000,
-                    },
-                    {
-                      date: "2024-01-02",
-                      steps: 2100,
-                    },
-                    {
-                      date: "2024-01-03",
-                      steps: 2200,
-                    },
-                    {
-                      date: "2024-01-04",
-                      steps: 1300,
-                    },
-                    {
-                      date: "2024-01-05",
-                      steps: 1400,
-                    },
-                    {
-                      date: "2024-01-06",
-                      steps: 2500,
-                    },
-                    {
-                      date: "2024-01-07",
-                      steps: 1600,
-                    },
-                  ]}
                 >
-                  <Bar
-                    dataKey="steps"
-                    fill="var(--color-steps)"
-                    radius={5}
-                    fillOpacity={0.6}
-                    activeBar={<Rectangle fillOpacity={0.8} />}
-                  />
-                  <XAxis
+                <BarChart
+                    accessibilityLayer
+                    margin={{
+                    left: -14,
+                    top: 18,
+                    }}
+                    data={[
+                    {
+                        teamA: 70,
+                        teamB: 30,
+                    },
+                    {
+                        teamA: 65,
+                        teamB: 35,
+                    },
+                    {
+                        teamA: 60,
+                        teamB: 40,
+                    },
+                    {
+                        teamA: 55,
+                        teamB: 45,
+                    },
+                    {
+                        teamA: 50,
+                        teamB: 50,
+                    },
+                    {
+                        teamA: 50,
+                        teamB: 50,
+                    },
+                    {
+                        teamA: 50,
+                        teamB: 50,
+                    },
+                    {
+                        teamA: 70,
+                        teamB: 30,
+                    },
+                    {
+                        teamA: 65,
+                        teamB: 35,
+                    },
+                    {
+                        teamA: 60,
+                        teamB: 40,
+                    },
+                    {
+                        teamA: 55,
+                        teamB: 45,
+                    },
+                    {
+                        teamA: 50,
+                        teamB: 50,
+                    },
+                    {
+                        teamA: 50,
+                        teamB: 50,
+                    },
+                    {
+                        teamA: 50,
+                        teamB: 50,
+                    },
+                    ].sort((a, b) => b.teamA - a.teamA)} // Sort data by teamA confidence
+                >
+                    <XAxis
                     dataKey="date"
                     tickLine={false}
                     axisLine={false}
                     tickMargin={4}
-                    tickFormatter={(value) => {
-                      return new Date(value).toLocaleDateString("en-US", {
-                        weekday: "short",
-                      });
-                    }}
-                  />
-                  <ChartTooltip
+                    />
+                    <YAxis
+                    domain={[0, 100]}
+                    tickFormatter={(value) => `${value}%`}
+                    tickLine={false}
+                    axisLine={false}
+                    />
+                    <Bar
+                    dataKey="teamA"
+                    stackId="confidence"
+                    fill="var(--color-teamA)"
+                    radius={[0, 0, 0, 0]}
+                    fillOpacity={0.6}
+                    />
+                    <Bar
+                    dataKey="teamB"
+                    stackId="confidence"
+                    fill="var(--color-teamB)"
+                    radius={[5, 5, 0, 0]}
+                    fillOpacity={0.6}
+                    />
+                    <ChartTooltip
                     defaultIndex={2}
                     content={
-                      <ChartTooltipContent
+                        <ChartTooltipContent
                         hideIndicator
-                        labelFormatter={(value) => {
-                          return new Date(value).toLocaleDateString("en-US", {
-                            day: "numeric",
-                            month: "long",
-                            year: "numeric",
-                          });
-                        }}
-                      />
+                        />
                     }
                     cursor={false}
-                  />
-                  <ReferenceLine
-                    y={1200}
-                    stroke="hsl(var(--muted-foreground))"
-                    strokeDasharray="3 3"
-                    strokeWidth={1}
-                  >
-                    <Label
-                      position="insideBottomLeft"
-                      value="Average Steps"
-                      offset={10}
-                      fill="hsl(var(--foreground))"
                     />
-                    <Label
-                      position="insideTopLeft"
-                      value="12,343"
-                      className="text-lg"
-                      fill="hsl(var(--foreground))"
-                      offset={10}
-                      startOffset={100}
-                    />
-                  </ReferenceLine>
                 </BarChart>
-              </ChartContainer>
+                </ChartContainer>
             </CardContent>
-            <CardFooter className="flex-col items-start gap-1">
-              <CardDescription>
-                Over the past 7 days, you have walked{" "}
-                <span className="font-medium text-foreground">53,305</span> steps.
-              </CardDescription>
-              <CardDescription>
-                You need{" "}
-                <span className="font-medium text-foreground">12,584</span> more steps
-                to reach your goal.
-              </CardDescription>
-            </CardFooter>
-          </Card>
+            </Card>
 
           {/* Second Chart Card */}
-          <Card className="flex flex-col lg:max-w-md bg-zinc-900 border-none">
+          <Card className="flex flex-col lg:max-w-xl bg-zinc-900 border-none mb-6 break-inside-avoid">
             <CardHeader className="flex flex-row items-center gap-4 space-y-0 pb-2 [&>div]:flex-1">
               <div>
                 <CardDescription>Moneyline Accuracy</CardDescription>
@@ -355,263 +351,78 @@ export default function Analytics() {
               </ChartContainer>
             </CardContent>
           </Card>
-        </div>
 
-        {/* Third and Fourth Chart Cards */}
-        <div className="grid w-full flex-1 gap-6 lg:max-w-[20rem]">
-          {/* Third Chart Card */}
-          <Card className="max-w-xs bg-zinc-900 border-none">
+        <Card className="max-w-xl bg-zinc-900 border-none mb-6 break-inside-avoid">
             <CardHeader>
-              <CardTitle>Progress</CardTitle>
-              <CardDescription>
-                You're averaging more steps a day this year than last year.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-4">
-              <div className="grid auto-rows-min gap-2">
-                <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                  12,453
-                  <span className="text-sm font-normal text-muted-foreground">
-                    steps/day
-                  </span>
-                </div>
-                <ChartContainer
-                  config={{
-                    steps: {
-                      label: "Steps",
-                      color: "hsl(var(--chart-1))",
-                    },
-                  }}
-                  className="aspect-auto h-[32px] w-full"
-                >
-                  <BarChart
-                    accessibilityLayer
-                    layout="vertical"
-                    margin={{
-                      left: 0,
-                      top: 0,
-                      right: 0,
-                      bottom: 0,
-                    }}
-                    data={[
-                      {
-                        date: "2024",
-                        steps: 12435,
-                      },
-                    ]}
-                  >
-                    <Bar
-                      dataKey="steps"
-                      fill="var(--color-steps)"
-                      radius={4}
-                      barSize={32}
-                    >
-                      <LabelList
-                        position="insideLeft"
-                        dataKey="date"
-                        offset={8}
-                        fontSize={12}
-                        fill="white"
-                      />
-                    </Bar>
-                    <YAxis dataKey="date" type="category" tickCount={1} hide />
-                    <XAxis dataKey="steps" type="number" hide />
-                  </BarChart>
-                </ChartContainer>
-              </div>
-              <div className="grid auto-rows-min gap-2">
-                <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                  10,103
-                  <span className="text-sm font-normal text-muted-foreground">
-                    steps/day
-                  </span>
-                </div>
-                <ChartContainer
-                  config={{
-                    steps: {
-                      label: "Steps",
-                      color: "hsl(var(--muted))",
-                    },
-                  }}
-                  className="aspect-auto h-[32px] w-full"
-                >
-                  <BarChart
-                    accessibilityLayer
-                    layout="vertical"
-                    margin={{
-                      left: 0,
-                      top: 0,
-                      right: 0,
-                      bottom: 0,
-                    }}
-                    data={[
-                      {
-                        date: "2023",
-                        steps: 10103,
-                      },
-                    ]}
-                  >
-                    <Bar
-                      dataKey="steps"
-                      fill="var(--color-steps)"
-                      radius={4}
-                      barSize={32}
-                    >
-                      <LabelList
-                        position="insideLeft"
-                        dataKey="date"
-                        offset={8}
-                        fontSize={12}
-                        fill="hsl(var(--muted-foreground))"
-                      />
-                    </Bar>
-                    <YAxis dataKey="date" type="category" tickCount={1} hide />
-                    <XAxis dataKey="steps" type="number" hide />
-                  </BarChart>
-                </ChartContainer>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Fourth Chart Card */}
-          <Card className="max-w-xs bg-zinc-900 border-none">
-            <CardHeader className="p-4 pb-0">
-              <CardTitle>Walking Distance</CardTitle>
-              <CardDescription>
-                Over the last 7 days, your distance walked and run was 12.5 miles
-                per day.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="flex flex-row items-baseline gap-4 p-4 pt-0">
-              <div className="flex items-baseline gap-1 text-3xl font-bold tabular-nums leading-none">
-                12.5
-                <span className="text-sm font-normal text-muted-foreground">
-                  miles/day
-                </span>
-              </div>
-              <ChartContainer
-                config={{
-                  steps: {
-                    label: "Steps",
-                    color: "hsl(var(--chart-1))",
-                  },
-                }}
-                className="ml-auto w-[72px]"
-              >
-                <BarChart
-                  accessibilityLayer
-                  margin={{
-                    left: 0,
-                    right: 0,
-                    top: 0,
-                    bottom: 0,
-                  }}
-                  data={[
-                    {
-                      date: "2024-01-01",
-                      steps: 2000,
-                    },
-                    {
-                      date: "2024-01-02",
-                      steps: 2100,
-                    },
-                    {
-                      date: "2024-01-03",
-                      steps: 2200,
-                    },
-                    {
-                      date: "2024-01-04",
-                      steps: 1300,
-                    },
-                    {
-                      date: "2024-01-05",
-                      steps: 1400,
-                    },
-                    {
-                      date: "2024-01-06",
-                      steps: 2500,
-                    },
-                    {
-                      date: "2024-01-07",
-                      steps: 1600,
-                    },
-                  ]}
-                >
-                  <Bar
-                    dataKey="steps"
-                    fill="var(--color-steps)"
-                    radius={2}
-                    fillOpacity={0.2}
-                    activeIndex={6}
-                    activeBar={<Rectangle fillOpacity={0.8} />}
-                  />
-                  <XAxis
-                    dataKey="date"
-                    tickLine={false}
-                    axisLine={false}
-                    tickMargin={4}
-                    hide
-                  />
-                </BarChart>
-              </ChartContainer>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Additional Chart Cards */}
-        <div className="grid w-full flex-1 gap-6">
-          {/* Fifth Chart Card */}
-          <Card className="max-w-xs bg-zinc-900 border-none">
-            <CardHeader>
-                <CardTitle>Feature Importance</CardTitle>
+                <CardTitle>Moneyline Importance</CardTitle>
                 <CardDescription>
-                    Highest impact model features for the week.
+                    Highest impact model features for winners.
                 </CardDescription>
                 </CardHeader>
-            <CardContent className="flex gap-4 p-4 pb-2">
+            <CardContent className="flex pl-4 pb-2">
               <ChartContainer
                 config={{
-                  move: {
-                    label: "Move",
+                  feature_1: {
+                    label: "feature_1",
                     color: "hsl(var(--chart-1))",
                   },
-                  stand: {
-                    label: "Stand",
+                  feature_2: {
+                    label: "feature_2",
                     color: "hsl(var(--chart-2))",
                   },
-                  exercise: {
-                    label: "Exercise",
+                  feature_3: {
+                    label: "feature_3",
                     color: "hsl(var(--chart-3))",
+                  },
+                  feature_4: {
+                    label: "feature_4",
+                    color: "hsl(var(--chart-1))",
+                  },
+                  feature_5: {
+                    label: "feature_5",
+                    color: "hsl(var(--chart-2))",
                   },
                 }}
                 className="h-[140px] w-full"
               >
                 <BarChart
                   margin={{
-                    left: 0,
+                    left: 10,
                     right: 0,
                     top: 0,
                     bottom: 10,
                   }}
                   data={[
                     {
-                      activity: "stand",
-                      value: (8 / 12) * 100,
-                      label: "8/12 hr",
-                      fill: "var(--color-stand)",
+                      activity: "Adjusted spread",
+                      value: 80.0,
+                      label: "80.0",
+                      fill: "var(--color-feature_1)",
                     },
                     {
-                      activity: "exercise",
-                      value: (46 / 60) * 100,
-                      label: "46/60 min",
-                      fill: "var(--color-exercise)",
+                      activity: "Expected margin",
+                      value: 43.3,
+                      label: "43.3",
+                      fill: "var(--color-feature_2)",
                     },
                     {
-                      activity: "move",
-                      value: (245 / 360) * 100,
-                      label: "245/360 kcal",
-                      fill: "var(--color-move)",
+                      activity: "Spread line",
+                      value: 25.0,
+                      label: "25.0",
+                      fill: "var(--color-feature_3)",
                     },
+                    {
+                        activity: "Away coach",
+                        value: 23.9,
+                        label: "23.9",
+                        fill: "var(--color-feature_4)",
+                      },
+                      {
+                        activity: "Away QB",
+                        value: 21.0,
+                        label: "21.0",
+                        fill: "var(--color-feature_5)",
+                      },
                   ]}
                   layout="vertical"
                   barSize={32}
@@ -641,19 +452,9 @@ export default function Analytics() {
             <CardFooter className="flex flex-row border-t p-4">
               <div className="flex w-full items-center gap-2">
                 <div className="grid flex-1 auto-rows-min gap-0.5">
-                  <div className="text-xs text-muted-foreground">Move</div>
+                  <div className="text-xs text-muted-foreground">Train Time</div>
                   <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                    562
-                    <span className="text-sm font-normal text-muted-foreground">
-                      kcal
-                    </span>
-                  </div>
-                </div>
-                <Separator orientation="vertical" className="mx-2 h-10 w-px" />
-                <div className="grid flex-1 auto-rows-min gap-0.5">
-                  <div className="text-xs text-muted-foreground">Exercise</div>
-                  <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                    73
+                    61
                     <span className="text-sm font-normal text-muted-foreground">
                       min
                     </span>
@@ -661,20 +462,160 @@ export default function Analytics() {
                 </div>
                 <Separator orientation="vertical" className="mx-2 h-10 w-px" />
                 <div className="grid flex-1 auto-rows-min gap-0.5">
-                  <div className="text-xs text-muted-foreground">Stand</div>
+                  <div className="text-xs text-muted-foreground">Test Accuracy</div>
                   <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                    14
+                    67
                     <span className="text-sm font-normal text-muted-foreground">
-                      hr
+                      %
                     </span>
                   </div>
                 </div>
+                {/* <Separator orientation="vertical" className="mx-2 h-10 w-px" /> */}
+                {/* <div className="grid flex-1 auto-rows-min gap-0.5">
+                  <div className="text-xs text-muted-foreground">ROC AUC</div>
+                  <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
+                    0.7331
+                    <span className="text-sm font-normal text-muted-foreground">
+                    </span>
+                  </div>
+                </div> */}
+              </div>
+            </CardFooter>
+          </Card>
+
+          <Card className="max-w-xl bg-zinc-900 border-none mb-6 break-inside-avoid">
+            <CardHeader>
+                <CardTitle>Scoring Importance</CardTitle>
+                <CardDescription>
+                    Highest impact model features for scoring.
+                </CardDescription>
+                </CardHeader>
+            <CardContent className="flex pl-4 pb-2">
+              <ChartContainer
+                config={{
+                  feature_1: {
+                    label: "feature_1",
+                    color: "hsl(var(--chart-1))",
+                  },
+                  feature_2: {
+                    label: "feature_2",
+                    color: "hsl(var(--chart-2))",
+                  },
+                  feature_3: {
+                    label: "feature_3",
+                    color: "hsl(var(--chart-3))",
+                  },
+                  feature_4: {
+                    label: "feature_4",
+                    color: "hsl(var(--chart-1))",
+                  },
+                  feature_5: {
+                    label: "feature_5",
+                    color: "hsl(var(--chart-2))",
+                  },
+                }}
+                className="h-[140px] w-full"
+              >
+                <BarChart
+                  margin={{
+                    left: 10,
+                    right: 0,
+                    top: 0,
+                    bottom: 10,
+                  }}
+                  data={[
+                    {
+                      activity: "Total Line",
+                      value: 79.0,
+                      label: "79.0",
+                      fill: "var(--color-feature_1)",
+                    },
+                    {
+                      activity: "Away Moneyline",
+                      value: 39.4,
+                      label: "39.4",
+                      fill: "var(--color-feature_2)",
+                    },
+                    {
+                      activity: "Away QB",
+                      value: 35.0,
+                      label: "35.0",
+                      fill: "var(--color-feature_3)",
+                    },
+                    {
+                        activity: "Home QB",
+                        value: 29.5,
+                        label: "29.5",
+                        fill: "var(--color-feature_4)",
+                      },
+                      {
+                        activity: "Away coach",
+                        value: 23.0,
+                        label: "23.0",
+                        fill: "var(--color-feature_5)",
+                      },
+                  ]}
+                  layout="vertical"
+                  barSize={32}
+                  barGap={2}
+                >
+                  <XAxis type="number" dataKey="value" hide />
+                  <YAxis
+                    dataKey="activity"
+                    type="category"
+                    tickLine={false}
+                    tickMargin={4}
+                    axisLine={false}
+                    className="capitalize"
+                  />
+                  <Bar dataKey="value" radius={5}>
+                    <LabelList
+                      position="insideLeft"
+                      dataKey="label"
+                      fill="white"
+                      offset={8}
+                      fontSize={12}
+                    />
+                  </Bar>
+                </BarChart>
+              </ChartContainer>
+            </CardContent>
+            <CardFooter className="flex flex-row border-t p-4">
+              <div className="flex w-full items-center gap-2">
+                <div className="grid flex-1 auto-rows-min gap-0.5">
+                  <div className="text-xs text-muted-foreground">Train Time</div>
+                  <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
+                    46
+                    <span className="text-sm font-normal text-muted-foreground">
+                      min
+                    </span>
+                  </div>
+                </div>
+                <Separator orientation="vertical" className="mx-2 h-10 w-px" />
+                <div className="grid flex-1 auto-rows-min gap-0.5">
+                  <div className="text-xs text-muted-foreground">Point Accuracy Margin</div>
+                  <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
+                    8.10
+                    <span className="text-sm font-normal text-muted-foreground">
+                      +/- 0.9
+                    </span>
+                  </div>
+                </div>
+                {/* <Separator orientation="vertical" className="mx-2 h-10 w-px" /> */}
+                {/* <div className="grid flex-1 auto-rows-min gap-0.5">
+                  <div className="text-xs text-muted-foreground">ROC AUC</div>
+                  <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
+                    0.7331
+                    <span className="text-sm font-normal text-muted-foreground">
+                    </span>
+                  </div>
+                </div> */}
               </div>
             </CardFooter>
           </Card>
 
           {/* Sixth Chart Card */}
-          <Card className="max-w-xs bg-zinc-900 border-none">
+          <Card className="max-w-xl bg-zinc-900 border-none mb-6 break-inside-avoid">
             <CardContent className="flex gap-4 p-4">
               <div className="grid items-center gap-2">
                 <div className="grid flex-1 auto-rows-min gap-0.5">
@@ -764,7 +705,7 @@ export default function Analytics() {
           </Card>
 
           {/* Seventh Chart Card */}
-          <Card className="max-w-xs bg-zinc-900 border-none">
+          <Card className="max-w-xl bg-zinc-900 border-none mb-6 break-inside-avoid">
             <CardHeader className="p-4 pb-0">
               <CardTitle>Active Energy</CardTitle>
               <CardDescription>
@@ -847,9 +788,9 @@ export default function Analytics() {
           </Card>
 
           {/* Eighth Chart Card */}
-          <Card className="max-w-xs bg-zinc-900 border-none">
-            <CardHeader className="space-y-0 pb-0">
-              <CardDescription>Time in Bed</CardDescription>
+          <Card className="max-w-xl bg-zinc-900 border-none mb-6 break-inside-avoid">
+            <CardHeader className="space-y-0 pb-0"> 
+              <CardDescription>Scoring Residuals Distribution</CardDescription>
               <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
                 8
                 <span className="font-sans text-sm font-normal tracking-normal text-muted-foreground">
@@ -875,31 +816,39 @@ export default function Analytics() {
                   data={[
                     {
                       date: "2024-01-01",
-                      time: 8.5,
+                      time: 0,
                     },
                     {
                       date: "2024-01-02",
-                      time: 7.2,
+                      time: 18,
                     },
                     {
+                        date: "2024-01-02",
+                        time: 23,
+                      },
+                    {
                       date: "2024-01-03",
-                      time: 8.1,
+                      time: 28,
                     },
                     {
                       date: "2024-01-04",
-                      time: 6.2,
+                      time: 31,
                     },
                     {
                       date: "2024-01-05",
-                      time: 5.2,
+                      time: 25,
                     },
                     {
+                        date: "2024-01-02",
+                        time: 19,
+                      },
+                    {
                       date: "2024-01-06",
-                      time: 8.1,
+                      time: 9,
                     },
                     {
                       date: "2024-01-07",
-                      time: 7.0,
+                      time: 2,
                     },
                   ]}
                   margin={{
@@ -937,11 +886,9 @@ export default function Analytics() {
                     content={<ChartTooltipContent hideLabel />}
                     formatter={(value) => (
                       <div className="flex min-w-[120px] items-center text-xs text-muted-foreground">
-                        Time in bed
                         <div className="ml-auto flex items-baseline gap-0.5 font-mono font-medium tabular-nums text-foreground">
-                          {value}
-                          <span className="font-normal text-muted-foreground">
-                            hr
+                          Count: {value} Residual: {}
+                          <span className="font-normal text-muted-foreground"> 
                           </span>
                         </div>
                       </div>
@@ -952,7 +899,7 @@ export default function Analytics() {
             </CardContent>
           </Card>
         </div>
+        </div>
       </div>
-    </div>
   );
 }

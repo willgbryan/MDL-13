@@ -110,7 +110,7 @@ export default function Picks() {
         </h2>
       </Header>
       <div className="w-full max-w-5xl px-4 py-8">
-        <Card x-chunk="dashboard-06-chunk-0" className="dark:bg-neutral-900 border shadow-lg">
+        <Card x-chunk="dashboard-05-chunk-0" className="dark:bg-neutral-900 border shadow-lg">
         <CardHeader>
             <CardTitle>MDL Predictions</CardTitle>
             <CardDescription>
@@ -129,17 +129,13 @@ export default function Picks() {
                 <TableHead className="hidden md:table-cell">
                     Winner
                 </TableHead>
-                <TableHead className="hidden md:table-cell">
-                    Confidence
-                </TableHead>
                 <TableHead>
-                    <span className="sr-only">Notes</span>
+                    <span className="hidden md:table-cell">Notes</span>
                 </TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
                 <TableRow>
-                
                 <TableCell className="font-medium">
                     SF @ SEA
                 </TableCell>
@@ -152,9 +148,7 @@ export default function Picks() {
                 <TableCell className="hidden md:table-cell">
                     SF
                 </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    ~
-                </TableCell>
+                
                 <TableCell>
                     <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -189,9 +183,7 @@ export default function Picks() {
                 <TableCell className="hidden md:table-cell">
                     CHI
                 </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    ~
-                </TableCell>
+                
                 <TableCell>
                     <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -226,9 +218,7 @@ export default function Picks() {
                 <TableCell className="hidden md:table-cell">
                     BAL
                 </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    ~
-                </TableCell>
+                
                 <TableCell>
                     <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -263,9 +253,7 @@ export default function Picks() {
                 <TableCell className="hidden md:table-cell">
                     GB
                 </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    ~
-                </TableCell>
+                
                 <TableCell>
                     <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -300,9 +288,7 @@ export default function Picks() {
                 <TableCell className="hidden md:table-cell">
                     HOU
                 </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    ~
-                </TableCell>
+                
                 <TableCell>
                     <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -337,9 +323,7 @@ export default function Picks() {
                 <TableCell className="hidden md:table-cell">
                     TB
                 </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    ~
-                </TableCell>
+                
                 <TableCell>
                     <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -374,9 +358,7 @@ export default function Picks() {
                 <TableCell className="hidden md:table-cell">
                     PHI
                 </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    ~
-                </TableCell>
+                
                 <TableCell>
                     <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -411,9 +393,7 @@ export default function Picks() {
                 <TableCell className="hidden md:table-cell">
                     IND
                 </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    ~
-                </TableCell>
+                
                 <TableCell>
                     <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -448,9 +428,7 @@ export default function Picks() {
                 <TableCell className="hidden md:table-cell">
                     LAC
                 </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    ~
-                </TableCell>
+                
                 <TableCell>
                     <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -485,9 +463,7 @@ export default function Picks() {
                 <TableCell className="hidden md:table-cell">
                     LV
                 </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    ~
-                </TableCell>
+                
                 <TableCell>
                     <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -522,9 +498,7 @@ export default function Picks() {
                 <TableCell className="hidden md:table-cell">
                     ATL
                 </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    ~
-                </TableCell>
+                
                 <TableCell>
                     <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -558,9 +532,6 @@ export default function Picks() {
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
                     DET
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    Low
                 </TableCell>
                 <TableCell>
                     <DropdownMenu>
@@ -596,9 +567,7 @@ export default function Picks() {
                 <TableCell className="hidden md:table-cell">
                     CIN
                 </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    ~
-                </TableCell>
+                
                 <TableCell>
                     <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -633,9 +602,7 @@ export default function Picks() {
                 <TableCell className="hidden md:table-cell">
                     BUF
                 </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    ~
-                </TableCell>
+                
                 <TableCell>
                     <DropdownMenu>
                     <DropdownMenuTrigger asChild>
