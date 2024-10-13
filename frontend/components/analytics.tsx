@@ -100,7 +100,7 @@ export default function Analytics() {
       <div className="chart-wrapper mx-auto flex max-w-6xl flex-col flex-wrap items-start justify-center gap-6 p-6 sm:flex-row sm:p-8">
         <div className="grid w-full gap-6 sm:grid-cols-2 lg:max-w-[22rem] lg:grid-cols-1 xl:max-w-[25rem]">
           {/* First Chart Card */}
-          <Card className="lg:max-w-md bg-transparent border-none">
+          <Card className="lg:max-w-md bg-zinc-900 border-none">
             <CardHeader className="space-y-0 pb-2">
               <CardDescription>Today</CardDescription>
               <CardTitle className="text-4xl tabular-nums">
@@ -228,26 +228,26 @@ export default function Analytics() {
           </Card>
 
           {/* Second Chart Card */}
-          <Card className="flex flex-col lg:max-w-md bg-transparent border-none">
+          <Card className="flex flex-col lg:max-w-md bg-zinc-900 border-none">
             <CardHeader className="flex flex-row items-center gap-4 space-y-0 pb-2 [&>div]:flex-1">
               <div>
-                <CardDescription>Money Line Accuracy</CardDescription>
+                <CardDescription>Moneyline Accuracy</CardDescription>
                 <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                  66
+                  66.34
                   <span className="text-sm font-normal tracking-normal text-muted-foreground">
-                    percent
+                    %
                   </span>
                 </CardTitle>
               </div>
-              {/* <div>
-                <CardDescription>Variability</CardDescription>
+              <div>
+                <CardDescription>O/U Accuracy</CardDescription>
                 <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                  35
+                  67.11
                   <span className="text-sm font-normal tracking-normal text-muted-foreground">
-                    ms
+                    %
                   </span>
                 </CardTitle>
-              </div> */}
+              </div>
             </CardHeader>
             <CardContent className="flex flex-1 items-center">
               <ChartContainer
@@ -255,6 +255,10 @@ export default function Analytics() {
                   Moneyline: {
                     label: "Moneyline",
                     color: "hsl(var(--chart-1))",
+                  },
+                  OU: {
+                    label: "OU",
+                    color: "hsl(var(--chart-2))",
                   },
                 }}
                 className="w-full"
@@ -270,26 +274,32 @@ export default function Analytics() {
                     {
                       date: "Week 1",
                       Moneyline: 71,
+                      OU: 65,
                     },
                     {
                       date: "Week 2",
                       Moneyline: 63,
+                      OU: 61,
                     },
                     {
                       date: "Week 3",
                       Moneyline: 65,
+                      OU: 65,
                     },
                     {
                         date: "Week 4",
                         Moneyline: 65,
+                        OU: 71,
                       },
                       {
                         date: "Week 5",
                         Moneyline: 61,
+                        OU: 68,
                       },
                       {
                         date: "Week 6",
                         Moneyline: 68,
+                        OU: 63,
                       },
                   ]}
                 >
@@ -319,6 +329,19 @@ export default function Analytics() {
                       r: 4,
                     }}
                   />
+                  <Line
+                    dataKey="OU"
+                    type="natural"
+                    fill="var(--color-OU)"
+                    stroke="var(--color-OU)"
+                    strokeWidth={2}
+                    dot={false}
+                    activeDot={{
+                      fill: "var(--color-OU)",
+                      stroke: "var(--color-OU)",
+                      r: 4,
+                    }}
+                  />
                   <ChartTooltip
                     content={
                       <ChartTooltipContent
@@ -337,7 +360,7 @@ export default function Analytics() {
         {/* Third and Fourth Chart Cards */}
         <div className="grid w-full flex-1 gap-6 lg:max-w-[20rem]">
           {/* Third Chart Card */}
-          <Card className="max-w-xs bg-transparent border-none">
+          <Card className="max-w-xs bg-zinc-900 border-none">
             <CardHeader>
               <CardTitle>Progress</CardTitle>
               <CardDescription>
@@ -451,7 +474,7 @@ export default function Analytics() {
           </Card>
 
           {/* Fourth Chart Card */}
-          <Card className="max-w-xs bg-transparent border-none">
+          <Card className="max-w-xs bg-zinc-900 border-none">
             <CardHeader className="p-4 pb-0">
               <CardTitle>Walking Distance</CardTitle>
               <CardDescription>
@@ -538,7 +561,7 @@ export default function Analytics() {
         {/* Additional Chart Cards */}
         <div className="grid w-full flex-1 gap-6">
           {/* Fifth Chart Card */}
-          <Card className="max-w-xs bg-transparent border-none">
+          <Card className="max-w-xs bg-zinc-900 border-none">
             <CardHeader>
                 <CardTitle>Feature Importance</CardTitle>
                 <CardDescription>
@@ -651,7 +674,7 @@ export default function Analytics() {
           </Card>
 
           {/* Sixth Chart Card */}
-          <Card className="max-w-xs bg-transparent border-none">
+          <Card className="max-w-xs bg-zinc-900 border-none">
             <CardContent className="flex gap-4 p-4">
               <div className="grid items-center gap-2">
                 <div className="grid flex-1 auto-rows-min gap-0.5">
@@ -741,7 +764,7 @@ export default function Analytics() {
           </Card>
 
           {/* Seventh Chart Card */}
-          <Card className="max-w-xs bg-transparent border-none">
+          <Card className="max-w-xs bg-zinc-900 border-none">
             <CardHeader className="p-4 pb-0">
               <CardTitle>Active Energy</CardTitle>
               <CardDescription>
@@ -824,7 +847,7 @@ export default function Analytics() {
           </Card>
 
           {/* Eighth Chart Card */}
-          <Card className="max-w-xs bg-transparent border-none">
+          <Card className="max-w-xs bg-zinc-900 border-none">
             <CardHeader className="space-y-0 pb-0">
               <CardDescription>Time in Bed</CardDescription>
               <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
