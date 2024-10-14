@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Link from "next/link";
-import { Icon3dCubeSphere } from "@tabler/icons-react";
 import { OTPAuthFlow } from './otp-auth-flow';
 
 export default function SignIn() {

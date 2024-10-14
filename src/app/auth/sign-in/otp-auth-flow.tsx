@@ -112,9 +112,9 @@ export function OTPAuthFlow() {
   return (
     <div className="max-w-md">
       {message && (
-        <Alert variant={formSuccess ? 'default' : 'destructive'} className="mb-10">
+        <Alert variant={formSuccess ? 'default' : 'destructive'} className="mb-8 bg-transparent border-[#4BFFBA]">
           {formSuccess ? (
-            <MailOpenIcon className="h-4 w-4 stroke-slate-900" />
+            <MailOpenIcon className="h-4 w-4 stroke-[#4BFFBA]" />
           ) : (
             <Info className="h-4 w-4 text-violet-200" />
           )}
@@ -183,7 +183,7 @@ export function OTPAuthFlow() {
               </InputOTP>
             </div>
           </div>
-          <Button variant="ghost" type="submit" className="w-full mt-4 text-black rounded-full bg-white hover:text-stone-100 hover:dark:bg-neutral-800">
+          <Button variant="ghost" type="submit" className="w-full mt-12 text-black rounded-full bg-white hover:text-stone-100 hover:dark:bg-neutral-800">
             Verify OTP
           </Button>
         </form>
