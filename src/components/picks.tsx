@@ -110,7 +110,7 @@ export default function Picks() {
         </h2>
       </Header>
       <div className="w-full max-w-5xl px-4 py-8">
-        <Card x-chunk="dashboard-05-chunk-0" className="dark:bg-neutral-900 border shadow-lg">
+        <Card x-chunk="dashboard-05-chunk-0" className="dark:bg-transparent">
         <CardHeader>
             <CardTitle>MDL Predictions</CardTitle>
             <CardDescription>

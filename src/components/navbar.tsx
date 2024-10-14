@@ -29,10 +29,10 @@ export const Navbar = () => {
       name: "Picks",
       link: "/picks",
     },
-    // {
-    //   name: "Analytics",
-    //   link: "/core",
-    // },
+    {
+      name: "Analytics",
+      link: "/core",
+    },
     // {
     //   name: "Pricing",
     //   link: "/pricing",
@@ -147,7 +147,7 @@ const DesktopNav = ({ navItems, visible }: NavbarProps) => {
             >
               <Button
                 as={Link}
-                href="/auth"
+                href="/auth/sign-in"
                 variant="secondary"
                 className="hidden md:block "
               >
@@ -237,7 +237,7 @@ const MobileNav = ({ navItems, visible }: NavbarProps) => {
               <Button
                 as={Link}
                 onClick={() => setOpen(false)}
-                href="/auth"
+                href="/auth/sign-in"
                 variant="primary"
                 className="block md:hidden w-full"
               >

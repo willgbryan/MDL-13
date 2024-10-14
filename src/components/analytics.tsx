@@ -99,7 +99,7 @@ return (
         </Header>
         <div className="chart-wrapper mx-auto max-w-7xl p-6 sm:p-8">
         <div className="w-full gap-6 columns-1 sm:columns-2 lg:columns-3">
-        <Card className="flex flex-col lg:max-w-xl bg-zinc-900 border-none mb-6 break-inside-avoid">
+        <Card className="flex flex-col lg:max-w-xl bg-transparent shadow-lg border-none mb-6 break-inside-avoid">
             <CardHeader className="space-y-0 pb-2">
                 <CardDescription>Today</CardDescription>
                 <CardTitle className="text-4xl tabular-nums">
@@ -225,7 +225,7 @@ return (
             </CardFooter>
             </Card>
           {/* Second Chart Card */}
-          <Card className="flex flex-col lg:max-w-xl bg-zinc-900 border-none mb-6 break-inside-avoid">
+          <Card className="flex flex-col lg:max-w-xl bg-transparent shadow-lg border-none mb-6 break-inside-avoid">
             <CardHeader className="flex flex-row items-center gap-4 space-y-0 pb-2 [&>div]:flex-1">
               <div>
                 <CardDescription>Moneyline Accuracy</CardDescription>
@@ -353,7 +353,7 @@ return (
             </CardContent>
           </Card>
 
-        <Card className="max-w-xl bg-zinc-900 border-none mb-6 break-inside-avoid">
+        <Card className="max-w-xl bg-transparent shadow-lg border-none mb-6 break-inside-avoid">
             <CardHeader>
                 <CardTitle>Moneyline Importance</CardTitle>
                 <CardDescription>
@@ -484,7 +484,7 @@ return (
             </CardFooter>
           </Card>
 
-          <Card className="max-w-xl bg-zinc-900 border-none mb-6 break-inside-avoid">
+          <Card className="max-w-xl bg-transparent shadow-lg border-none mb-6 break-inside-avoid">
             <CardHeader>
                 <CardTitle>Scoring Importance</CardTitle>
                 <CardDescription>
@@ -616,7 +616,7 @@ return (
           </Card>
 
           {/* Sixth Chart Card */}
-          <Card className="max-w-xl bg-zinc-900 border-none mb-6 break-inside-avoid">
+          {/* <Card className="max-w-xl bg-transparent shadow-lg border-none mb-6 break-inside-avoid">
             <CardContent className="flex gap-4 p-4">
               <div className="grid items-center gap-2">
                 <div className="grid flex-1 auto-rows-min gap-0.5">
@@ -703,10 +703,10 @@ return (
                 </RadialBarChart>
               </ChartContainer>
             </CardContent>
-          </Card>
+          </Card> */}
 
           {/* Seventh Chart Card */}
-          <Card className="max-w-xl bg-zinc-900 border-none mb-6 break-inside-avoid">
+          {/* <Card className="max-w-xl bg-transparent shadow-lg border-none mb-6 break-inside-avoid">
             <CardHeader className="p-4 pb-0">
               <CardTitle>Active Energy</CardTitle>
               <CardDescription>
@@ -786,20 +786,16 @@ return (
                 </BarChart>
               </ChartContainer>
             </CardContent>
-          </Card>
+          </Card> */}
 
           {/* Eighth Chart Card */}
-          <Card className="max-w-xl bg-zinc-900 border-none mb-6 break-inside-avoid">
+          <Card className="max-w-xl bg-transparent shadow-lg border-none mb-6 break-inside-avoid">
             <CardHeader className="space-y-0 pb-0"> 
               <CardDescription>Scoring Residuals Distribution</CardDescription>
               <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                8
+                0.03
                 <span className="font-sans text-sm font-normal tracking-normal text-muted-foreground">
-                  hr
-                </span>
-                35
-                <span className="font-sans text-sm font-normal tracking-normal text-muted-foreground">
-                  min
+                  Avg
                 </span>
               </CardTitle>
             </CardHeader>
@@ -821,15 +817,15 @@ return (
                     },
                     {
                       date: "2024-01-02",
-                      time: 18,
+                      time: 5,
                     },
                     {
                         date: "2024-01-02",
-                        time: 23,
+                        time: 12,
                       },
                     {
                       date: "2024-01-03",
-                      time: 28,
+                      time: 18,
                     },
                     {
                       date: "2024-01-04",
@@ -837,26 +833,26 @@ return (
                     },
                     {
                       date: "2024-01-05",
-                      time: 25,
+                      time: 19,
                     },
                     {
                         date: "2024-01-02",
-                        time: 19,
+                        time: 11,
                       },
                     {
                       date: "2024-01-06",
-                      time: 9,
+                      time: 7,
                     },
                     {
                       date: "2024-01-07",
-                      time: 2,
+                      time: 0,
                     },
                   ]}
                   margin={{
                     left: 0,
                     right: 0,
                     top: 0,
-                    bottom: 0,
+                    bottom: -30,
                   }}
                 >
                   <XAxis dataKey="date" hide />
@@ -888,7 +884,7 @@ return (
                     formatter={(value) => (
                       <div className="flex min-w-[120px] items-center text-xs text-muted-foreground">
                         <div className="ml-auto flex items-baseline gap-0.5 font-mono font-medium tabular-nums text-foreground">
-                          Count: {value} Residual: {}
+                          Residual Count: {value}
                           <span className="font-normal text-muted-foreground"> 
                           </span>
                         </div>
