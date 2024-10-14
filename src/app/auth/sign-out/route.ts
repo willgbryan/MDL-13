@@ -7,11 +7,11 @@ function getBaseUrl(): string {
   const deployment = process.env.DEPLOYMENT
 
   if (deployment === "PROD") {
-    return 'https://heighliner.tech'
+    return 'https://mdl-13.com'
   } else if (deployment === "DEV") {
     return ''
   } else {
-    return process.env.NEXT_PUBLIC_BASE_URL || 'https://heighliner.tech'
+    return process.env.NEXT_PUBLIC_BASE_URL || 'https://mdl-13.com'
   }
 }
 

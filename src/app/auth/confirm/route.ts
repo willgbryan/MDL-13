@@ -7,11 +7,11 @@ function getBaseUrl(): string {
   const deployment = process.env.DEPLOYMENT
 
   if (deployment === "PROD") {
-    return 'https://mdl-13.vercel.app'
+    return 'https://mdl-13.com'
   } else if (deployment === "DEV") {
     return ''
   } else {
-    return process.env.NEXT_PUBLIC_BASE_URL || 'https://mdl-13.vercel.app'
+    return process.env.NEXT_PUBLIC_BASE_URL || 'https://mdl-13.com'
   }
 }
 
@@ -19,7 +19,7 @@ const baseUrl = getBaseUrl()
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://mdl-13.vercel.app';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://mdl-13.com';
   const token_hash = searchParams.get('token_hash')
   const type = searchParams.get('type') as EmailOtpType
 

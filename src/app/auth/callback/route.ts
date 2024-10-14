@@ -18,7 +18,7 @@ const getUrl = () => {
 function getBaseUrl(): string {
   const deployment = process.env.DEPLOYMENT
   if (deployment === "PROD") {
-    return 'https://mdl-13.vercel.app'
+    return 'https://mdl-13.com'
   } else if (deployment === "DEV") {
     return ''
   } else {

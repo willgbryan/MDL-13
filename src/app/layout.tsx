@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://mdl-13.vercel.app',
+    url: 'https://mdl-13.com',
     title: 'MDL-13',
     description: 'Machine Learning for Sports Analytics',
     siteName: 'MDL-13',
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   manifest: '/site.webmanifest',
-  metadataBase: new URL('https://mdl-13.vercel.app'),
+  metadataBase: new URL('https://mdl-13.com'),
 }
 
 interface RootLayoutProps {
