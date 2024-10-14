@@ -1,43 +1,24 @@
 "use client"
-import React from "react";
-import Image from "next/image"
-import Link from "next/link"
-import {
-  File,
-  Home,
-  LineChart,
-  ListFilter,
-  MoreHorizontal,
-  Package,
-  Package2,
-  PanelLeft,
-  PlusCircle,
-  Search,
-  Settings,
-  ShoppingCart,
-  Users2,
-} from "lucide-react"
 
+import React, { useEffect, useState } from "react";
+import { useRouter } from 'next/navigation';
+import { MoreHorizontal } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-
 import {
   Table,
   TableBody,
@@ -47,61 +28,102 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { motion } from "framer-motion"
+import { getUserDetails } from "@/app/_data/user";
 
 const Header = ({ children }: { children: React.ReactNode }) => {
-    return (
-      <div className="relative w-fit mx-auto p-4 flex items-center justify-center">
+  return (
+    <div className="relative w-fit mx-auto p-4 flex items-center justify-center">
+      <motion.div
+        initial={{
+          width: 0,
+          height: 0,
+          borderRadius: 0,
+        }}
+        whileInView={{
+          width: "100%",
+          height: "100%",
+        }}
+        style={{
+          transformOrigin: "top-left",
+        }}
+        transition={{
+          duration: 1,
+          ease: "easeInOut",
+        }}
+        className="absolute inset-0 h-full border border-neutral-200 dark:border-neutral-800 w-full"
+      >
         <motion.div
-          initial={{
-            width: 0,
-            height: 0,
-            borderRadius: 0,
-          }}
-          whileInView={{
-            width: "100%",
-            height: "100%",
-          }}
-          style={{
-            transformOrigin: "top-left",
-          }}
-          transition={{
-            duration: 1,
-            ease: "easeInOut",
-          }}
-          className="absolute inset-0 h-full border border-neutral-200 dark:border-neutral-800 w-full"
-        >
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.1, ease: "easeInOut" }}
-            className="absolute -top-1 -left-1 h-2 w-2 dark:bg-neutral-800 bg-neutral-200"
-          />
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.1, ease: "easeInOut" }}
-            className="absolute -top-1 -right-1 h-2 w-2 dark:bg-neutral-800 bg-neutral-200"
-          />
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.1, ease: "easeInOut" }}
-            className="absolute -bottom-1 -left-1 h-2 w-2 dark:bg-neutral-800 bg-neutral-200"
-          />
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.1, ease: "easeInOut" }}
-            className="absolute -bottom-1 -right-1 h-2 w-2 dark:bg-neutral-800 bg-neutral-200"
-          />
-        </motion.div>
-        {children}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.1, ease: "easeInOut" }}
+          className="absolute -top-1 -left-1 h-2 w-2 dark:bg-neutral-800 bg-neutral-200"
+        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.1, ease: "easeInOut" }}
+          className="absolute -top-1 -right-1 h-2 w-2 dark:bg-neutral-800 bg-neutral-200"
+        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.1, ease: "easeInOut" }}
+          className="absolute -bottom-1 -left-1 h-2 w-2 dark:bg-neutral-800 bg-neutral-200"
+        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.1, ease: "easeInOut" }}
+          className="absolute -bottom-1 -right-1 h-2 w-2 dark:bg-neutral-800 bg-neutral-200"
+        />
+      </motion.div>
+      {children}
+    </div>
+  );
+};
+
+export default function Picks() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
+
+  useEffect(() => {
+    async function checkAuth() {
+      const session = await getUserDetails();
+      setIsAuthenticated(!!session);
+      setIsLoading(false);
+    }
+    checkAuth();
+  }, []);
+
+  if (isLoading) {
+    return <div className="flex min-h-screen w-full items-center justify-center bg-gradient-to-bl dark:from-neutral-700 dark:to-neutral-900">
+      <p className="text-neutral-800 dark:text-neutral-200">Loading...</p>
+    </div>;
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <div className="flex min-h-screen w-full flex-col items-center justify-center py-20 bg-gradient-to-bl dark:from-neutral-700 dark:to-neutral-900">
+        <Card className="w-full max-w-md bg-transparent border-none">
+          <CardHeader>
+            <CardTitle>Authentication Required</CardTitle>
+            <CardDescription>
+              Only authenticated users can see picks for this week.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Button 
+              onClick={() => router.push('/login')} 
+              className="w-full"
+            >
+              Login
+            </Button>
+          </CardContent>
+        </Card>
       </div>
     );
-  };
-
-export const description = ""
-export default function Picks() {
+  }
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-center py-20 bg-gradient-to-bl dark:from-neutral-700 dark:to-neutral-900">
         <Header>

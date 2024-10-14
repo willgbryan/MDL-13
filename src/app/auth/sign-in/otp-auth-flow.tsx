@@ -54,6 +54,21 @@ export function OTPAuthFlow() {
       }
     }
     
+    const whitelistResponse = await fetch('/api/check-whitelist', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email }),
+    });
+
+    const whitelistResult = await whitelistResponse.json();
+
+    if (!whitelistResult.isWhitelisted) {
+      setMessage('Please apply for access.');
+      return;
+    }
+
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
@@ -92,7 +107,6 @@ export function OTPAuthFlow() {
 
     setFormSuccess(true);
     setMessage('Successfully verified. Redirecting...');
-    // Here you can redirect the user or update the UI as needed
   };
 
   const handleAuthCode = async (event: FormEvent<HTMLFormElement>) => {

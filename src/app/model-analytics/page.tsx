@@ -1,7 +1,7 @@
-import Analytics from "@/components/analytics";
 import { CTA } from "@/components/cta";
 import { Footer } from "@/components/footer";
 import { Hero } from "@/components/hero";
+import Analytics from "@/components/model-analytics";
 import { Pricing } from "@/components/pricing";
 import Image from "next/image";
 

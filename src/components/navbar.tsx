@@ -30,13 +30,13 @@ export const Navbar = () => {
       link: "/picks",
     },
     {
-      name: "Analytics",
-      link: "/core",
+      name: "MDL Metrics",
+      link: "/model-analytics",
     },
-    // {
-    //   name: "Pricing",
-    //   link: "/pricing",
-    // },
+    {
+      name: "Pricing",
+      link: "/pricing",
+    },
     {
       name: "Apply",
       link: "/apply",

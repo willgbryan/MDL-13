@@ -101,126 +101,129 @@ return (
         <div className="w-full gap-6 columns-1 sm:columns-2 lg:columns-3">
         <Card className="flex flex-col lg:max-w-xl bg-transparent shadow-lg border-none mb-6 break-inside-avoid">
             <CardHeader className="space-y-0 pb-2">
-                <CardDescription>Today</CardDescription>
+                <CardDescription>Average Historical Test Accuracy</CardDescription>
                 <CardTitle className="text-4xl tabular-nums">
-                12,584{" "}
+                65.09{" "}
                 <span className="font-sans text-sm font-normal tracking-normal text-muted-foreground">
-                    steps
+                    %
                 </span>
                 </CardTitle>
             </CardHeader>
             <CardContent>
                 <ChartContainer
                 config={{
-                    steps: {
-                    label: "Steps",
+                    xgboost: {
+                    label: "XGBoost",
                     color: "hsl(var(--chart-1))",
                     },
+                    catboost: {
+                    label: "CatBoost",
+                    color: "hsl(var(--chart-2))",
+                    },
+                    lightgbm: {
+                    label: "LightGBM",
+                    color: "hsl(var(--chart-3))",
+                    },
+                    
                 }}
                 >
                 <BarChart
-                    accessibilityLayer
-                    margin={{
+                  accessibilityLayer
+                  margin={{
                     left: -4,
-                    right: -4,
-                    }}
-                    data={[
+                  }}
+                  barGap={0}
+                  barCategoryGap={0}
+                  data={[
                     {
-                        date: "2024-01-01",
-                        steps: 2000,
+                      date: "Week 4",
+                      xgboost: 63,
+                      catboost: 68,
+                      lightgbm: 64,
                     },
                     {
-                        date: "2024-01-02",
-                        steps: 2100,
+                      date: "Week 5",
+                      xgboost: 66,
+                      catboost: 69,
+                      lightgbm: 64,
                     },
                     {
-                        date: "2024-01-03",
-                        steps: 2200,
+                      date: "Week 6",
+                      xgboost: 62,
+                      catboost: 66,
+                      lightgbm: 64,
                     },
-                    {
-                        date: "2024-01-04",
-                        steps: 1300,
-                    },
-                    {
-                        date: "2024-01-05",
-                        steps: 1400,
-                    },
-                    {
-                        date: "2024-01-06",
-                        steps: 2500,
-                    },
-                    {
-                        date: "2024-01-07",
-                        steps: 1600,
-                    },
-                    ]}
+                  ]}
                 >
-                    <Bar
-                    dataKey="steps"
-                    fill="var(--color-steps)"
-                    radius={5}
-                    fillOpacity={0.6}
-                    activeBar={<Rectangle fillOpacity={0.8} />}
-                    />
-                    <XAxis
+                  <Bar
+                    dataKey="xgboost"
+                    fill="var(--color-xgboost)"
+                    radius={[5, 5, 0, 0]}
+                    fillOpacity={0.8}
+                    activeBar={<Rectangle fillOpacity={1} />}
+                  />
+                  <Bar
+                    dataKey="catboost"
+                    fill="var(--color-catboost)"
+                    radius={[5, 5, 0, 0]}
+                    fillOpacity={0.8}
+                    activeBar={<Rectangle fillOpacity={1} />}
+                  />
+                  <Bar
+                    dataKey="lightgbm"
+                    fill="var(--color-lightgbm)"
+                    radius={[5, 5, 0, 0]}
+                    fillOpacity={0.8}
+                    activeBar={<Rectangle fillOpacity={1} />}
+                  />
+                  <XAxis
                     dataKey="date"
                     tickLine={false}
                     axisLine={false}
                     tickMargin={4}
-                    tickFormatter={(value) => {
-                        return new Date(value).toLocaleDateString("en-US", {
-                        weekday: "short",
-                        })
-                    }}
-                    />
-                    <ChartTooltip
+                  />
+                  <ChartTooltip
                     defaultIndex={2}
                     content={
-                        <ChartTooltipContent
-                        hideIndicator
-                        labelFormatter={(value) => {
-                            return new Date(value).toLocaleDateString("en-US", {
-                            day: "numeric",
-                            month: "long",
-                            year: "numeric",
-                            })
-                        }}
-                        />
+                      <ChartTooltipContent
+                        className="bg-stone-900 border-[#4BFFBA] text-white"
+                        // hideIndicator
+                      />
                     }
                     cursor={false}
-                    />
-                    <ReferenceLine
-                    y={1200}
+                  />
+                  <ReferenceLine
+                    y={50}
                     stroke="hsl(var(--muted-foreground))"
                     strokeDasharray="3 3"
                     strokeWidth={1}
-                    >
+                  >
                     <Label
-                        position="insideBottomLeft"
-                        value="Average Steps"
-                        offset={10}
-                        fill="hsl(var(--foreground))"
+                      position="insideBottomLeft"
+                      value="Baseline Accuracy"
+                      offset={10}
+                      fill="hsl(var(--foreground))"
                     />
                     <Label
-                        position="insideTopLeft"
-                        value="12,343"
-                        className="text-lg"
-                        fill="hsl(var(--foreground))"
-                        offset={10}
-                        startOffset={100}
+                      position="insideTopLeft"
+                      value="60%"
+                      className="text-lg"
+                      fill="hsl(var(--foreground))"
+                      offset={10}
+                      startOffset={100}
                     />
-                    </ReferenceLine>
+                  </ReferenceLine>
                 </BarChart>
                 </ChartContainer>
             </CardContent>
             <CardFooter className="flex-col items-start gap-1">
                 <CardDescription>
-                Over the past 7 days, you have walked{" "}
-                <span className="font-medium text-foreground">53,305</span> steps.
+                MDL-13 evaluates{" "}
+                <span className="font-medium text-foreground">278,185</span> data points and counting.
                 </CardDescription>
                 <CardDescription>
-                You need <span className="font-medium text-foreground">12,584</span>{" "}
-                more steps to reach your goal.
+                This dataset is <span className="font-medium text-foreground">small</span>{" "}
+                and only covers a fraction of what we intend to model in the future.
                 </CardDescription>
             </CardFooter>
             </Card>
@@ -251,7 +254,7 @@ return (
                 config={{
                   Moneyline: {
                     label: "Moneyline",
-                    color: "hsl(var(--chart-1))",
+                    color: "hsl(var(--chart-3))",
                   },
                   OU: {
                     label: "OU",
@@ -269,35 +272,20 @@ return (
                   }}
                   data={[
                     {
-                      date: "Week 1",
-                      Moneyline: 71,
-                      OU: 65,
+                      date: "Week 4",
+                      Moneyline: 65,
+                      OU: 62,
                     },
                     {
-                      date: "Week 2",
-                      Moneyline: 63,
+                      date: "Week 5",
+                      Moneyline: 75,
                       OU: 61,
                     },
                     {
-                      date: "Week 3",
-                      Moneyline: 65,
+                      date: "Week 6",
+                      Moneyline: 92,
                       OU: 65,
                     },
-                    {
-                        date: "Week 4",
-                        Moneyline: 65,
-                        OU: 71,
-                      },
-                      {
-                        date: "Week 5",
-                        Moneyline: 61,
-                        OU: 68,
-                      },
-                      {
-                        date: "Week 6",
-                        Moneyline: 68,
-                        OU: 63,
-                      },
                   ]}
                 >
                   <CartesianGrid
@@ -342,6 +330,7 @@ return (
                   <ChartTooltip
                     content={
                       <ChartTooltipContent
+                        className="bg-stone-900 border-[#4BFFBA] text-white"
                         indicator="line"
 
                       />
@@ -365,7 +354,7 @@ return (
                 config={{
                   feature_1: {
                     label: "feature_1",
-                    color: "hsl(var(--chart-1))",
+                    color: "hsl(var(--chart-3))",
                   },
                   feature_2: {
                     label: "feature_2",
@@ -373,15 +362,15 @@ return (
                   },
                   feature_3: {
                     label: "feature_3",
-                    color: "hsl(var(--chart-3))",
+                    color: "hsl(var(--chart-1))",
                   },
                   feature_4: {
                     label: "feature_4",
-                    color: "hsl(var(--chart-1))",
+                    color: "hsl(var(--chart-2))",
                   },
                   feature_5: {
                     label: "feature_5",
-                    color: "hsl(var(--chart-2))",
+                    color: "hsl(var(--chart-1))",
                   },
                 }}
                 className="h-[140px] w-full"
@@ -529,7 +518,7 @@ return (
                       activity: "Total Line",
                       value: 79.0,
                       label: "79.0",
-                      fill: "var(--color-feature_1)",
+                      fill: "var(--color-feature_3)",
                     },
                     {
                       activity: "Away Moneyline",
@@ -541,19 +530,19 @@ return (
                       activity: "Away QB",
                       value: 35.0,
                       label: "35.0",
-                      fill: "var(--color-feature_3)",
+                      fill: "var(--color-feature_1)",
                     },
                     {
                         activity: "Home QB",
                         value: 29.5,
                         label: "29.5",
-                        fill: "var(--color-feature_4)",
+                        fill: "var(--color-feature_2)",
                       },
                       {
                         activity: "Away coach",
                         value: 23.0,
                         label: "23.0",
-                        fill: "var(--color-feature_5)",
+                        fill: "var(--color-feature_1)",
                       },
                   ]}
                   layout="vertical"
@@ -804,7 +793,7 @@ return (
                 config={{
                   time: {
                     label: "Time",
-                    color: "hsl(var(--chart-2))",
+                    color: "hsl(var(--chart-3))",
                   },
                 }}
               >
@@ -880,10 +869,10 @@ return (
                   />
                   <ChartTooltip
                     cursor={false}
-                    content={<ChartTooltipContent hideLabel />}
+                    content={<ChartTooltipContent hideLabel className="bg-stone-900 border-[#4BFFBA] text-white"/>}
                     formatter={(value) => (
                       <div className="flex min-w-[120px] items-center text-xs text-muted-foreground">
-                        <div className="ml-auto flex items-baseline gap-0.5 font-mono font-medium tabular-nums text-foreground">
+                        <div className="ml-auto flex items-baseline bg-stone-900gap-0.5 font-mono font-medium tabular-nums text-foreground">
                           Residual Count: {value}
                           <span className="font-normal text-muted-foreground"> 
                           </span>

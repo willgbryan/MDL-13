@@ -1,8 +1,7 @@
-'use client'
+"use client"
 
 import React, { FormEvent, useState } from 'react'
 import Link from "next/link"
-import { Icon3dCubeSphere } from "@tabler/icons-react"
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -21,14 +20,48 @@ export function Apply() {
 function Form() {
   const [message, setMessage] = useState<string>('')
   const [formSuccess, setFormSuccess] = useState(false)
+  const [formData, setFormData] = useState({
+    name: '',
+    earnings: '',
+    dev: '',
+    email_address: '',
+    about: ''
+  })
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target
+    setFormData(prevData => ({
+      ...prevData,
+      [id]: value
+    }))
+  }
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log("submitted form");
-    // Here you would typically handle the form submission
-    // For now, let's just set a success message
-    setFormSuccess(true);
-    setMessage('Application submitted successfully!')
+    try {
+      const response = await fetch('/api/submit-application', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setFormSuccess(true);
+        setMessage('Application submitted successfully. Expect to hear back no later than a week from now.')
+      } else if (response.status === 400 && result.message.includes('email already exists')) {
+        setFormSuccess(false);
+        setMessage('An application with this email already exists. Please do not attempt to apply twice.');
+      } else {
+        throw new Error('Failed to submit application');
+      }
+    } catch (error) {
+      setFormSuccess(false);
+      setMessage('Failed to submit application. Please try again.');
+    }
   }
 
   return (
@@ -39,7 +72,7 @@ function Form() {
         </h2>
 
         {message && (
-          <Alert variant={formSuccess ? 'default' : 'destructive'} className="mb-6">
+          <Alert variant={formSuccess ? 'default' : 'destructive'} className="mb-6 bg-transparent border-[#4BFFBA]">
             <Info className="h-4 w-4" />
             <AlertTitle>{formSuccess ? 'Success' : 'Error'}</AlertTitle>
             <AlertDescription>{message}</AlertDescription>
@@ -55,17 +88,21 @@ function Form() {
               placeholder="OBJ"
               className="w-full bg-[#e4e4e4] text-black dark:bg-neutral-800 dark:text-white"
               required
+              value={formData.name}
+              onChange={handleInputChange}
             />
           </div>
 
           <div>
-            <Label htmlFor="earnings" className="text-neutral-700 dark:text-white">Lifetime sports betting earnings</Label>
+            <Label htmlFor="earnings" className="text-neutral-700 dark:text-white">Lifetime sports betting earnings (USD)</Label>
             <Input
               id="earnings"
               type="number"
               placeholder="10000"
               className="w-full bg-[#e4e4e4] text-black dark:bg-neutral-800 dark:text-white"
               required
+              value={formData.earnings}
+              onChange={handleInputChange}
             />
           </div>
 
@@ -77,27 +114,33 @@ function Form() {
               placeholder="No"
               className="w-full bg-[#e4e4e4] text-black dark:bg-neutral-800 dark:text-white"
               required
+              value={formData.dev}
+              onChange={handleInputChange}
             />
           </div>
 
           <div>
-            <Label htmlFor="email" className="text-neutral-700 dark:text-white">Email address</Label>
+            <Label htmlFor="email_address" className="text-neutral-700 dark:text-white">Email address</Label>
             <Input
-              id="email"
+              id="email_address"
               type="email"
               placeholder="nota1catch1der@gmail.com"
               className="w-full bg-[#e4e4e4] text-black dark:bg-neutral-800 dark:text-white"
               required
+              value={formData.email_address}
+              onChange={handleInputChange}
             />
           </div>
 
           <div>
-            <Label htmlFor="why" className="text-neutral-700 dark:text-white">Tell us about yourself...</Label>
+            <Label htmlFor="about" className="text-neutral-700 dark:text-white">Tell us about yourself...</Label>
             <Textarea
-              id="why"
+              id="about"
               placeholder=""
               className="block w-full px-4 rounded-md py-1.5 shadow-sm text-black placeholder:text-gray-400 sm:text-sm sm:leading-6 dark:bg-neutral-800 dark:text-white"
               required
+              value={formData.about}
+              onChange={handleInputChange}
             />
           </div>
 
