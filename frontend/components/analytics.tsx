@@ -99,130 +99,131 @@ return (
         </Header>
         <div className="chart-wrapper mx-auto max-w-7xl p-6 sm:p-8">
         <div className="w-full gap-6 columns-1 sm:columns-2 lg:columns-3">
-            <Card className="lg:max-w-xl bg-zinc-900 border-none mb-6 break-inside-avoid">
+        <Card className="flex flex-col lg:max-w-xl bg-zinc-900 border-none mb-6 break-inside-avoid">
             <CardHeader className="space-y-0 pb-2">
+                <CardDescription>Today</CardDescription>
                 <CardTitle className="text-4xl tabular-nums">
-                Pick Confidence{" "}
+                12,584{" "}
+                <span className="font-sans text-sm font-normal tracking-normal text-muted-foreground">
+                    steps
+                </span>
                 </CardTitle>
             </CardHeader>
             <CardContent>
                 <ChartContainer
                 config={{
-                    teamA: {
-                    label: "Team A",
+                    steps: {
+                    label: "Steps",
                     color: "hsl(var(--chart-1))",
-                    },
-                    teamB: {
-                    label: "Team B",
-                    color: "hsl(var(--chart-2))",
                     },
                 }}
                 >
                 <BarChart
                     accessibilityLayer
                     margin={{
-                    left: -14,
-                    top: 18,
+                    left: -4,
+                    right: -4,
                     }}
                     data={[
                     {
-                        teamA: 70,
-                        teamB: 30,
+                        date: "2024-01-01",
+                        steps: 2000,
                     },
                     {
-                        teamA: 65,
-                        teamB: 35,
+                        date: "2024-01-02",
+                        steps: 2100,
                     },
                     {
-                        teamA: 60,
-                        teamB: 40,
+                        date: "2024-01-03",
+                        steps: 2200,
                     },
                     {
-                        teamA: 55,
-                        teamB: 45,
+                        date: "2024-01-04",
+                        steps: 1300,
                     },
                     {
-                        teamA: 50,
-                        teamB: 50,
+                        date: "2024-01-05",
+                        steps: 1400,
                     },
                     {
-                        teamA: 50,
-                        teamB: 50,
+                        date: "2024-01-06",
+                        steps: 2500,
                     },
                     {
-                        teamA: 50,
-                        teamB: 50,
+                        date: "2024-01-07",
+                        steps: 1600,
                     },
-                    {
-                        teamA: 70,
-                        teamB: 30,
-                    },
-                    {
-                        teamA: 65,
-                        teamB: 35,
-                    },
-                    {
-                        teamA: 60,
-                        teamB: 40,
-                    },
-                    {
-                        teamA: 55,
-                        teamB: 45,
-                    },
-                    {
-                        teamA: 50,
-                        teamB: 50,
-                    },
-                    {
-                        teamA: 50,
-                        teamB: 50,
-                    },
-                    {
-                        teamA: 50,
-                        teamB: 50,
-                    },
-                    ].sort((a, b) => b.teamA - a.teamA)} // Sort data by teamA confidence
+                    ]}
                 >
+                    <Bar
+                    dataKey="steps"
+                    fill="var(--color-steps)"
+                    radius={5}
+                    fillOpacity={0.6}
+                    activeBar={<Rectangle fillOpacity={0.8} />}
+                    />
                     <XAxis
                     dataKey="date"
                     tickLine={false}
                     axisLine={false}
                     tickMargin={4}
-                    />
-                    <YAxis
-                    domain={[0, 100]}
-                    tickFormatter={(value) => `${value}%`}
-                    tickLine={false}
-                    axisLine={false}
-                    />
-                    <Bar
-                    dataKey="teamA"
-                    stackId="confidence"
-                    fill="var(--color-teamA)"
-                    radius={[0, 0, 0, 0]}
-                    fillOpacity={0.6}
-                    />
-                    <Bar
-                    dataKey="teamB"
-                    stackId="confidence"
-                    fill="var(--color-teamB)"
-                    radius={[5, 5, 0, 0]}
-                    fillOpacity={0.6}
+                    tickFormatter={(value) => {
+                        return new Date(value).toLocaleDateString("en-US", {
+                        weekday: "short",
+                        })
+                    }}
                     />
                     <ChartTooltip
                     defaultIndex={2}
                     content={
                         <ChartTooltipContent
                         hideIndicator
+                        labelFormatter={(value) => {
+                            return new Date(value).toLocaleDateString("en-US", {
+                            day: "numeric",
+                            month: "long",
+                            year: "numeric",
+                            })
+                        }}
                         />
                     }
                     cursor={false}
                     />
+                    <ReferenceLine
+                    y={1200}
+                    stroke="hsl(var(--muted-foreground))"
+                    strokeDasharray="3 3"
+                    strokeWidth={1}
+                    >
+                    <Label
+                        position="insideBottomLeft"
+                        value="Average Steps"
+                        offset={10}
+                        fill="hsl(var(--foreground))"
+                    />
+                    <Label
+                        position="insideTopLeft"
+                        value="12,343"
+                        className="text-lg"
+                        fill="hsl(var(--foreground))"
+                        offset={10}
+                        startOffset={100}
+                    />
+                    </ReferenceLine>
                 </BarChart>
                 </ChartContainer>
             </CardContent>
+            <CardFooter className="flex-col items-start gap-1">
+                <CardDescription>
+                Over the past 7 days, you have walked{" "}
+                <span className="font-medium text-foreground">53,305</span> steps.
+                </CardDescription>
+                <CardDescription>
+                You need <span className="font-medium text-foreground">12,584</span>{" "}
+                more steps to reach your goal.
+                </CardDescription>
+            </CardFooter>
             </Card>
-
           {/* Second Chart Card */}
           <Card className="flex flex-col lg:max-w-xl bg-zinc-900 border-none mb-6 break-inside-avoid">
             <CardHeader className="flex flex-row items-center gap-4 space-y-0 pb-2 [&>div]:flex-1">
@@ -597,7 +598,7 @@ return (
                   <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
                     8.10
                     <span className="text-sm font-normal text-muted-foreground">
-                      +/- 0.9
+                      +/-
                     </span>
                   </div>
                 </div>
