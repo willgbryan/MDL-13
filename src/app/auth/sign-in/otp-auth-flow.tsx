@@ -3,7 +3,6 @@ import { FormEvent, useState } from 'react'
 import { AuthApiError } from '@supabase/supabase-js'
 import { Info, MailOpenIcon } from 'lucide-react'
 import { z, ZodError } from 'zod'
-import { useSupabase } from '@/app/supabase-provider'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -18,6 +17,7 @@ import {
   InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/ui/input-otp"
+import { useSupabase } from '@/app/supabase-provider'
 
 type FormData = z.infer<typeof AuthUserSchema>
 

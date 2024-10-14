@@ -147,7 +147,7 @@ const DesktopNav = ({ navItems, visible }: NavbarProps) => {
             >
               <Button
                 as={Link}
-                href={CONSTANTS.LOGIN_LINK}
+                href="/auth"
                 variant="secondary"
                 className="hidden md:block "
               >
@@ -237,7 +237,7 @@ const MobileNav = ({ navItems, visible }: NavbarProps) => {
               <Button
                 as={Link}
                 onClick={() => setOpen(false)}
-                href={CONSTANTS.LOGIN_LINK}
+                href="/auth"
                 variant="primary"
                 className="block md:hidden w-full"
               >

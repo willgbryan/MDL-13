@@ -1,64 +1,102 @@
-import { redirect } from 'next/navigation'
-import { getSession } from '@/app/_data/user'
-import { Heading } from '@/components/cult/gradient-heading'
-import { Card, CardContent } from '@/components/ui/card'
-import { Alert, AlertDescription } from '@/components/ui/alert'
-import { AlertCircle } from 'lucide-react'
-import { OTPAuthFlow } from './otp-auth-flow'
-import BackgroundMedia from "@/components/cult/bg-media"
-import Head from 'next/head'
+import React from 'react';
+import { redirect } from 'next/navigation';
+import Link from "next/link";
+import { Icon3dCubeSphere } from "@tabler/icons-react";
+import { Card, CardContent } from '@/components/ui/card';
+import { OTPAuthFlow } from './otp-auth-flow';
+import { getSession } from '@/app/_data/user';
 
 function getBaseUrl(): string {
-  const deployment = process.env.DEPLOYMENT
+  const deployment = process.env.DEPLOYMENT;
   if (deployment === "PROD") {
-    return 'https://mdl-13.vercel.app'
+    return 'https://mdl-13.vercel.app';
   } else if (deployment === "DEV") {
-    return ''
+    return '';
   } else {
-    return process.env.NEXT_PUBLIC_BASE_URL || 'https://mdl-13.vercel.app'
+    return process.env.NEXT_PUBLIC_BASE_URL || 'https://mdl-13.vercel.app';
   }
 }
 
-const title = "Heighliner"
-const description = "Knowledge work, modernized"
-const imageUrl = "https://s.yimg.com/ny/api/res/1.2/6YLkalF05.eeHi15u_0_.w--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTMyMA--/https://o.aolcdn.com/hss/storage/midas/29cdfcf2bb2af26b103c432d02cbe5e2/205180329/TN-JPL1978-300dpi-ed2.jpg"
-const canonicalUrl = "https://mdl-13.vercel.app"
-const baseUrl = getBaseUrl()
+const title = "MDL-13";
+const description = "Machine learning for sport analytics";
+const imageUrl = "";
+const canonicalUrl = "https://mdl-13.vercel.app";
+const baseUrl = getBaseUrl();
 
 export default async function SignIn() {
-  const session = await getSession()
+  const session = await getSession();
+  
   if (session) {
-    return redirect(`${baseUrl}/chat`)
+    redirect(`${baseUrl}/chat`);
   }
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen">
-      <Head>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={imageUrl} />
-        <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-      <div className="hidden md:block md:w-1/2 relative">
-        <BackgroundMedia
-          type="video"
-          variant="light"
-          src="/auth-quantum-vertical.mp4"
-          videoFit="cover"
-        />
-      </div>
-      <div className="flex-grow w-full md:w-1/2 flex flex-col items-center justify-center bg-[#e4e4e4] p-8">
-        <Heading variant="secondary" weight="thin" size="xl" className="mb-8">Heighliner</Heading>
-        <Card className="w-full max-w-md bg-[#e4e4e4] border-none relative corner-borders">
-          <CardContent className="items-center justify-center space-y-4 p-6">
+    <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-neutral-900">
+      {/* Header */}
+      <header className="w-full p-4 bg-white dark:bg-neutral-800 shadow">
+        <div className="container mx-auto">
+          <h1 className="text-2xl font-light text-black dark:text-white">MDL-13</h1>
+        </div>
+      </header>
+
+      {/* Main content */}
+      <main className="flex-grow flex items-center justify-center px-4 py-12">
+        <Card className="w-full max-w-md bg-white dark:bg-neutral-800 shadow-lg border rounded-md">
+          <CardContent className="px-6 py-8">
+            <h2 className="text-2xl font-bold leading-9 tracking-tight text-black dark:text-white text-center mb-8">
+              Sign In
+            </h2>
+            
             <OTPAuthFlow />
+
+            <div className="mt-8 relative">
+              <div className="absolute inset-0 flex items-center" aria-hidden="true">
+                <div className="w-full border-t border-neutral-300 dark:border-neutral-700" />
+              </div>
+              <div className="relative flex justify-center text-sm font-medium leading-6">
+                <span className="bg-white px-6 text-neutral-400 dark:text-neutral-500 dark:bg-neutral-800">
+                  Or continue with
+                </span>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <button
+                className="w-full bg-black hover:bg-black/90 text-white text-sm font-medium rounded-full px-4 py-2 transition duration-200 flex items-center justify-center dark:bg-white dark:text-black dark:hover:bg-neutral-100"
+              >
+                <Icon3dCubeSphere className="h-5 w-5 mr-2" />
+                <span>Auth Code</span>
+              </button>
+            </div>
+
+            <p className="text-neutral-600 dark:text-neutral-400 text-sm text-center mt-8">
+              By clicking on sign in, you agree to our{" "}
+              <Link href="#" className="text-neutral-500 dark:text-neutral-300">
+                Terms of Service
+              </Link>{" "}
+              and{" "}
+              <Link href="#" className="text-neutral-500 dark:text-neutral-300">
+                Privacy Policy
+              </Link>
+            </p>
           </CardContent>
         </Card>
-      </div>
+      </main>
     </div>
-  )
+  );
 }
+
+export const metadata = {
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    images: [{ url: imageUrl }],
+    url: canonicalUrl,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
+};
