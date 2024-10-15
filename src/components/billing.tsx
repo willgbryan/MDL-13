@@ -10,7 +10,7 @@ import { Tabs } from './cult/tabs';
 
 type Json = any;
 
-type Subscription = {
+type Payment = {
   id: string;
   user_id: string;
   price_id: string | null;
@@ -22,11 +22,9 @@ type Subscription = {
     customerId?: string;
     isTestEvent?: boolean;
     paymentType?: string;
-    subscriptionId?: string;
   } | Json;
   description: string | null;
   stripe_customer_id: string;
-  isActive?: boolean;
 };
 
 type PaymentHistoryItem = {
@@ -39,34 +37,34 @@ type PaymentHistoryItem = {
 };
 
 type BillingPageClientProps = {
-    user: any;
-    subscription: Subscription | null;
-    paymentHistory: PaymentHistoryItem[];
-    isFreeTier: boolean;
-    stripeCustomerId: string | undefined;
-  }
-  
-  export const BillingPageClient: React.FC<BillingPageClientProps> = ({ 
-    user, 
-    subscription, 
-    paymentHistory, 
-    isFreeTier,
-    stripeCustomerId
-  }) => {
-    const router = useRouter();
-  
-    const handleManageSubscription = async () => {
-      if (stripeCustomerId) {
-        try {
-          const { url } = await createStripePortalSession(stripeCustomerId);
-          window.location.href = url;
-        } catch (error) {
-          alert('Failed to open Stripe portal: ' + (error as Error).message);
-        }
-      } else {
-        router.push('/pricing');
+  user: any;
+  latestPayment: Payment | null;
+  paymentHistory: PaymentHistoryItem[];
+  isFreeTier: boolean;
+  stripeCustomerId: string | undefined;
+}
+
+export const BillingPageClient: React.FC<BillingPageClientProps> = ({ 
+  user, 
+  latestPayment, 
+  paymentHistory, 
+  isFreeTier,
+  stripeCustomerId
+}) => {
+  const router = useRouter();
+
+  const handleManageSubscription = async () => {
+    if (stripeCustomerId) {
+      try {
+        const { url } = await createStripePortalSession(stripeCustomerId);
+        window.location.href = url;
+      } catch (error) {
+        alert('Failed to open Stripe portal: ' + (error as Error).message);
       }
-    };
+    } else {
+      router.push('/pricing');
+    }
+  };
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString();
@@ -79,25 +77,25 @@ type BillingPageClientProps = {
 
   const tabs = [
     {
-      title: "Current Subscription",
-      value: "subscription",
+      title: "Current Plan",
+      value: "current-plan",
       content: (
         <Card className="w-full h-full bg-white dark:bg-zinc-800">
           <CardHeader>
-            <CardTitle>Current Subscription</CardTitle>
+            <CardTitle>Current Plan</CardTitle>
           </CardHeader>
           <CardContent>
             {isFreeTier ? (
               <p>You are currently on the Basic plan.</p>
-            ) : subscription ? (
+            ) : latestPayment ? (
               <div>
-                <p>Plan: {subscription.status === 'active' ? 'Pro' : 'Basic'}</p>
-                <p>Status: {subscription.status || 'N/A'}</p>
-                <p>Amount: {formatCurrency(subscription.amount, subscription.currency)}</p>
-                <p>Last Payment: {formatDate(subscription.created)}</p>
+                <p>Plan: {latestPayment.status === 'succeeded' ? 'Pro' : 'Basic'}</p>
+                <p>Status: {latestPayment.status || 'N/A'}</p>
+                <p>Amount: {formatCurrency(latestPayment.amount, latestPayment.currency)}</p>
+                <p>Last Payment: {formatDate(latestPayment.created)}</p>
               </div>
             ) : (
-              <p>You don't have an active subscription.</p>
+              <p>You don't have any recent payments.</p>
             )}
           </CardContent>
         </Card>
@@ -139,23 +137,23 @@ type BillingPageClientProps = {
       ),
     },
     {
-      title: "Manage Subscription",
+      title: "Manage Plan",
       value: "manage",
       content: (
         <Card className="w-full h-full bg-white dark:bg-zinc-800">
           <CardHeader>
-            <CardTitle>Manage Subscription</CardTitle>
+            <CardTitle>Manage Plan</CardTitle>
           </CardHeader>
           <CardContent>
             {isFreeTier ? (
               <p>You are currently on the Basic plan. Click the button below to view our pricing plans and upgrade your account.</p>
-            ) : subscription ? (
-              <p>Click the button below to manage your subscription, update payment methods, or change your plan.</p>
+            ) : latestPayment ? (
+              <p>Click the button below to manage your plan, update payment methods, or make a new purchase.</p>
             ) : (
-              <p>You don't have an active subscription. Click the button below to view our pricing plans and subscribe.</p>
+              <p>You don't have any recent payments. Click the button below to view our pricing plans and make a purchase.</p>
             )}
             <Button onClick={handleManageSubscription} className="mt-4">
-              {isFreeTier ? 'View Pricing Plans' : (subscription ? 'Manage Subscription' : 'View Pricing Plans')}
+              {isFreeTier ? 'View Pricing Plans' : (latestPayment ? 'Manage Plan' : 'View Pricing Plans')}
             </Button>
           </CardContent>
         </Card>
@@ -167,7 +165,7 @@ type BillingPageClientProps = {
     <>
       <div className="h-[40rem] [perspective:1000px] relative flex flex-col max-w-5xl mx-auto w-full items-start justify-start my-10">
         <Tabs tabs={tabs} />
-    </div>
+      </div>
     </>
   );
 }

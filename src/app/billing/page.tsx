@@ -1,11 +1,20 @@
-import { BillingPageClient } from "@/components/billing"
 import { getCurrentUserId, getSession, getUserDetails } from '@/app/_data/user'
-import { getPaymentHistory, getStripeCustomerId, getSubscriptionStatus } from "@/app/_data/stripe";
-import { Stripe } from 'stripe';
+import { getPaymentHistory, getStripeCustomerId, getPaymentStatus } from "@/app/_data/stripe";
+import { BillingPageClient } from '@/components/billing';
 
 type Json = any;
 
-type Subscription = {
+type StripeCharge = {
+  id: string;
+  amount: number;
+  currency: string;
+  status: string;
+  created: string;
+  description: string | null;
+  invoice: string | { id: string; } | null;
+};
+
+type Payment = {
   id: string;
   user_id: string;
   price_id: string | null;
@@ -17,11 +26,9 @@ type Subscription = {
     customerId?: string;
     isTestEvent?: boolean;
     paymentType?: string;
-    subscriptionId?: string;
   } | Json;
   description: string | null;
   stripe_customer_id: string;
-  isActive?: boolean;
 };
 
 type PaymentHistoryItem = {
@@ -33,38 +40,28 @@ type PaymentHistoryItem = {
   description: string | null;
 };
 
-function mapStripeSubscriptionToSubscription(stripeSubscription: Stripe.Subscription | null): Subscription | null {
-  if (!stripeSubscription) return null;
+function mapStripeChargeToPayment(charge: StripeCharge | null): Payment | null {
+  if (!charge) return null;
   return {
-    id: stripeSubscription.id,
-    user_id: stripeSubscription.customer as string,
-    price_id: stripeSubscription.items.data[0]?.price.id || null,
-    status: stripeSubscription.status,
-    amount: stripeSubscription.items.data[0]?.price.unit_amount,
-    currency: stripeSubscription.currency,
-    created: new Date(stripeSubscription.created * 1000).toISOString(),
-    metadata: stripeSubscription.metadata,
-    description: null,
-    stripe_customer_id: stripeSubscription.customer as string,
-    isActive: stripeSubscription.status === 'active',
+    id: charge.id,
+    user_id: '', // We don't have this information from the charge
+    price_id: null, // One-time payments don't have a price_id
+    status: charge.status,
+    amount: charge.amount,
+    currency: charge.currency,
+    created: charge.created,
+    metadata: {}, // We don't have this information from the charge
+    description: charge.description,
+    stripe_customer_id: '', // We don't have this information from the charge
   };
 }
 
-function mapStripeChargeToPaymentHistoryItem(charge: {
-  id: string;
-  amount: number;
-  currency: string;
-  created: string | number;
-  status: string;
-  description: string | null;
-}): PaymentHistoryItem {
+function mapStripeChargeToPaymentHistoryItem(charge: StripeCharge): PaymentHistoryItem {
   return {
     id: charge.id,
     amount: charge.amount,
     currency: charge.currency,
-    created: typeof charge.created === 'number'
-      ? new Date(charge.created * 1000).toISOString()
-      : charge.created,
+    created: charge.created,
     status: charge.status,
     description: charge.description,
   };
@@ -82,20 +79,21 @@ export default async function Page() {
   }
 
   const stripeCustomerId = await getStripeCustomerId(userId)
-  let subscription: Subscription | null = null;
+  let latestPayment: Payment | null = null;
   let paymentHistory: PaymentHistoryItem[] = [];
 
   if (stripeCustomerId) {
-    const stripeSubscription = await getSubscriptionStatus(stripeCustomerId)
+    const stripeLatestCharge = await getPaymentStatus(stripeCustomerId)
     const stripePaymentHistory = await getPaymentHistory(stripeCustomerId)
-    subscription = mapStripeSubscriptionToSubscription(stripeSubscription)
+    
+    latestPayment = mapStripeChargeToPayment(stripeLatestCharge)
     paymentHistory = stripePaymentHistory.map(mapStripeChargeToPaymentHistoryItem)
   }
 
   return (
     <BillingPageClient
       user={session.user}
-      subscription={subscription}
+      latestPayment={latestPayment}
       paymentHistory={paymentHistory}
       isFreeTier={!stripeCustomerId}
       stripeCustomerId={stripeCustomerId}

@@ -21,14 +21,32 @@ async function getStripeCustomerId(userId: string) {
   return data.stripe_customer_id
 }
 
-async function getSubscriptionStatus(customerId: string) {
-  const subscriptions = await stripe.subscriptions.list({
-    customer: customerId,
-    status: 'all',
-    expand: ['data.default_payment_method']
-  })
+async function getPaymentStatus(customerId: string) {
+  try {
+    const charges = await stripe.charges.list({
+      customer: customerId,
+      limit: 1,
+      expand: ['data.invoice']
+    });
 
-  return subscriptions.data[0] || null
+    if (charges.data.length > 0) {
+      const latestCharge = charges.data[0];
+      return {
+        id: latestCharge.id,
+        amount: latestCharge.amount,
+        currency: latestCharge.currency,
+        status: latestCharge.status,
+        created: new Date(latestCharge.created * 1000).toISOString(),
+        description: latestCharge.description,
+        invoice: latestCharge.invoice,
+      };
+    }
+
+    return null;
+  } catch (error) {
+    console.error('Error fetching payment status from Stripe:', error);
+    throw error;
+  }
 }
 
 async function getPaymentHistory(customerId: string) {
@@ -199,4 +217,4 @@ async function recordSubscriptionPayment(userId, session, db, isLiveMode) {
   return data;
 }
 
-export { processLifetimePayment, processSubscriptionPayment, getStripeCustomerId, getSubscriptionStatus, getPaymentHistory }
+export { processLifetimePayment, processSubscriptionPayment, getStripeCustomerId, getPaymentStatus, getPaymentHistory }

@@ -9,6 +9,7 @@ import SupabaseProvider from "./supabase-provider";
 import { createClient } from "@/db/server";
 import { cookies } from "next/headers";
 import { siteConfig } from "@/config/site";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -80,6 +81,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
             <Navbar />
             {children}
             <Footer />
+            <Toaster />
           </SupabaseProvider>
         </ThemeProvider>
       </body>

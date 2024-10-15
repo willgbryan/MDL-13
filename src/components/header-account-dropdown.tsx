@@ -35,21 +35,21 @@ export function HeaderAccountDropdown({ user }: { user: UserProps }) {
         </div>
         <Separator />
         <div className="py-1">
-          <DropdownMenuItem>
+          {/* <DropdownMenuItem>
             <Link href="/profile" className="flex w-full items-center justify-between gap-2">
               <span>Profile</span>
             </Link>
-          </DropdownMenuItem>
+          </DropdownMenuItem> */}
           <DropdownMenuItem>
             <Link href="/pricing" className="flex w-full items-center justify-between gap-2">
               <span>Pricing</span>
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          {/* <DropdownMenuItem>
             <Link href="/billing" className="flex w-full items-center justify-between gap-2">
               <span>Billing</span>
             </Link>
-          </DropdownMenuItem>
+          </DropdownMenuItem> */}
         </div>
         <Separator />
         <div className="py-1">
