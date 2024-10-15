@@ -109,7 +109,7 @@ export default function Picks() {
           <CardHeader>
             <CardTitle>Authentication Required</CardTitle>
             <CardDescription>
-              Only authenticated users can see picks for this week.
+              Only authenticated users can see historical picks.
             </CardDescription>
           </CardHeader>
           <CardContent>

@@ -26,7 +26,7 @@ export function HeaderAccountDropdown({ user }: { user: UserProps }) {
           <User className="h-5 w-5 text-black dark:text-white" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-48 px-0 py-1" align="end">
+      <DropdownMenuContent className="w-48 px-0 py-1 bg-neutral-800 border-[#4BFFBA]" align="end">
         <div className="flex items-center gap-2 p-2">
           <div className="flex flex-col text-left text-sm">
             {user.name ? <h2 className="font-medium">@{user.name}</h2> : null}

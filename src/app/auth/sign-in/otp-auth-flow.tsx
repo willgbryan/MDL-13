@@ -1,3 +1,5 @@
+"use client"
+
 import React, { FormEvent, useState } from 'react';
 import { AuthApiError } from '@supabase/supabase-js';
 import { Info, MailOpenIcon} from 'lucide-react';
@@ -16,6 +18,7 @@ import {
 } from "@/components/ui/input-otp";
 import { useSupabase } from '@/app/supabase-provider';
 import { Icon3dCubeSphere } from '@tabler/icons-react';
+import router from 'next/router';
 
 type FormData = z.infer<typeof AuthUserSchema>;
 
@@ -91,30 +94,23 @@ export function OTPAuthFlow() {
   };
 
   const handleVerifyOTP = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setFormSuccess(false);
+    event.preventDefault()
+    setFormSuccess(false)
 
     const { error } = await supabase.auth.verifyOtp({
       email,
       token: otp,
-      type: 'email',
-      options: {
-        emailRedirectTo: `${new URL(location.href).origin}/auth/callback?next=picks`,
-        shouldCreateUser: true,
-        data: {
-          signInMethod: 'otp'
-        }
-      },
-    });
+      type: 'email'
+    })
 
     if (error) {
-      setMessage(error.message);
-      return;
+      setMessage(error.message)
+      return
     }
 
-    setFormSuccess(true);
-    setMessage('Successfully verified. Redirecting...');
-  };
+    setFormSuccess(true)
+    setMessage('Successfully verified. Redirecting..')
+  }
 
   const handleAuthCode = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();

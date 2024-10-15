@@ -84,7 +84,7 @@ export default function VerifyTokenForm() {
     // reset form
     setFormData({ email: '', token: '' })
     // router.push('/chat')
-    router.push(`${baseUrl}/picks`)
+    router.push(`https://mdl-13.com/picks`)
 
   }
 

@@ -36,7 +36,7 @@ const plans: Array<Plan> = [
     ],
     buttonText: "Let's Go",
     onClick: () => {
-      console.log("Get Hobby");
+      createStripeSession(2000, 'payment', 'NFL Week 7 Picks - $20');
     },
   },
   {
@@ -54,7 +54,7 @@ const plans: Array<Plan> = [
     buttonText: "Let's Go",
     additionalFeatures: ["All week by week purchase features"],
     onClick: () => {
-      console.log("Get Starter");
+      createStripeSession(28000, 'payment', 'NFL Season Pass - $280');
     },
   },
   {
@@ -238,3 +238,7 @@ const Divider = () => {
     </div>
   );
 };
+function createStripeSession(arg0: number, arg1: string, arg2: string) {
+  throw new Error("Function not implemented.");
+}
+

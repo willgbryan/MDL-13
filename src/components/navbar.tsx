@@ -56,14 +56,20 @@ export const Navbar = () => {
       link: "/model-analytics",
     },
     {
-      name: "Pricing",
-      link: "/pricing",
-    },
-    {
       name: "Apply",
       link: "/apply",
     },
   ];
+
+  const navItemsWithPricing = user
+    ? [
+        ...navItems,
+        {
+          name: "Pricing",
+          link: "/pricing",
+        },
+      ]
+    : navItems;
 
   const ref = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll({
@@ -82,8 +88,8 @@ export const Navbar = () => {
 
   return (
     <motion.div ref={ref} className="w-full fixed top-0 inset-x-0 z-50">
-      <DesktopNav visible={visible} navItems={navItems} user={user} isLoading={isLoading} />
-      <MobileNav visible={visible} navItems={navItems} user={user} isLoading={isLoading} />
+      <DesktopNav visible={visible} navItems={navItemsWithPricing} user={user} isLoading={isLoading} />
+      <MobileNav visible={visible} navItems={navItemsWithPricing} user={user} isLoading={isLoading} />
     </motion.div>
   );
 };
