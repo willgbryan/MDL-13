@@ -1,4 +1,5 @@
 "use client";
+
 import { cn } from "@/lib/utils";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import {
@@ -8,12 +9,14 @@ import {
   useMotionValueEvent,
 } from "framer-motion";
 import Link from "next/link";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "./button";
 import { Logo } from "./logo";
 import { ModeToggle } from "./mode-toggle";
 import { useCalEmbed } from "@/app/hooks/useCalEmbed";
 import { CONSTANTS } from "@/constants/links";
+import { getUserDetails } from "@/app/_data/user";
+import { HeaderAccountDropdown } from "./header-account-dropdown";
 
 interface NavbarProps {
   navItems: {
@@ -21,9 +24,28 @@ interface NavbarProps {
     link: string;
   }[];
   visible: boolean;
+  user: UserDetails | null;
+  isLoading: boolean;
+}
+
+interface UserDetails {
+  id: string;
+  email: string | undefined;
 }
 
 export const Navbar = () => {
+  const [user, setUser] = useState<UserDetails | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchUser() {
+      const userDetails = await getUserDetails();
+      setUser(userDetails);
+      setIsLoading(false);
+    }
+    fetchUser();
+  }, []);
+
   const navItems = [
     {
       name: "Picks",
@@ -60,13 +82,13 @@ export const Navbar = () => {
 
   return (
     <motion.div ref={ref} className="w-full fixed top-0 inset-x-0 z-50">
-      <DesktopNav visible={visible} navItems={navItems} />
-      <MobileNav visible={visible} navItems={navItems} />
+      <DesktopNav visible={visible} navItems={navItems} user={user} isLoading={isLoading} />
+      <MobileNav visible={visible} navItems={navItems} user={user} isLoading={isLoading} />
     </motion.div>
   );
 };
 
-const DesktopNav = ({ navItems, visible }: NavbarProps) => {
+const DesktopNav = ({ navItems, visible, user, isLoading }: NavbarProps) => {
   const [hovered, setHovered] = useState<number | null>(null);
 
   const calOptions = useCalEmbed({
@@ -99,7 +121,7 @@ const DesktopNav = ({ navItems, visible }: NavbarProps) => {
         minWidth: "800px",
       }}
       className={cn(
-        "hidden lg:flex flex-row  self-start bg-transparent dark:bg-transparent items-center justify-between py-2 max-w-7xl mx-auto px-4 rounded-md relative z-[60] w-full",
+        "hidden lg:flex flex-row self-start bg-transparent dark:bg-transparent items-center justify-between py-2 max-w-7xl mx-auto px-4 rounded-md relative z-[60] w-full",
         visible && "bg-white/80 dark:bg-neutral-950/80"
       )}
     >
@@ -122,46 +144,27 @@ const DesktopNav = ({ navItems, visible }: NavbarProps) => {
           </Link>
         ))}
       </motion.div>
-      <div className="flex items-center gap-4">
-        {/* <ModeToggle /> */}
-
-        <AnimatePresence mode="popLayout" initial={false}>
-          {!visible && (
-            <motion.div
-              initial={{
-                x: 100,
-                opacity: 0,
-              }}
-              animate={{
-                x: 0,
-                opacity: [0, 0, 1],
-              }}
-              exit={{
-                x: 100,
-                opacity: [0, 0, 0],
-              }}
-              transition={{
-                duration: 0.5,
-                ease: "easeOut",
-              }}
+      <div className="flex items-center gap-4 z-20">
+        {!isLoading && (
+          user ? (
+            <HeaderAccountDropdown user={user} />
+          ) : (
+            <Button
+              as={Link}
+              href="/auth/sign-in"
+              variant="secondary"
+              className="hidden md:block"
             >
-              <Button
-                as={Link}
-                href="/auth/sign-in"
-                variant="secondary"
-                className="hidden md:block "
-              >
-                Login
-              </Button>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              Login
+            </Button>
+          )
+        )}
       </div>
     </motion.div>
   );
 };
 
-const MobileNav = ({ navItems, visible }: NavbarProps) => {
+const MobileNav = ({ navItems, visible, user, isLoading }: NavbarProps) => {
   const [open, setOpen] = useState(false);
 
   const calOptions = useCalEmbed({
@@ -200,7 +203,7 @@ const MobileNav = ({ navItems, visible }: NavbarProps) => {
           <div className="hidden sm:block">
             <Logo />
           </div>
-          <div className="sm:hidden flex-1" /> {/* This empty div maintains spacing on small screens */}
+          <div className="sm:hidden flex-1" />
           {open ? (
             <IconX
               className="text-black dark:text-white"
@@ -234,15 +237,21 @@ const MobileNav = ({ navItems, visible }: NavbarProps) => {
                   <motion.span className="block">{navItem.name} </motion.span>
                 </Link>
               ))}
-              <Button
-                as={Link}
-                onClick={() => setOpen(false)}
-                href="/auth/sign-in"
-                variant="primary"
-                className="block md:hidden w-full"
-              >
-                Login
-              </Button>
+              {!isLoading && (
+                user ? (
+                  <HeaderAccountDropdown user={user} />
+                ) : (
+                  <Button
+                    as={Link}
+                    onClick={() => setOpen(false)}
+                    href="/auth/sign-in"
+                    variant="primary"
+                    className="block md:hidden w-full"
+                  >
+                    Login
+                  </Button>
+                )
+              )}
             </motion.div>
           )}
         </AnimatePresence>

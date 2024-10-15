@@ -72,7 +72,7 @@ export function OTPAuthFlow() {
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: `${new URL(location.href).origin}/auth/callback?next=chat`,
+        emailRedirectTo: `${new URL(location.href).origin}/auth/callback?next=picks`,
         shouldCreateUser: true,
         data: {
           signInMethod: 'otp'
@@ -97,7 +97,14 @@ export function OTPAuthFlow() {
     const { error } = await supabase.auth.verifyOtp({
       email,
       token: otp,
-      type: 'email'
+      type: 'email',
+      options: {
+        emailRedirectTo: `${new URL(location.href).origin}/auth/callback?next=picks`,
+        shouldCreateUser: true,
+        data: {
+          signInMethod: 'otp'
+        }
+      },
     });
 
     if (error) {

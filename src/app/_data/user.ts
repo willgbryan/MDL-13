@@ -18,15 +18,27 @@ export async function getSession() {
 }
 
 export async function getUserDetails() {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
-  try {
-    const { data: userDetails } = await supabase.from('users').select('*').single()
-    return userDetails
-  } catch (error) {
-    return null
+    const cookieStore = cookies()
+    const supabase = createClient(cookieStore)
+    
+    try {
+      const { data: { user }, error } = await supabase.auth.getUser()
+      
+      if (error) throw error
+      
+      if (user) {
+        return {
+          id: user.id,
+          email: user.email,
+        }
+      } else {
+        return null
+      }
+    } catch (error) {
+      console.error('Error fetching user details:', error)
+      return null
+    }
   }
-}
 
 // USER PAYMENT STATUS
 

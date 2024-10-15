@@ -5,10 +5,10 @@ import { useRouter } from 'next/navigation'
 import { AuthApiError } from '@supabase/supabase-js'
 import { z, ZodError } from 'zod'
 
-import { useSupabase } from '@/app/supabase-provider'
 import { Alert } from '@/components/ui/alert'
 import { AuthUserWithTokenSchema } from '@/lib/auth-validation/validationSchema'
 import { formatError } from '@/lib/error'
+import { useSupabase } from '@/app/supabase-provider'
 
 type FormData = z.infer<typeof AuthUserWithTokenSchema>
 
@@ -24,11 +24,11 @@ function getBaseUrl(): string {
   const deployment = process.env.DEPLOYMENT
 
   if (deployment === "PROD") {
-    return 'https://heighliner.tech'
+    return 'https://mdl-13.com'
   } else if (deployment === "DEV") {
     return ''
   } else {
-    return process.env.NEXT_PUBLIC_BASE_URL || 'https://heighliner.tech'
+    return process.env.NEXT_PUBLIC_BASE_URL || 'https:///mdl-13.com'
   }
 }
 
@@ -84,7 +84,7 @@ export default function VerifyTokenForm() {
     // reset form
     setFormData({ email: '', token: '' })
     // router.push('/chat')
-    router.push(`${baseUrl}/chat`)
+    router.push(`${baseUrl}/picks`)
 
   }
 
