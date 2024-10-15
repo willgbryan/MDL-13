@@ -1,7 +1,7 @@
 import { getSession } from '@/app/_data/user';
 import { getStripeCustomerId, getPaymentStatus } from '@/app/_data/stripe';
-import Pricing from '@/components/pricing';
 import { Stripe } from 'stripe';
+import { Pricing } from '@/components/pricing';
 
 type PaymentStatus = {
   id: string;
@@ -28,5 +28,6 @@ export default async function Page() {
     }
   }
 
-  return <Pricing session={session} latestPayment={latestPayment} />;
+  // return <Pricing session={session} latestPayment={latestPayment} />;
+  return <Pricing/>;
 }
