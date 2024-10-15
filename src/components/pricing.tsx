@@ -26,56 +26,50 @@ export type Plan = {
 const plans: Array<Plan> = [
   {
     id: plan.hobby,
-    name: "Hobby",
-    price: 99,
-    subText: "/month",
+    name: "NFL Week 7 Picks",
+    price: 20,
+    subText: "",
     currency: "$",
     features: [
-      "Access to basic analytics reports",
-      "Up to 10,000 data points per month",
-      "Email support",
-      "Community forum access",
-      "Cancel anytime",
+      "Access to basic model analytics and historical reports.",
+      "Predictions for winners, O/U, and point differentials.",
     ],
-    buttonText: "Get Hobby",
+    buttonText: "Let's Go",
     onClick: () => {
       console.log("Get Hobby");
     },
   },
   {
     id: plan.starter,
-    name: "Starter",
-    price: 299,
-    subText: "/month",
+    name: "NFL Season Pass",
+    price: 280,
+    subText: "",
     currency: "$",
     featured: true,
     features: [
-      "Advanced analytics dashboard",
-      "Customizable reports and charts",
-      "Real-time data tracking",
-      "Integration with third-party tools",
+      "Access to all model analytics and historical reports.",
+      "Predictions through the post-season.",
+      "Priority access to experimental modeling for the NBA regular season.",
     ],
-    buttonText: "Get Starter",
-    additionalFeatures: ["Everything in Hobby Plan"],
+    buttonText: "Let's Go",
+    additionalFeatures: ["All week by week purchase features"],
     onClick: () => {
       console.log("Get Starter");
     },
   },
   {
     id: plan.pro,
-    name: "Pro",
-    price: 1490,
-    subText: "/month",
-    currency: "$",
+    name: "Enterprise",
+    price: "Custom",
+    subText: "",
+    currency: "",
     features: [
-      "Unlimited data storage",
-      "Customizable dashboards",
-      "Advanced data segmentation",
-      "Real-time data processing",
-      "AI-powered insights and recommendations",
+      "Custom models.",
+      "Analytics for professional organizations.",
+      "If you can dream it up, we can execute."
     ],
-    additionalFeatures: ["Everything in Hobby Plan", "Everything in Pro Plan"],
-    buttonText: "Get Pro",
+    additionalFeatures: [],
+    buttonText: "Contact Us",
     onClick: () => {
       console.log("Get Pro");
     },
@@ -86,7 +80,7 @@ export function Pricing() {
   return (
     <div
       id="pricing"
-      className="relative isolate bg-white dark:bg-neutral-950 w-full px-4 py-0 sm:py-20 lg:px-4 "
+      className="relative isolate bg-gradient-to-bl dark:from-neutral-700 dark:to-neutral-900 w-full px-4 py-0 sm:py-20 lg:px-4 "
     >
       <div
         className="absolute inset-x-0 -top-3 -z-10 transform-gpu overflow-hidden px-36 blur-3xl"
@@ -94,11 +88,11 @@ export function Pricing() {
       ></div>
       <>
         <h2 className="pt-4 font-bold text-lg md:text-4xl text-center text-neutral-800 dark:text-neutral-100">
-          Simple pricing for advanced people
+          {/* Pricing */}
         </h2>
         <p className="max-w-md mx-auto text-base text-center text-neutral-600 dark:text-neutral-300 mt-4">
-          Our pricing is designed for advanced people who need more features and
-          more flexibility.
+          {/* Our pricing is designed for advanced people who need more features and
+          more flexibility. */}
         </p>
       </>
 
@@ -176,7 +170,7 @@ const Card = ({ plan, onClick }: { plan: Plan; onClick: () => void }) => {
               </span>
             </div>
           </div>
-          <Button variant="gradient" className="w-full mt-10" onClick={onClick}>
+          <Button className="w-full mt-10 bg-[#4BFFBA]" onClick={onClick}>
             {plan.buttonText}
           </Button>
         </div>
@@ -213,7 +207,7 @@ const Step = ({
       <div
         className={cn(
           "h-4 w-4 rounded-full bg-neutral-700 flex items-center justify-center flex-shrink-0 mt-0.5",
-          additional ? "bg-sky-500" : "bg-neutral-700"
+          additional ? "bg-[#4BFFBA]" : "bg-neutral-700"
         )}
       >
         <IconCheck className="h-3 w-3 [stroke-width:4px] text-neutral-300" />

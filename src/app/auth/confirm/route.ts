@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
   const type = searchParams.get('type') as EmailOtpType
 
   // PROD
-  const next = searchParams.get('next') ?? `${baseUrl}/chat`
+  const next = searchParams.get('next') ?? `${baseUrl}/picks`
 
   if (token_hash && type) {
     const cookieStore = cookies()

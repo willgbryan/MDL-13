@@ -114,7 +114,7 @@ export default function Picks() {
           </CardHeader>
           <CardContent>
             <Button 
-              onClick={() => router.push('/login')} 
+              onClick={() => router.push('/auth/sign-in')} 
               className="w-full"
             >
               Login
