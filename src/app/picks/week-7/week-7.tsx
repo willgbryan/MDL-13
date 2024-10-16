@@ -159,538 +159,64 @@ export default function Picks() {
         </div>
       );
     }
-  return (
-    <div className="flex min-h-screen w-full flex-col items-center justify-center py-20 bg-transparent">
-        <Header>
-        <h2 className="font-sans text-bold text-xl text-center md:text-4xl w-fit mx-auto font-bold tracking-tight text-neutral-800 dark:text-neutral-100">
-          Week 7
-        </h2>
-      </Header>
-      <div className="w-full max-w-5xl px-4 py-8">
-        <Card x-chunk="dashboard-05-chunk-0" className="dark:bg-transparent">
-        <CardHeader>
-            <CardTitle>MDL Predictions</CardTitle>
-            <CardDescription>
-            Predictions are made by analyzing a diverse set of historical data. Add in your own best judgement to inform your own decisions.
-            </CardDescription>
-        </CardHeader>
-        <CardContent>
-            <Table>
-            <TableHeader>
-                <TableRow>
-                <TableHead>Game</TableHead>
-                <TableHead>O/U</TableHead>
-                <TableHead className="hidden md:table-cell">
-                    Point Difference
-                </TableHead>
-                <TableHead className="hidden md:table-cell">
-                    Winner
-                </TableHead>
-                <TableHead>
-                    <span className="hidden md:table-cell">Notes</span>
-                </TableHead>
-                </TableRow>
-            </TableHeader>
-            <TableBody>
-                <TableRow>
-                <TableCell className="font-medium">
-                    SF @ SEA
-                </TableCell>
-                <TableCell>
-                    <Badge variant="outline">Over</Badge>
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    4
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    SF
-                </TableCell>
-                
-                <TableCell>
-                    <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button
-                        aria-haspopup="true"
-                        size="icon"
-                        variant="ghost"
-                        >
-                        <MoreHorizontal className="h-4 w-4" />
-                        <span className="sr-only">Toggle menu</span>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem>Edit</DropdownMenuItem>
-                        <DropdownMenuItem>Delete</DropdownMenuItem>
-                    </DropdownMenuContent>
-                    </DropdownMenu>
-                </TableCell>
-                </TableRow>
-                <TableRow>
-                
-                <TableCell className="font-medium">
-                    JAX @ CHI
-                </TableCell>
-                <TableCell>
-                    <Badge variant="outline">Over</Badge>
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    3
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    CHI
-                </TableCell>
-                
-                <TableCell>
-                    <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button
-                        aria-haspopup="true"
-                        size="icon"
-                        variant="ghost"
-                        >
-                        <MoreHorizontal className="h-4 w-4" />
-                        <span className="sr-only">Toggle menu</span>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem>Edit</DropdownMenuItem>
-                        <DropdownMenuItem>Delete</DropdownMenuItem>
-                    </DropdownMenuContent>
-                    </DropdownMenu>
-                </TableCell>
-                </TableRow>
-                <TableRow>
-                
-                <TableCell className="font-medium">
-                    WAS @ BAL
-                </TableCell>
-                <TableCell>
-                    <Badge variant="secondary">Under</Badge>
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    6
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    BAL
-                </TableCell>
-                
-                <TableCell>
-                    <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button
-                        aria-haspopup="true"
-                        size="icon"
-                        variant="ghost"
-                        >
-                        <MoreHorizontal className="h-4 w-4" />
-                        <span className="sr-only">Toggle menu</span>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem>Edit</DropdownMenuItem>
-                        <DropdownMenuItem>Delete</DropdownMenuItem>
-                    </DropdownMenuContent>
-                    </DropdownMenu>
-                </TableCell>
-                </TableRow>
-                <TableRow>
-                
-                <TableCell className="font-medium">
-                    ARI @ GB
-                </TableCell>
-                <TableCell>
-                    <Badge variant="secondary">Under</Badge>
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    6
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    GB
-                </TableCell>
-                
-                <TableCell>
-                    <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button
-                        aria-haspopup="true"
-                        size="icon"
-                        variant="ghost"
-                        >
-                        <MoreHorizontal className="h-4 w-4" />
-                        <span className="sr-only">Toggle menu</span>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem>Edit</DropdownMenuItem>
-                        <DropdownMenuItem>Delete</DropdownMenuItem>
-                    </DropdownMenuContent>
-                    </DropdownMenu>
-                </TableCell>
-                </TableRow>
-                <TableRow>
-                
-                <TableCell className="font-medium">
-                    HOU @ NE
-                </TableCell>
-                <TableCell>
-                    <Badge variant="secondary">Under</Badge>
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    3.5
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    HOU
-                </TableCell>
-                
-                <TableCell>
-                    <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button
-                        aria-haspopup="true"
-                        size="icon"
-                        variant="ghost"
-                        >
-                        <MoreHorizontal className="h-4 w-4" />
-                        <span className="sr-only">Toggle menu</span>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem>Edit</DropdownMenuItem>
-                        <DropdownMenuItem>Delete</DropdownMenuItem>
-                    </DropdownMenuContent>
-                    </DropdownMenu>
-                </TableCell>
-                </TableRow>
-                <TableRow>
-                
-                <TableCell className="font-medium">
-                    TB @ NO
-                </TableCell>
-                <TableCell>
-                    <Badge variant="outline">Over</Badge>
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    3
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    TB
-                </TableCell>
-                
-                <TableCell>
-                    <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button
-                        aria-haspopup="true"
-                        size="icon"
-                        variant="ghost"
-                        >
-                        <MoreHorizontal className="h-4 w-4" />
-                        <span className="sr-only">Toggle menu</span>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem>Edit</DropdownMenuItem>
-                        <DropdownMenuItem>Delete</DropdownMenuItem>
-                    </DropdownMenuContent>
-                    </DropdownMenu>
-                </TableCell>
-                </TableRow>
-                <TableRow>
-                
-                <TableCell className="font-medium">
-                    CLE @ PHI
-                </TableCell>
-                <TableCell>
-                    <Badge variant="secondary">Under</Badge>
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    6.5
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    PHI
-                </TableCell>
-                
-                <TableCell>
-                    <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button
-                        aria-haspopup="true"
-                        size="icon"
-                        variant="ghost"
-                        >
-                        <MoreHorizontal className="h-4 w-4" />
-                        <span className="sr-only">Toggle menu</span>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem>Edit</DropdownMenuItem>
-                        <DropdownMenuItem>Delete</DropdownMenuItem>
-                    </DropdownMenuContent>
-                    </DropdownMenu>
-                </TableCell>
-                </TableRow>
-                <TableRow>
-                
-                <TableCell className="font-medium">
-                    IND @ TEN
-                </TableCell>
-                <TableCell>
-                    <Badge variant="secondary">Under</Badge>
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    1.5
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    IND
-                </TableCell>
-                
-                <TableCell>
-                    <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button
-                        aria-haspopup="true"
-                        size="icon"
-                        variant="ghost"
-                        >
-                        <MoreHorizontal className="h-4 w-4" />
-                        <span className="sr-only">Toggle menu</span>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem>Edit</DropdownMenuItem>
-                        <DropdownMenuItem>Delete</DropdownMenuItem>
-                    </DropdownMenuContent>
-                    </DropdownMenu>
-                </TableCell>
-                </TableRow>
-                <TableRow>
-                
-                <TableCell className="font-medium">
-                    LAC @ DEN
-                </TableCell>
-                <TableCell>
-                    <Badge variant="secondary">Under</Badge>
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    1.5
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    LAC
-                </TableCell>
-                
-                <TableCell>
-                    <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button
-                        aria-haspopup="true"
-                        size="icon"
-                        variant="ghost"
-                        >
-                        <MoreHorizontal className="h-4 w-4" />
-                        <span className="sr-only">Toggle menu</span>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem>Edit</DropdownMenuItem>
-                        <DropdownMenuItem>Delete</DropdownMenuItem>
-                    </DropdownMenuContent>
-                    </DropdownMenu>
-                </TableCell>
-                </TableRow>
-                <TableRow>
-                
-                <TableCell className="font-medium">
-                    PIT @ LV
-                </TableCell>
-                <TableCell>
-                    <Badge variant="outline">Over</Badge>
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    4.5
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    LV
-                </TableCell>
-                
-                <TableCell>
-                    <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button
-                        aria-haspopup="true"
-                        size="icon"
-                        variant="ghost"
-                        >
-                        <MoreHorizontal className="h-4 w-4" />
-                        <span className="sr-only">Toggle menu</span>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem>Edit</DropdownMenuItem>
-                        <DropdownMenuItem>Delete</DropdownMenuItem>
-                    </DropdownMenuContent>
-                    </DropdownMenu>
-                </TableCell>
-                </TableRow>
-                <TableRow>
-                
-                <TableCell className="font-medium">
-                    ATL @ CAR
-                </TableCell>
-                <TableCell>
-                    <Badge variant="secondary">Under</Badge>
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    3.5
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    ATL
-                </TableCell>
-                
-                <TableCell>
-                    <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button
-                        aria-haspopup="true"
-                        size="icon"
-                        variant="ghost"
-                        >
-                        <MoreHorizontal className="h-4 w-4" />
-                        <span className="sr-only">Toggle menu</span>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem>Edit</DropdownMenuItem>
-                        <DropdownMenuItem>Delete</DropdownMenuItem>
-                    </DropdownMenuContent>
-                    </DropdownMenu>
-                </TableCell>
-                </TableRow>
-                <TableRow>
-                
-                <TableCell className="font-medium">
-                    DET @ DAL
-                </TableCell>
-                <TableCell>
-                    <Badge variant="secondary">Under</Badge>
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    0
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    DET
-                </TableCell>
-                <TableCell>
-                    <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button
-                        aria-haspopup="true"
-                        size="icon"
-                        variant="ghost"
-                        >
-                        <MoreHorizontal className="h-4 w-4" />
-                        <span className="sr-only">Toggle menu</span>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem>Edit</DropdownMenuItem>
-                        <DropdownMenuItem>Delete</DropdownMenuItem>
-                    </DropdownMenuContent>
-                    </DropdownMenu>
-                </TableCell>
-                </TableRow>
-                <TableRow>
-                
-                <TableCell className="font-medium">
-                    CIN @ NYG
-                </TableCell>
-                <TableCell>
-                    <Badge variant="secondary">Under</Badge>
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    5
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    CIN
-                </TableCell>
-                
-                <TableCell>
-                    <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button
-                        aria-haspopup="true"
-                        size="icon"
-                        variant="ghost"
-                        >
-                        <MoreHorizontal className="h-4 w-4" />
-                        <span className="sr-only">Toggle menu</span>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem>Edit</DropdownMenuItem>
-                        <DropdownMenuItem>Delete</DropdownMenuItem>
-                    </DropdownMenuContent>
-                    </DropdownMenu>
-                </TableCell>
-                </TableRow>
-                <TableRow>
-                
-                <TableCell className="font-medium">
-                    BUF @ NYJ
-                </TableCell>
-                <TableCell>
-                    <Badge variant="outline">Over</Badge>
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    3.5
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                    BUF
-                </TableCell>
-                
-                <TableCell>
-                    <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button
-                        aria-haspopup="true"
-                        size="icon"
-                        variant="ghost"
-                        >
-                        <MoreHorizontal className="h-4 w-4" />
-                        <span className="sr-only">Toggle menu</span>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem>Edit</DropdownMenuItem>
-                        <DropdownMenuItem>Delete</DropdownMenuItem>
-                    </DropdownMenuContent>
-                    </DropdownMenu>
-                </TableCell>
-                </TableRow>
-            </TableBody>
-            </Table>
-        </CardContent>
-        {/* <CardFooter>
-            <div className="text-xs text-muted-foreground">
-            Showing <strong>1-10</strong> of <strong>32</strong>{" "}
-            products
-            </div>
-        </CardFooter> */}
-        </Card>
-      </div>
-    </div>
-  )
-}
+    return (
+        <div className="flex min-h-screen w-full flex-col items-center justify-center py-20 bg-transparent">
+          <Header>
+            <h2 className="font-sans text-bold text-xl text-center md:text-4xl w-fit mx-auto font-bold tracking-tight text-neutral-800 dark:text-neutral-100">
+              Week 7
+            </h2>
+          </Header>
+          <div className="w-full max-w-5xl px-4 py-8">
+            <Card className="dark:bg-transparent">
+              <CardHeader>
+                <CardTitle>MDL Predictions</CardTitle>
+                <CardDescription>
+                  Predictions are made by analyzing a diverse set of historical data. Add in your own best judgement to inform your own decisions.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="overflow-x-auto">
+                <Table className="w-full">
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="w-1/4">Game</TableHead>
+                      <TableHead className="w-1/4">O/U</TableHead>
+                      <TableHead className="w-1/4">Point Diff</TableHead>
+                      <TableHead className="w-1/4">Winner</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {[
+                      { game: "SF @ SEA", ou: "Over", pointDiff: 4, winner: "SF" },
+                      { game: "JAX @ CHI", ou: "Over", pointDiff: 3, winner: "CHI" },
+                      { game: "WAS @ BAL", ou: "Under", pointDiff: 6, winner: "BAL" },
+                      { game: "ARI @ GB", ou: "Under", pointDiff: 6, winner: "GB" },
+                      { game: "HOU @ NE", ou: "Under", pointDiff: 3.5, winner: "HOU" },
+                      { game: "TB @ NO", ou: "Over", pointDiff: 3, winner: "TB" },
+                      { game: "CLE @ PHI", ou: "Under", pointDiff: 6.5, winner: "PHI" },
+                      { game: "IND @ TEN", ou: "Under", pointDiff: 1.5, winner: "IND" },
+                      { game: "LAC @ DEN", ou: "Under", pointDiff: 1.5, winner: "LAC" },
+                      { game: "PIT @ LV", ou: "Over", pointDiff: 4.5, winner: "LV" },
+                      { game: "ATL @ CAR", ou: "Under", pointDiff: 3.5, winner: "ATL" },
+                      { game: "DET @ DAL", ou: "Under", pointDiff: 0, winner: "DET" },
+                      { game: "CIN @ NYG", ou: "Under", pointDiff: 5, winner: "CIN" },
+                      { game: "BUF @ NYJ", ou: "Over", pointDiff: 3.5, winner: "BUF" },
+                    ].map((row, index) => (
+                      <TableRow key={index}>
+                        <TableCell className="font-medium">{row.game}</TableCell>
+                        <TableCell>
+                          <Badge variant={row.ou === "Over" ? "outline" : "secondary"}>
+                            {row.ou}
+                          </Badge>
+                        </TableCell>
+                        <TableCell>{row.pointDiff}</TableCell>
+                        <TableCell>{row.winner}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      )
+    }
