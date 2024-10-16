@@ -1,13 +1,20 @@
-import { CTA } from "@/components/cta";
-import { Footer } from "@/components/footer";
-import { Hero } from "@/components/hero";
-import Picks from "@/components/picks";
-import Image from "next/image";
+'use client'
 
-export default function Home() {
+import { useState } from 'react';
+import { PicksTabs } from "@/components/picks-tabs";
+import dynamic from 'next/dynamic';
+
+export default function PicksPage() {
+  const [currentWeek, setCurrentWeek] = useState('7');
+
+  const WeekComponent = dynamic(() => import(`./week-${currentWeek}/week-${currentWeek}`), {
+    loading: () => <p>Loading week content...</p>,
+  });
+
   return (
-    <main className="">
-      <Picks />
+    <main className="min-h-screen w-full flex flex-col items-center justify-start py-20 bg-gradient-to-bl dark:from-neutral-700 dark:to-neutral-900">
+      <PicksTabs currentWeek={currentWeek} onWeekChange={setCurrentWeek} />
+      <WeekComponent />
     </main>
   );
 }

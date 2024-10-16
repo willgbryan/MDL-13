@@ -25,58 +25,37 @@ export async function StripeCheckout({
     const headersList = headers()
     const cookieStore = cookies()
     const supabase = createClient(cookieStore)
+
     try {
       const { data: { session } } = await supabase.auth.getSession()
       if (!session) {
         throw new Error('User not authenticated')
       }
 
-      let { data: user, error: userError } = await supabase
-        .from('payments')
+      let { data: stripeRecord, error: recordError } = await supabase
+        .from('stripe_record')
         .select('stripe_customer_id')
         .eq('user_id', session.user.id)
         .single()
 
-      if (userError && userError.code === 'PGRST116') {
-        const { data: newUser, error: insertError } = await supabase
-          .from('payments')
-          .insert({
-            user_id: session.user.id,
-            id: crypto.randomUUID(),
-            stripe_customer_id: '',
-            created: new Date().toISOString(),
-            status: 'pending',
-            amount: null,
-            currency: null,
-            description: null,
-            price_id: null,
-            metadata: null
-          })
-          .select()
-          .single()
+      let customerId = stripeRecord?.stripe_customer_id
 
-        if (insertError) {
-          throw new Error('Error creating user entry: ' + insertError.message)
-        }
-
-        user = newUser
-      } else if (userError) {
-        throw new Error('Error fetching user data: ' + userError.message)
-      }
-
-      let customerId = user?.stripe_customer_id
       if (!customerId) {
         const customer = await stripe.customers.create({
           email: session.user.email,
           metadata: { userId: session.user.id },
         })
         customerId = customer.id
-        const { error: updateError } = await supabase
-          .from('payments')
-          .update({ stripe_customer_id: customerId })
-          .eq('user_id', session.user.id)
-        if (updateError) {
-          throw new Error('Error updating user with Stripe customer ID: ' + updateError.message)
+
+        const { error: insertError } = await supabase
+          .from('stripe_record')
+          .insert({
+            user_id: session.user.id,
+            stripe_customer_id: customerId,
+          })
+
+        if (insertError) {
+          throw new Error('Error inserting Stripe customer ID: ' + insertError.message)
         }
       }
 

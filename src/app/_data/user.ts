@@ -40,6 +40,28 @@ export async function getUserDetails() {
     }
   }
 
+export async function getUserId() {
+    const cookieStore = cookies()
+    const supabase = createClient(cookieStore)
+
+    try {
+        const { data: { user }, error } = await supabase.auth.getUser()
+        
+        if (error) throw error
+        
+        if (user) {
+        return {
+            id: user.id,
+        }
+        } else {
+        return null
+        }
+    } catch (error) {
+        console.error('Error fetching user details:', error)
+        return null
+    }
+  }
+
 // USER PAYMENT STATUS
 
 /**

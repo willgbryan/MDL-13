@@ -35,6 +35,29 @@ export interface Database {
           },
         ]
       }
+      stripe_record: {
+        Row: {
+          user_id: string
+          stripe_customer_id: string
+        }
+        Insert: {
+          user_id: string
+          stripe_customer_id: string
+        }
+        Update: {
+          user_id?: string
+          stripe_customer_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'stripe_record_user_id_fkey'
+            columns: ['user_id']
+            isOneToOne: true
+            referencedRelation: 'users'
+            referencedColumns: ['id']
+          }
+        ]
+      }
       user_config: {
         Row: {
           id: string

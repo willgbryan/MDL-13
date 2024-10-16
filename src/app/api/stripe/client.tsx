@@ -32,10 +32,10 @@ export function CheckoutButton(props: {
 }) {
   // State to manage the loading status of the button
   const [loading, setLoading] = useState(false)
-
+  
   return (
     <Button
-      className="relative mb-4 text-stone-100 dark:text-stone-900 bg-stone-900 dark:bg-stone-100 from-neutral-800 via-neutral-800 to-black px-6 py-2 rounded-lg group transition-[width] duration-100 ease-[cubic-bezier(0.64_0.57_0.67_1.53)] text-lg flex items-center mx-auto w-auto shadow-[0_1px_5px_rgba(0,0,0,0.2)]"
+      className="w-full mt-10 bg-[#4BFFBA]"
       onClick={async () => {
         setLoading(true)
         // Await the creation of a Stripe Checkout session
@@ -74,8 +74,8 @@ export function CheckoutButton(props: {
       disabled={loading}
     >
       Get started
-      <div className="w-0 opacity-0 group-hover:w-[16px] group-hover:opacity-100 ml-1 overflow-hidden duration-100 ease-[cubic-bezier(0.64_0.57_0.67_1.53)] transition-[width]">
-        →
+      <div className="">
+      
       </div>
       {/* {props.children ?? "Upgrade"} */}
     </Button>

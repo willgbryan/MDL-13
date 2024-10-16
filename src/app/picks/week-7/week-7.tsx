@@ -109,14 +109,14 @@ export default function Picks() {
     }, []);
   
     if (isLoading) {
-      return <div className="flex min-h-screen w-full items-center justify-center bg-gradient-to-bl dark:from-neutral-700 dark:to-neutral-900">
+      return <div className="flex min-h-screen w-full items-center justify-center bg-transparent">
         <p className="text-neutral-800 dark:text-neutral-200">Loading...</p>
       </div>;
     }
   
     if (!isAuthenticated) {
       return (
-        <div className="flex min-h-screen w-full flex-col items-center justify-center py-20 bg-gradient-to-bl dark:from-neutral-700 dark:to-neutral-900">
+        <div className="flex min-h-screen w-full flex-col items-center justify-center py-20 bg-transparent">
           <Card className="w-full max-w-md bg-transparent border-none">
             <CardHeader>
               <CardTitle>Authentication Required</CardTitle>
@@ -139,7 +139,7 @@ export default function Picks() {
   
     if (!hasPaid) {
       return (
-        <div className="flex min-h-screen w-full flex-col items-center justify-center py-20 bg-gradient-to-bl dark:from-neutral-700 dark:to-neutral-900">
+        <div className="flex min-h-screen w-full flex-col items-center justify-center py-20 bg-transparent">
           <Card className="w-full max-w-md bg-transparent border-none">
             <CardHeader>
               <CardTitle>Payment Required</CardTitle>
@@ -160,10 +160,10 @@ export default function Picks() {
       );
     }
   return (
-    <div className="flex min-h-screen w-full flex-col items-center justify-center py-20 bg-gradient-to-bl dark:from-neutral-700 dark:to-neutral-900">
+    <div className="flex min-h-screen w-full flex-col items-center justify-center py-20 bg-transparent">
         <Header>
         <h2 className="font-sans text-bold text-xl text-center md:text-4xl w-fit mx-auto font-bold tracking-tight text-neutral-800 dark:text-neutral-100">
-          Week 6
+          Week 7
         </h2>
       </Header>
       <div className="w-full max-w-5xl px-4 py-8">

@@ -1,13 +1,15 @@
-"use client";
 import React from "react";
 import { IconCheck, IconPlus } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
 import { Button } from "./button";
+import { StripeCheckout } from "@/app/api/stripe/server";
+import { getStripeCustomerId, getUserPaymentStatus } from "@/app/_actions/stripe";
+import Stripe from "stripe";
 
 export enum plan {
-  hobby = "hobby",
-  starter = "starter",
-  pro = "pro",
+  weekly = "weekly",
+  season = "season",
+  enterprise = "enterprise",
 }
 
 export type Plan = {
@@ -20,14 +22,29 @@ export type Plan = {
   featured?: boolean;
   buttonText?: string;
   additionalFeatures?: string[];
-  onClick: () => void;
+  paymentType: "one-time" | "subscription";
+};
+
+type PaymentStatus = {
+  id: string;
+  amount: number;
+  currency: string;
+  status: Stripe.Charge.Status;
+  created: string;
+  description: string | null;
+  metadata: Stripe.Metadata;
+} | null;
+
+type PricingProps = {
+  session: any;
+  latestPayment: PaymentStatus;
 };
 
 const plans: Array<Plan> = [
   {
-    id: plan.hobby,
+    id: plan.weekly,
     name: "NFL Week 7 Picks",
-    price: 20,
+    price: 2000,
     subText: "",
     currency: "$",
     features: [
@@ -35,14 +52,12 @@ const plans: Array<Plan> = [
       "Predictions for winners, O/U, and point differentials.",
     ],
     buttonText: "Let's Go",
-    onClick: () => {
-      createStripeSession(2000, 'payment', 'NFL Week 7 Picks - $20');
-    },
+    paymentType: "one-time",
   },
   {
-    id: plan.starter,
+    id: plan.season,
     name: "NFL Season Pass",
-    price: 280,
+    price: 28000,
     subText: "",
     currency: "$",
     featured: true,
@@ -53,12 +68,10 @@ const plans: Array<Plan> = [
     ],
     buttonText: "Let's Go",
     additionalFeatures: ["All week by week purchase features"],
-    onClick: () => {
-      createStripeSession(28000, 'payment', 'NFL Season Pass - $280');
-    },
+    paymentType: "one-time",
   },
   {
-    id: plan.pro,
+    id: plan.enterprise,
     name: "Enterprise",
     price: "Custom",
     subText: "",
@@ -70,123 +83,95 @@ const plans: Array<Plan> = [
     ],
     additionalFeatures: [],
     buttonText: "Contact Us",
-    onClick: () => {
-      console.log("Get Pro");
-    },
+    paymentType: "subscription",
   },
 ];
 
-export function Pricing() {
-  return (
-    <div
-      id="pricing"
-      className="relative isolate bg-gradient-to-bl dark:from-neutral-700 dark:to-neutral-900 w-full px-4 py-0 sm:py-20 lg:px-4 "
-    >
-      <div
-        className="absolute inset-x-0 -top-3 -z-10 transform-gpu overflow-hidden px-36 blur-3xl"
-        aria-hidden="true"
-      ></div>
-      <>
-        <h2 className="pt-4 font-bold text-lg md:text-4xl text-center text-neutral-800 dark:text-neutral-100">
-          {/* Pricing */}
-        </h2>
-        <p className="max-w-md mx-auto text-base text-center text-neutral-600 dark:text-neutral-300 mt-4">
-          {/* Our pricing is designed for advanced people who need more features and
-          more flexibility. */}
-        </p>
-      </>
+export async function Pricing({ session, latestPayment }: PricingProps) {
+  let stripeCustomerId: string | undefined | null;
 
-      <div
-        className={cn(
-          "mx-auto grid grid-cols-1 gap-4  mt-20 ",
-          "max-w-7xl mx-auto  md:grid-cols-2 xl:grid-cols-3"
-        )}
-      >
-        {plans.map((tier, tierIdx) => {
-          return <Card plan={tier} key={tier.id} onClick={tier.onClick} />;
-        })}
+  if (session?.user?.id) {
+    stripeCustomerId = await getStripeCustomerId(session.user.id);
+    if (stripeCustomerId) {
+      latestPayment = await getUserPaymentStatus(stripeCustomerId);
+    }
+  }
+
+  return (
+    <div id="pricing" className="relative isolate bg-gradient-to-bl dark:from-neutral-700 dark:to-neutral-900 w-full px-4 py-0 sm:py-20 lg:px-4">
+      <div className="mx-auto grid grid-cols-1 gap-4 mt-20 max-w-7xl mx-auto md:grid-cols-2 xl:grid-cols-3">
+        {plans.map((tier) => (
+          <Card key={tier.id} plan={tier} session={session} latestPayment={latestPayment} stripeCustomerId={stripeCustomerId} />
+        ))}
       </div>
     </div>
   );
 }
 
-const Card = ({ plan, onClick }: { plan: Plan; onClick: () => void }) => {
-  return (
-    <div
-      className={cn(
-        "p-1 sm:p-4 md:p-4 rounded-3xl bg-gray-50 dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800"
-      )}
-    >
-      <div className="flex flex-col gap-4 h-full justify-start">
-        <div
-          className={cn(
-            "p-4 bg-white dark:bg-neutral-800 rounded-2xl shadow-input w-full dark:shadow-[0px_-1px_0px_0px_var(--neutral-700)]"
-          )}
-        >
-          <div className="flex justify-between items-start ">
-            <div className="flex gap-2 flex-col">
-              <p
-                className={cn("font-medium text-lg text-black dark:text-white")}
-              >
-                {plan.name}
-              </p>
-            </div>
+type CardProps = {
+  plan: Plan;
+  session: any;
+  latestPayment: PaymentStatus;
+  stripeCustomerId: string | null | undefined;
+};
 
+const Card: React.FC<CardProps> = ({ plan, session, latestPayment, stripeCustomerId }) => {
+  return (
+    <div className={cn("p-1 sm:p-4 md:p-4 rounded-3xl bg-gray-50 dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800")}>
+      <div className="flex flex-col gap-4 h-full justify-start">
+        <div className={cn("p-4 bg-white dark:bg-neutral-800 rounded-2xl shadow-input w-full dark:shadow-[0px_-1px_0px_0px_var(--neutral-700)]")}>
+          <div className="flex justify-between items-start">
+            <div className="flex gap-2 flex-col">
+              <p className={cn("font-medium text-lg text-black dark:text-white")}>{plan.name}</p>
+            </div>
             {plan.featured && (
-              <div
-                className={cn(
-                  "font-medium text-xs px-3 py-1 rounded-full relative bg-neutral-900 dark:bg-white dark:text-black text-white"
-                )}
-              >
-                <div className="absolute inset-x-0 bottom-0 w-3/4 mx-auto h-px bg-gradient-to-r from-transparent via-indigo-500 to-transparent"></div>
+              <div className={cn("font-medium text-xs px-3 py-1 rounded-full relative bg-neutral-900 dark:bg-white dark:text-black text-white")}>
                 Featured
               </div>
             )}
           </div>
-          <div className="mt-8 ">
+          <div className="mt-8">
             <div className="flex items-end">
-              <span
-                className={cn(
-                  "text-lg font-bold text-neutral-500 dark:text-neutral-200"
-                )}
-              >
-                {plan.currency}
-              </span>
+              <span className={cn("text-lg font-bold text-neutral-500 dark:text-neutral-200")}>{plan.currency}</span>
               <div className="flex items-start gap-2">
-                <span
-                  className={cn(
-                    "text-3xl md:text-7xl font-bold dark:text-neutral-50 text-neutral-800"
-                  )}
-                >
-                  {plan?.price}
+                <span className={cn("text-3xl md:text-7xl font-bold dark:text-neutral-50 text-neutral-800")}>
+                  {typeof plan.price === 'number' ? (plan.price / 100).toFixed(2) : plan.price}
                 </span>
               </div>
-              <span
-                className={cn(
-                  "text-base font-normal text-neutral-500 dark:text-neutral-200 mb-1 md:mb-2"
-                )}
-              >
-                {plan.subText}
-              </span>
+              <span className={cn("text-base font-normal text-neutral-500 dark:text-neutral-200 mb-1 md:mb-2")}>{plan.subText}</span>
             </div>
           </div>
-          <Button className="w-full mt-10 bg-[#4BFFBA]" onClick={onClick}>
-            {plan.buttonText}
-          </Button>
+          {plan.id !== "enterprise" ? (
+            <StripeCheckout
+              metadata={{
+                userId: session?.user?.id ?? null,
+                stripeCustomerId: stripeCustomerId ?? null,
+                pricingTier: plan.id,
+              }}
+              paymentType={plan.paymentType}
+              price={typeof plan.price === 'number' ? plan.price : 0}
+              className="w-full"
+              tierDescription={plan.name}
+            >
+              <Button className="w-full mt-10 bg-[#4BFFBA]">
+                {plan.buttonText}
+              </Button>
+            </StripeCheckout>
+          ) : (
+            <Button className="w-full mt-10 bg-[#4BFFBA]">
+              <a href="/contact">Contact Us</a>
+            </Button>
+          )}
         </div>
         <div className="mt-1 p-4">
           {plan.features.map((feature, idx) => (
             <Step key={idx}>{feature}</Step>
           ))}
         </div>
-        {plan.additionalFeatures && plan.additionalFeatures.length > 0 && (
-          <Divider />
-        )}
+        {plan.additionalFeatures && plan.additionalFeatures.length > 0 && <Divider />}
         <div className="p-4">
           {plan.additionalFeatures?.map((feature, idx) => (
-            <Step additional key={idx}>
-              {feature}
-            </Step>
+            <Step additional key={idx}>{feature}</Step>
           ))}
         </div>
       </div>
@@ -238,7 +223,3 @@ const Divider = () => {
     </div>
   );
 };
-function createStripeSession(arg0: number, arg1: string, arg2: string) {
-  throw new Error("Function not implemented.");
-}
-
