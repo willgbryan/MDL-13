@@ -139,13 +139,20 @@ export function Hero() {
   return (
     <div
       className="relative w-full flex flex-col items-center justify-center overflow-hidden bg-gradient-to-bl dark:from-neutral-700 dark:to-neutral-900"
-      style={{ minHeight: 'var(--vh)' }}
+      style={{ minHeight: '100vh' }}
     >
-      <SphereAnimation />
-      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center pt-safe px-safe">
-        <div className="text-balance mt-6 max-w-4xl text-center sm:text-left text-5xl sm:text-7xl font-semibold tracking-tight text-gray-700 dark:text-neutral-300">
+      <div className="absolute inset-0 w-full h-full">
+        <SphereAnimation />
+      </div>
+      <div className="relative z-20 flex flex-col items-center justify-center w-full h-full px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-4xl">
           <Balancer>
-            <motion.h2>
+            <motion.h1
+              className="text-7xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-gray-700 dark:text-neutral-300"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
               {"MDL-13"
                 .split(" ")
                 .map((word, index) => (
@@ -159,17 +166,24 @@ export function Hero() {
                     {word}&nbsp;
                   </motion.span>
                 ))}
-            </motion.h2>
+            </motion.h1>
           </Balancer>
         </div>
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2, delay: 0.5 }}
-          className="mt-2 max-w-lg mx-auto sm:mx-0 text-center sm:text-left text-sm sm:text-base text-gray-600 dark:text-gray-200"
+          className="mt-4 max-w-lg text-center text-lg sm:text-base text-gray-600 dark:text-gray-200"
         >
           Machine learning for sports analytics
         </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2, delay: 0.7 }}
+          className="mt-8 flex flex-col sm:flex-row gap-4"
+        >
+        </motion.div>
       </div>
     </div>
   );
