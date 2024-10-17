@@ -1,5 +1,4 @@
 'use client'
-
 import React from 'react';
 import {
   Tabs,
@@ -19,7 +18,12 @@ export function PicksTabs({ currentWeek, onWeekChange }: PicksTabsProps) {
     <Tabs value={currentWeek} onValueChange={onWeekChange} className="w-full max-w-5xl mx-auto bg-transparent">
       <TabsList className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 border-[#4BFFBA]">
         {weeks.map((week) => (
-          <TabsTrigger key={week} value={week.toString()}>
+          <TabsTrigger 
+            key={week} 
+            value={week.toString()}
+            disabled={week === 4 || week === 5}
+            className={`${(week === 4 || week === 5) ? 'opacity-50 cursor-not-allowed' : ''}`}
+          >
             Week {week}
           </TabsTrigger>
         ))}

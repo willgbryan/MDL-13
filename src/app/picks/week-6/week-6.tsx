@@ -86,13 +86,30 @@ const Header = ({ children }: { children: React.ReactNode }) => {
 export default function Picks() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [hasPaid, setHasPaid] = useState(false);
     const router = useRouter();
+
+    const predictions = [
+        { game: "SF @ SEA", moneyline: { SF: -170, SEA: 142 }, spread: { favorite: "SF", line: -3.5 }, ou: { line: 47.5, prediction: "Over" }, pointDiff: 3.98, winner: "SF", projectedScore: { SF: 23.83, SEA: 19.85 } },
+        { game: "JAX @ CHI", moneyline: { JAX: 120, CHI: -142 }, spread: { favorite: "CHI", line: -2.5 }, ou: { line: 44.5, prediction: "Over" }, pointDiff: 2.89, winner: "CHI", projectedScore: { JAX: 22.27, CHI: 25.17 } },
+        { game: "WAS @ BAL", moneyline: { WAS: 230, BAL: -285 }, spread: { favorite: "BAL", line: -6.5 }, ou: { line: 52.5, prediction: "Under" }, pointDiff: 6.16, winner: "BAL", projectedScore: { WAS: 20.77, BAL: 26.93 } },
+        { game: "ARI @ GB", moneyline: { ARI: 195, GB: -238 }, spread: { favorite: "GB", line: -5.0 }, ou: { line: 49.5, prediction: "Under" }, pointDiff: 6.22, winner: "GB", projectedScore: { ARI: 20.97, GB: 27.20 } },
+        { game: "HOU @ NE", moneyline: { HOU: -310, NE: 250 }, spread: { favorite: "HOU", line: 7.0 }, ou: { line: 38.0, prediction: "Over" }, pointDiff: 1.63, winner: "HOU", projectedScore: { HOU: 19.70, NE: 18.07 } },
+        { game: "TB @ NO", moneyline: { TB: -180, NO: 150 }, spread: { favorite: "TB", line: -3.5 }, ou: { line: 41.5, prediction: "Over" }, pointDiff: 3.02, winner: "TB", projectedScore: { TB: 24.09, NO: 21.08 } },
+        { game: "CLE @ PHI", moneyline: { CLE: 330, PHI: -425 }, spread: { favorite: "PHI", line: -8.5 }, ou: { line: 43.5, prediction: "Under" }, pointDiff: 6.52, winner: "PHI", projectedScore: { CLE: 20.35, PHI: 26.87 } },
+        { game: "IND @ TEN", moneyline: { IND: -112, TEN: -108 }, spread: { favorite: "IND", line: -1.0 }, ou: { line: 43.0, prediction: "Under" }, pointDiff: 1.63, winner: "IND", projectedScore: { IND: 20.47, TEN: 18.84 } },
+        { game: "LAC @ DEN", moneyline: { LAC: -155, DEN: 130 }, spread: { favorite: "LAC", line: -3.0 }, ou: { line: 35.5, prediction: "Under" }, pointDiff: 1.42, winner: "LAC", projectedScore: { LAC: 18.96, DEN: 17.55 } },
+        { game: "PIT @ LV", moneyline: { PIT: -155, LV: 130 }, spread: { favorite: "PIT", line: 3.0 }, ou: { line: 36.5, prediction: "Over" }, pointDiff: 3.63, winner: "LV", projectedScore: { PIT: 18.02, LV: 21.65 } },
+        { game: "ATL @ CAR", moneyline: { ATL: -265, CAR: 215 }, spread: { favorite: "ATL", line: -6.0 }, ou: { line: 47.5, prediction: "Under" }, pointDiff: 3.58, winner: "ATL", projectedScore: { ATL: 23.41, CAR: 19.83 } },
+        { game: "DET @ DAL", moneyline: { DET: -162, DAL: 136 }, spread: { favorite: "DET", line: 3.0 }, ou: { line: 52.5, prediction: "Under" }, pointDiff: 0.08, winner: "DET", projectedScore: { DET: 20.69, DAL: 20.61 } },
+        { game: "CIN @ NYG", moneyline: { CIN: -170, NYG: 142 }, spread: { favorite: "CIN", line: -3.5 }, ou: { line: 49.0, prediction: "Under" }, pointDiff: 5.08, winner: "CIN", projectedScore: { CIN: 23.73, NYG: 18.65 } },
+        { game: "BUF @ NYJ", moneyline: { BUF: -135, NYJ: 114 }, spread: { favorite: "BUF", line: -2.0 }, ou: { line: 41.0, prediction: "Over" }, pointDiff: 3.69, winner: "BUF", projectedScore: { BUF: 20.93, NYJ: 17.24 } },
+      ];
   
     useEffect(() => {
       async function checkAuthAndPayment() {
         const session = await getUserDetails();
         setIsAuthenticated(!!session);
-  
         setIsLoading(false);
       }
       checkAuthAndPayment();
@@ -134,7 +151,7 @@ export default function Picks() {
               Week 6
             </h2>
           </Header>
-          <div className="w-full max-w-5xl px-4 py-8">
+          <div className="w-full max-w-7xl px-4 py-8">
             <Card className="dark:bg-transparent">
               <CardHeader>
                 <CardTitle>MDL Predictions</CardTitle>
@@ -146,37 +163,32 @@ export default function Picks() {
                 <Table className="w-full">
                   <TableHeader>
                     <TableRow>
-                      <TableHead className="w-1/4">Game</TableHead>
-                      <TableHead className="w-1/4">O/U</TableHead>
-                      <TableHead className="w-1/4">Point Diff</TableHead>
-                      <TableHead className="w-1/4">Winner</TableHead>
+                      <TableHead>Game</TableHead>
+                      <TableHead>Moneyline</TableHead>
+                      <TableHead>Spread</TableHead>
+                      <TableHead>Predicted Score Diff</TableHead>
+                      <TableHead>O/U Line</TableHead>
+                      <TableHead>O/U Prediction</TableHead>
+                      <TableHead>Predicted Winner</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {[
-                      { game: "SF @ SEA", ou: "Over", pointDiff: 4, winner: "SF" },
-                      { game: "JAX @ CHI", ou: "Over", pointDiff: 3, winner: "CHI" },
-                      { game: "WAS @ BAL", ou: "Under", pointDiff: 6, winner: "BAL" },
-                      { game: "ARI @ GB", ou: "Under", pointDiff: 6, winner: "GB" },
-                      { game: "HOU @ NE", ou: "Under", pointDiff: 3.5, winner: "HOU" },
-                      { game: "TB @ NO", ou: "Over", pointDiff: 3, winner: "TB" },
-                      { game: "CLE @ PHI", ou: "Under", pointDiff: 6.5, winner: "PHI" },
-                      { game: "IND @ TEN", ou: "Under", pointDiff: 1.5, winner: "IND" },
-                      { game: "LAC @ DEN", ou: "Under", pointDiff: 1.5, winner: "LAC" },
-                      { game: "PIT @ LV", ou: "Over", pointDiff: 4.5, winner: "LV" },
-                      { game: "ATL @ CAR", ou: "Under", pointDiff: 3.5, winner: "ATL" },
-                      { game: "DET @ DAL", ou: "Under", pointDiff: 0, winner: "DET" },
-                      { game: "CIN @ NYG", ou: "Under", pointDiff: 5, winner: "CIN" },
-                      { game: "BUF @ NYJ", ou: "Over", pointDiff: 3.5, winner: "BUF" },
-                    ].map((row, index) => (
+                    {predictions.map((row, index) => (
                       <TableRow key={index}>
                         <TableCell className="font-medium">{row.game}</TableCell>
                         <TableCell>
-                          <Badge variant={row.ou === "Over" ? "outline" : "secondary"}>
-                            {row.ou}
+                          {Object.entries(row.moneyline).map(([team, odds]) => (
+                            <div key={team}>{team}: {odds > 0 ? '+' : ''}{odds}</div>
+                          ))}
+                        </TableCell>
+                        <TableCell>{row.spread.favorite} {row.spread.line}</TableCell>
+                        <TableCell>{row.pointDiff.toFixed(2)}</TableCell>
+                        <TableCell>{row.ou.line}</TableCell>
+                        <TableCell>
+                          <Badge variant={row.ou.prediction === "Over" ? "outline" : "secondary"}>
+                            {row.ou.prediction}
                           </Badge>
                         </TableCell>
-                        <TableCell>{row.pointDiff}</TableCell>
                         <TableCell>{row.winner}</TableCell>
                       </TableRow>
                     ))}
@@ -186,5 +198,5 @@ export default function Picks() {
             </Card>
           </div>
         </div>
-      )
-    }
+    )
+}
