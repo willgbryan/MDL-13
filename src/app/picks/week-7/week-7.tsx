@@ -90,22 +90,22 @@ export default function Picks() {
     const router = useRouter();
 
     const predictions = [
-        { game: "DEN @ NO", moneyline: { DEN: -142, NO: 120 }, spread: { favorite: "NO", line: -3.0 }, ou: { line: 37.0, prediction: "Over" }, pointDiff: 7.72, winner: "NO", projectedScore: { DEN: 19.94, NO: 27.67 } },
-        { game: "NE @ JAX", moneyline: { NE: 195, JAX: -238 }, spread: { favorite: "JAX", line: -5.5 }, ou: { line: 42.5, prediction: "Over" }, pointDiff: 5.92, winner: "JAX", projectedScore: { NE: 21.21, JAX: 27.12 } },
-        { game: "SEA @ ATL", moneyline: { SEA: 130, ATL: -155 }, spread: { favorite: "ATL", line: -2.5 }, ou: { line: 51.0, prediction: "Under" }, pointDiff: 12.62, winner: "ATL", projectedScore: { SEA: 20.75, ATL: 33.37 } },
-        { game: "TEN @ BUF", moneyline: { TEN: 340, BUF: -440 }, spread: { favorite: "BUF", line: -9.0 }, ou: { line: 41.0, prediction: "Over" }, pointDiff: 9.26, winner: "BUF", projectedScore: { TEN: 19.98, BUF: 29.24 } },
-        { game: "CIN @ CLE", moneyline: { CIN: -258, CLE: 210 }, spread: { favorite: "CIN", line: -6.0 }, ou: { line: 42.0, prediction: "Over" }, pointDiff: 0.46, winner: "CIN", projectedScore: { CIN: 24.42, CLE: 24.88 } },
-        { game: "HOU @ GB", moneyline: { HOU: 120, GB: -142 }, spread: { favorite: "GB", line: -2.5 }, ou: { line: 47.5, prediction: "Under" }, pointDiff: 9.78, winner: "GB", projectedScore: { HOU: 21.00, GB: 30.78 } },
-        { game: "MIA @ IND", moneyline: { MIA: 140, IND: -166 }, spread: { favorite: "IND", line: -3.0 }, ou: { line: 43.5, prediction: "Under" }, pointDiff: 7.31, winner: "IND", projectedScore: { MIA: 21.40, IND: 28.71 } },
-        { game: "DET @ MIN", moneyline: { DET: 114, MIN: -135 }, spread: { favorite: "MIN", line: -2.5 }, ou: { line: 50.0, prediction: "Under" }, pointDiff: 5.66, winner: "MIN", projectedScore: { DET: 22.42, MIN: 28.08 } },
-        { game: "PHI @ NYG", moneyline: { PHI: -166, NYG: 140 }, spread: { favorite: "PHI", line: -3.0 }, ou: { line: 43.0, prediction: "Under" }, pointDiff: 0.24, winner: "NYG", projectedScore: { PHI: 21.84, NYG: 22.09 } },
-        { game: "LV @ LA", moneyline: { LV: 270, LA: -340 }, spread: { favorite: "LA", line: -7.0 }, ou: { line: 43.5, prediction: "Over" }, pointDiff: 2.69, winner: "LA", projectedScore: { LV: 21.42, LA: 24.11 } },
-        { game: "CAR @ WAS", moneyline: { CAR: 300, WAS: -380 }, spread: { favorite: "WAS", line: -8.0 }, ou: { line: 51.5, prediction: "Under" }, pointDiff: 8.04, winner: "WAS", projectedScore: { CAR: 20.46, WAS: 28.49 } },
-        { game: "KC @ SF", moneyline: { KC: 102, SF: -122 }, spread: { favorite: "SF", line: -1.5 }, ou: { line: 47.0, prediction: "Under" }, pointDiff: 2.94, winner: "SF", projectedScore: { KC: 25.22, SF: 28.16 } },
-        { game: "NYJ @ PIT", moneyline: { NYJ: -122, PIT: 102 }, spread: { favorite: "NYJ", line: -1.5 }, ou: { line: 38.0, prediction: "Over" }, pointDiff: 3.05, winner: "PIT", projectedScore: { NYJ: 18.96, PIT: 22.01 } },
-        { game: "BAL @ TB", moneyline: { BAL: -180, TB: 150 }, spread: { favorite: "BAL", line: -3.5 }, ou: { line: 49.5, prediction: "Under" }, pointDiff: 3.67, winner: "BAL", projectedScore: { BAL: 24.53, TB: 20.87 } },
-        { game: "LAC @ ARI", moneyline: { LAC: -148, ARI: 124 }, spread: { favorite: "LAC", line: -3.0 }, ou: { line: 43.5, prediction: "Under" }, pointDiff: 0.81, winner: "LAC", projectedScore: { LAC: 23.20, ARI: 22.39 } },
-      ];
+        { game: "DEN @ NO", moneyline: { DEN: -148, NO: 124 }, spread: { favorite: "NO", line: -2.5 }, ou: { line: 37.0, prediction: "Over" }, pointDiff: 7.75, winner: "NO", projectedScore: { DEN: 19.70, NO: 27.45 } },
+        { game: "NE @ JAX", moneyline: { NE: 205, JAX: -250 }, spread: { favorite: "JAX", line: 6.0 }, ou: { line: 42.0, prediction: "Over" }, pointDiff: 5.27, winner: "JAX", projectedScore: { NE: 21.18, JAX: 26.45 } },
+        { game: "SEA @ ATL", moneyline: { SEA: 130, ATL: -155 }, spread: { favorite: "ATL", line: 3.0 }, ou: { line: 51.5, prediction: "Under" }, pointDiff: 10.97, winner: "ATL", projectedScore: { SEA: 21.12, ATL: 32.09 } },
+        { game: "TEN @ BUF", moneyline: { TEN: 360, BUF: -470 }, spread: { favorite: "BUF", line: 9.5 }, ou: { line: 41.0, prediction: "Over" }, pointDiff: 8.85, winner: "BUF", projectedScore: { TEN: 19.96, BUF: 28.81 } },
+        { game: "CIN @ CLE", moneyline: { CIN: -230, CLE: 190 }, spread: { favorite: "CIN", line: -5.5 }, ou: { line: 41.5, prediction: "Over" }, pointDiff: 0.27, winner: "CLE", projectedScore: { CIN: 24.33, CLE: 24.60 } },
+        { game: "HOU @ GB", moneyline: { HOU: 124, GB: -148 }, spread: { favorite: "GB", line: 3.0 }, ou: { line: 48.5, prediction: "Under" }, pointDiff: 8.71, winner: "GB", projectedScore: { HOU: 20.66, GB: 29.37 } },
+        { game: "MIA @ IND", moneyline: { MIA: 130, IND: -155 }, spread: { favorite: "IND", line: 3.0 }, ou: { line: 43.5, prediction: "Under" }, pointDiff: 8.21, winner: "IND", projectedScore: { MIA: 20.41, IND: 28.62 } },
+        { game: "DET @ MIN", moneyline: { DET: 100, MIN: -120 }, spread: { favorite: "MIN", line: 1.5 }, ou: { line: 50.5, prediction: "Under" }, pointDiff: 4.27, winner: "MIN", projectedScore: { DET: 22.51, MIN: 26.78 } },
+        { game: "PHI @ NYG", moneyline: { PHI: -170, NYG: 142 }, spread: { favorite: "PHI", line: -3.5 }, ou: { line: 42.5, prediction: "Under" }, pointDiff: 1.95, winner: "PHI", projectedScore: { PHI: 23.80, NYG: 21.86 } },
+        { game: "LV @ LA", moneyline: { LV: 275, LA: -345 }, spread: { favorite: "LA", line: 7.0 }, ou: { line: 43.5, prediction: "Over" }, pointDiff: 3.48, winner: "LA", projectedScore: { LV: 21.43, LA: 24.91 } },
+        { game: "CAR @ WAS", moneyline: { CAR: 360, WAS: -470 }, spread: { favorite: "WAS", line: 9.5 }, ou: { line: 51.5, prediction: "Under" }, pointDiff: 8.83, winner: "WAS", projectedScore: { CAR: 20.23, WAS: 29.06 } },
+        { game: "KC @ SF", moneyline: { KC: 105, SF: -125 }, spread: { favorite: "SF", line: 2.0 }, ou: { line: 47.0, prediction: "Under" }, pointDiff: 2.99, winner: "SF", projectedScore: { KC: 25.19, SF: 28.17 } },
+        { game: "NYJ @ PIT", moneyline: { NYJ: -135, PIT: 114 }, spread: { favorite: "NYJ", line: -1.5 }, ou: { line: 39.0, prediction: "Over" }, pointDiff: 2.37, winner: "NYJ", projectedScore: { NYJ: 19.30, PIT: 21.66 } },
+        { game: "BAL @ TB", moneyline: { BAL: -180, TB: 150 }, spread: { favorite: "BAL", line: -3.5 }, ou: { line: 49.0, prediction: "Under" }, pointDiff: 3.57, winner: "BAL", projectedScore: { BAL: 24.53, TB: 20.96 } },
+        { game: "LAC @ ARI", moneyline: { LAC: -125, ARI: 105 }, spread: { favorite: "LAC", line: -2.0 }, ou: { line: 44.0, prediction: "Under" }, pointDiff: 0.78, winner: "LAC", projectedScore: { LAC: 23.17, ARI: 22.40 } },
+    ];
   
   
     useEffect(() => {
@@ -185,7 +185,7 @@ export default function Picks() {
         <div className="flex min-h-screen w-full flex-col items-center justify-center py-20 bg-transparent">
           <Header>
             <h2 className="font-sans text-bold text-xl text-center md:text-4xl w-fit mx-auto font-bold tracking-tight text-neutral-800 dark:text-neutral-100">
-              Week 7
+              Week 7 Predictions
             </h2>
           </Header>
           <div className="w-full max-w-7xl px-4 py-8">
@@ -193,7 +193,7 @@ export default function Picks() {
               <CardHeader>
                 <CardTitle>MDL Predictions</CardTitle>
                 <CardDescription>
-                  Predictions are made by analyzing a diverse set of historical data. Add in your own best judgement to inform your own decisions.
+                  Our model's predictions for Week 7 NFL games.
                 </CardDescription>
               </CardHeader>
               <CardContent className="overflow-x-auto">
@@ -207,6 +207,7 @@ export default function Picks() {
                       <TableHead>O/U Line</TableHead>
                       <TableHead>O/U Prediction</TableHead>
                       <TableHead>Predicted Winner</TableHead>
+                      <TableHead>Projected Score</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -222,11 +223,18 @@ export default function Picks() {
                         <TableCell>{row.pointDiff.toFixed(2)}</TableCell>
                         <TableCell>{row.ou.line}</TableCell>
                         <TableCell>
-                          <Badge variant={row.ou.prediction === "Over" ? "outline" : "secondary"}>
+                          <Badge 
+                            variant={row.ou.prediction === "Over" ? "outline" : "secondary"}
+                          >
                             {row.ou.prediction}
                           </Badge>
                         </TableCell>
                         <TableCell>{row.winner}</TableCell>
+                        <TableCell>
+                          {Object.entries(row.projectedScore).map(([team, score]) => (
+                            <div key={team}>{team}: {score.toFixed(2)}</div>
+                          ))}
+                        </TableCell>
                       </TableRow>
                     ))}
                   </TableBody>

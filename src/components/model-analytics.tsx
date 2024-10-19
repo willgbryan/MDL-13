@@ -36,6 +36,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { Separator } from "@/components/ui/separator";
+import { AUCROCChart } from "./auc-chart";
 
 const Header = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -233,6 +234,7 @@ return (
                 </CardDescription>
             </CardFooter>
             </Card>
+            <AUCROCChart />
           {/* Second Chart Card */}
           <Card className="flex flex-col lg:max-w-xl bg-transparent shadow-lg border-none mb-6 break-inside-avoid">
             <CardHeader className="flex flex-row items-center gap-4 space-y-0 pb-2 [&>div]:flex-1">
