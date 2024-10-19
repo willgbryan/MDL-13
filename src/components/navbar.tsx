@@ -55,19 +55,19 @@ export const Navbar = () => {
       name: "MDL Metrics",
       link: "/model-analytics",
     },
-    {
-      name: "Apply",
-      link: "/apply",
-    },
+    // {
+    //   name: "Apply",
+    //   link: "/apply",
+    // },
   ];
 
   const navItemsWithPricing = user
     ? [
         ...navItems,
-        {
-          name: "Pricing",
-          link: "/pricing",
-        },
+        // {
+        //   name: "Pricing",
+        //   link: "/pricing",
+        // },
       ]
     : navItems;
 
@@ -151,7 +151,7 @@ const DesktopNav = ({ navItems, visible, user, isLoading }: NavbarProps) => {
         ))}
       </motion.div>
       <div className="flex items-center gap-4 z-20">
-        {!isLoading && (
+        {/* {!isLoading && (
           user ? (
             <HeaderAccountDropdown user={user} />
           ) : (
@@ -164,7 +164,7 @@ const DesktopNav = ({ navItems, visible, user, isLoading }: NavbarProps) => {
               Login
             </Button>
           )
-        )}
+        )} */}
       </div>
     </motion.div>
   );
@@ -243,7 +243,7 @@ const MobileNav = ({ navItems, visible, user, isLoading }: NavbarProps) => {
                   <motion.span className="block">{navItem.name} </motion.span>
                 </Link>
               ))}
-              {!isLoading && (
+              {/* {!isLoading && (
                 user ? (
                   <HeaderAccountDropdown user={user} />
                 ) : (
@@ -257,7 +257,7 @@ const MobileNav = ({ navItems, visible, user, isLoading }: NavbarProps) => {
                     Login
                   </Button>
                 )
-              )}
+              )} */}
             </motion.div>
           )}
         </AnimatePresence>

@@ -10,6 +10,7 @@ import { createClient } from "@/db/server";
 import { cookies } from "next/headers";
 import { siteConfig } from "@/config/site";
 import { Toaster } from "sonner";
+import { Analytics } from "@/components/vercel-analytics";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -84,6 +85,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
             <Toaster />
           </SupabaseProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

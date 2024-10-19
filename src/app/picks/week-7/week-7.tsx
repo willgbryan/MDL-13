@@ -84,7 +84,7 @@ const Header = ({ children }: { children: React.ReactNode }) => {
 };
 
 export default function Picks() {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const [hasPaid, setHasPaid] = useState(false);
     const router = useRouter();
@@ -94,7 +94,7 @@ export default function Picks() {
         { game: "NE @ JAX", moneyline: { NE: 195, JAX: -238 }, spread: { favorite: "JAX", line: -5.5 }, ou: { line: 42.5, prediction: "Over" }, pointDiff: 5.92, winner: "JAX", projectedScore: { NE: 21.21, JAX: 27.12 } },
         { game: "SEA @ ATL", moneyline: { SEA: 130, ATL: -155 }, spread: { favorite: "ATL", line: -2.5 }, ou: { line: 51.0, prediction: "Under" }, pointDiff: 12.62, winner: "ATL", projectedScore: { SEA: 20.75, ATL: 33.37 } },
         { game: "TEN @ BUF", moneyline: { TEN: 340, BUF: -440 }, spread: { favorite: "BUF", line: -9.0 }, ou: { line: 41.0, prediction: "Over" }, pointDiff: 9.26, winner: "BUF", projectedScore: { TEN: 19.98, BUF: 29.24 } },
-        { game: "CIN @ CLE", moneyline: { CIN: -258, CLE: 210 }, spread: { favorite: "CIN", line: -6.0 }, ou: { line: 42.0, prediction: "Over" }, pointDiff: 0.46, winner: "CLE", projectedScore: { CIN: 24.42, CLE: 24.88 } },
+        { game: "CIN @ CLE", moneyline: { CIN: -258, CLE: 210 }, spread: { favorite: "CIN", line: -6.0 }, ou: { line: 42.0, prediction: "Over" }, pointDiff: 0.46, winner: "CIN", projectedScore: { CIN: 24.42, CLE: 24.88 } },
         { game: "HOU @ GB", moneyline: { HOU: 120, GB: -142 }, spread: { favorite: "GB", line: -2.5 }, ou: { line: 47.5, prediction: "Under" }, pointDiff: 9.78, winner: "GB", projectedScore: { HOU: 21.00, GB: 30.78 } },
         { game: "MIA @ IND", moneyline: { MIA: 140, IND: -166 }, spread: { favorite: "IND", line: -3.0 }, ou: { line: 43.5, prediction: "Under" }, pointDiff: 7.31, winner: "IND", projectedScore: { MIA: 21.40, IND: 28.71 } },
         { game: "DET @ MIN", moneyline: { DET: 114, MIN: -135 }, spread: { favorite: "MIN", line: -2.5 }, ou: { line: 50.0, prediction: "Under" }, pointDiff: 5.66, winner: "MIN", projectedScore: { DET: 22.42, MIN: 28.08 } },
@@ -112,6 +112,8 @@ export default function Picks() {
       async function checkAuthAndPayment() {
         const session = await getUserDetails();
         setIsAuthenticated(!!session);
+        // setIsAuthenticated(true);
+
   
         // if (session) {
         //   const stripeCustomerId = await getStripeCustomerId(session.id);

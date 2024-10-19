@@ -94,7 +94,7 @@ return (
     <div className="w-full h-full py-20 bg-gray-50 bg-gradient-to-bl dark:from-neutral-700 dark:to-neutral-900">
         <Header>
         <h2 className="font-sans text-bold text-xl text-center md:text-4xl w-fit mx-auto font-bold tracking-tight text-neutral-800 dark:text-neutral-100">
-            Week 6
+            Model Performance
         </h2>
         </Header>
         <div className="chart-wrapper mx-auto max-w-7xl p-6 sm:p-8">
@@ -103,7 +103,7 @@ return (
             <CardHeader className="space-y-0 pb-2">
                 <CardDescription>Average Historical Test Accuracy</CardDescription>
                 <CardTitle className="text-4xl tabular-nums">
-                65.09{" "}
+                65.17{" "}
                 <span className="font-sans text-sm font-normal tracking-normal text-muted-foreground">
                     %
                 </span>
@@ -152,6 +152,12 @@ return (
                       xgboost: 62,
                       catboost: 66,
                       lightgbm: 64,
+                    },
+                    {
+                      date: "Week 7",
+                      xgboost: 63,
+                      catboost: 68,
+                      lightgbm: 65,
                     },
                   ]}
                 >
@@ -233,7 +239,7 @@ return (
               <div>
                 <CardDescription>Moneyline Accuracy</CardDescription>
                 <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                  66.34
+                  77.33%
                   <span className="text-sm font-normal tracking-normal text-muted-foreground">
                     %
                   </span>
@@ -242,7 +248,7 @@ return (
               <div>
                 <CardDescription>O/U Accuracy</CardDescription>
                 <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                  67.11
+                  69.67%
                   <span className="text-sm font-normal tracking-normal text-muted-foreground">
                     %
                   </span>
@@ -279,12 +285,12 @@ return (
                     {
                       date: "Week 5",
                       Moneyline: 75,
-                      OU: 61,
+                      OU: 70,
                     },
                     {
                       date: "Week 6",
                       Moneyline: 92,
-                      OU: 65,
+                      OU: 77,
                     },
                   ]}
                 >
@@ -454,7 +460,7 @@ return (
                 <div className="grid flex-1 auto-rows-min gap-0.5">
                   <div className="text-xs text-muted-foreground">Test Accuracy</div>
                   <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                    67
+                    65
                     <span className="text-sm font-normal text-muted-foreground">
                       %
                     </span>
