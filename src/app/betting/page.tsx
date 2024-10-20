@@ -1,3 +1,4 @@
+import BettingResults from "@/components/betting-results";
 import { CTA } from "@/components/cta";
 import { Footer } from "@/components/footer";
 import { Hero } from "@/components/hero";
@@ -8,7 +9,7 @@ export default function Home() {
   return (
     <main className="">
       {/* <Hero /> */}
-      <Analytics />
+      <BettingResults />
       {/* <Pricing />
       <CTA /> */}
     </main>
