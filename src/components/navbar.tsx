@@ -55,6 +55,10 @@ export const Navbar = () => {
       name: "MDL Metrics",
       link: "/model-analytics",
     },
+    {
+      name: "Betting",
+      link: "/betting",
+    },
     // {
     //   name: "Apply",
     //   link: "/apply",

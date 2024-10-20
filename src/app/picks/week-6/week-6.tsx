@@ -104,43 +104,43 @@ export default function Picks() {
         { game: "ATL @ CAR", moneyline: { ATL: -265, CAR: 215 }, spread: { favorite: "ATL", line: -6.0 }, ou: { line: 47.5, prediction: "Under" }, pointDiff: 3.58, winner: "ATL", projectedScore: { ATL: 23.41, CAR: 19.83 }, actual: { winner: "ATL", score: { ATL: 38, CAR: 20 }, total: 58 } },
     ];
 
-    useEffect(() => {
-      async function checkAuth() {
-        const session = await getUserDetails();
-        setIsAuthenticated(!!session);
-        setIsLoading(false);
-      }
-      checkAuth();
-    }, []);
+    // useEffect(() => {
+    //   async function checkAuth() {
+    //     const session = await getUserDetails();
+    //     setIsAuthenticated(!!session);
+    //     setIsLoading(false);
+    //   }
+    //   checkAuth();
+    // }, []);
 
-    if (isLoading) {
-      return <div className="flex min-h-screen w-full items-center justify-center bg-transparent">
-        <p className="text-neutral-800 dark:text-neutral-200">Loading...</p>
-      </div>;
-    }
+    // if (isLoading) {
+    //   return <div className="flex min-h-screen w-full items-center justify-center bg-transparent">
+    //     <p className="text-neutral-800 dark:text-neutral-200">Loading...</p>
+    //   </div>;
+    // }
 
-    if (!isAuthenticated) {
-      return (
-        <div className="flex min-h-screen w-full flex-col items-center justify-center py-20 bg-transparent">
-          <Card className="w-full max-w-md bg-transparent border-none">
-            <CardHeader>
-              <CardTitle>Authentication Required</CardTitle>
-              <CardDescription>
-                Only authenticated users can see historical picks.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button 
-                onClick={() => router.push('/auth/sign-in')} 
-                className="w-full"
-              >
-                Login
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-      );
-    }
+    // if (!isAuthenticated) {
+    //   return (
+    //     <div className="flex min-h-screen w-full flex-col items-center justify-center py-20 bg-transparent">
+    //       <Card className="w-full max-w-md bg-transparent border-none">
+    //         <CardHeader>
+    //           <CardTitle>Authentication Required</CardTitle>
+    //           <CardDescription>
+    //             Only authenticated users can see historical picks.
+    //           </CardDescription>
+    //         </CardHeader>
+    //         <CardContent>
+    //           <Button 
+    //             onClick={() => router.push('/auth/sign-in')} 
+    //             className="w-full"
+    //           >
+    //             Login
+    //           </Button>
+    //         </CardContent>
+    //       </Card>
+    //     </div>
+    //   );
+    // }
 
     return (
         <div className="flex min-h-screen w-full flex-col items-center justify-center py-20 bg-transparent">

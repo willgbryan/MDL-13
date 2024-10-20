@@ -108,55 +108,55 @@ export default function Picks() {
     ];
   
   
-    useEffect(() => {
-      async function checkAuthAndPayment() {
-        const session = await getUserDetails();
-        setIsAuthenticated(!!session);
-        // setIsAuthenticated(true);
+    // useEffect(() => {
+    //   async function checkAuthAndPayment() {
+    //     const session = await getUserDetails();
+    //     setIsAuthenticated(!!session);
+    //     setIsAuthenticated(true);
 
   
-        // if (session) {
-        //   const stripeCustomerId = await getStripeCustomerId(session.id);
-        //   if (stripeCustomerId) {
-        //     const weeklyPaid = await checkWeeklyPayment(stripeCustomerId, 6);
-        //     const seasonPaid = await checkSeasonPayment(stripeCustomerId, '2023');
-        //     setHasPaid(weeklyPaid || seasonPaid);
-        //   }
-        // }
+    //     if (session) {
+    //       const stripeCustomerId = await getStripeCustomerId(session.id);
+    //       if (stripeCustomerId) {
+    //         const weeklyPaid = await checkWeeklyPayment(stripeCustomerId, 6);
+    //         const seasonPaid = await checkSeasonPayment(stripeCustomerId, '2023');
+    //         setHasPaid(weeklyPaid || seasonPaid);
+    //       }
+    //     }
   
-        setIsLoading(false);
-      }
-      checkAuthAndPayment();
-    }, []);
+    //     setIsLoading(false);
+    //   }
+    //   checkAuthAndPayment();
+    // }, []);
   
-    if (isLoading) {
-      return <div className="flex min-h-screen w-full items-center justify-center bg-transparent">
-        <p className="text-neutral-800 dark:text-neutral-200">Loading...</p>
-      </div>;
-    }
+    // if (isLoading) {
+    //   return <div className="flex min-h-screen w-full items-center justify-center bg-transparent">
+    //     <p className="text-neutral-800 dark:text-neutral-200">Loading...</p>
+    //   </div>;
+    // }
   
-    if (!isAuthenticated) {
-      return (
-        <div className="flex min-h-screen w-full flex-col items-center justify-center py-20 bg-transparent">
-          <Card className="w-full max-w-md bg-transparent border-none">
-            <CardHeader>
-              <CardTitle>Authentication Required</CardTitle>
-              <CardDescription>
-                Only authenticated users can see historical picks.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button 
-                onClick={() => router.push('/auth/sign-in')} 
-                className="w-full"
-              >
-                Login
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-      );
-    }
+    // if (!isAuthenticated) {
+    //   return (
+    //     <div className="flex min-h-screen w-full flex-col items-center justify-center py-20 bg-transparent">
+    //       <Card className="w-full max-w-md bg-transparent border-none">
+    //         <CardHeader>
+    //           <CardTitle>Authentication Required</CardTitle>
+    //           <CardDescription>
+    //             Only authenticated users can see historical picks.
+    //           </CardDescription>
+    //         </CardHeader>
+    //         <CardContent>
+    //           <Button 
+    //             onClick={() => router.push('/auth/sign-in')} 
+    //             className="w-full"
+    //           >
+    //             Login
+    //           </Button>
+    //         </CardContent>
+    //       </Card>
+    //     </div>
+    //   );
+    // }
   
     // if (!hasPaid) {
     //   return (
