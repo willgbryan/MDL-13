@@ -193,7 +193,7 @@ export default function Picks() {
               <CardHeader>
                 <CardTitle>MDL Predictions</CardTitle>
                 <CardDescription>
-                  Our model's predictions for Week 7 NFL games.
+                  MDL-13 predictions for Week 7 NFL games. These picks are based on historical data, use your own best judgement if bets are placed.
                 </CardDescription>
               </CardHeader>
               <CardContent className="overflow-x-auto">
