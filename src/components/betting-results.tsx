@@ -494,25 +494,25 @@ export default function BettingResults() {
                 </div>
             </div>
             </Card>
-          {/* Model Predictions vs. Vegas Lines */}
-          <Card className="flex flex-col bg-transparent shadow-lg border-none mb-6 break-inside-avoid">
+         {/* Model Predictions vs. Actual Results */}
+            <Card className="flex flex-col bg-transparent shadow-lg border-none mb-6 break-inside-avoid">
             <CardHeader>
-              <CardTitle>Model vs. Vegas Spread</CardTitle>
-              <CardDescription>
-                Comparing model predictions to Vegas spreads.
-              </CardDescription>
+                <CardTitle>Predicted vs Actual Spread</CardTitle>
+                <CardDescription>
+                Model's predicted point differential vs actual game results.
+                </CardDescription>
             </CardHeader>
             <CardContent>
-              <ChartContainer
+                <ChartContainer
                 config={{
-                  Games: {
+                    Games: {
                     label: "Games",
                     color: "#4BFFBA",
-                  },
+                    },
                 }}
-              >
+                >
                 <ResponsiveContainer width="100%" height={300}>
-                  <ScatterChart
+                    <ScatterChart
                     margin={{
                         left: -20,
                         right: 0,
@@ -526,28 +526,103 @@ export default function BettingResults() {
                         stroke="hsl(var(--muted-foreground))"
                         strokeOpacity={0.5}
                     />
-                    <XAxis
-                      type="number"
-                      dataKey="vegasSpread"
-                      name="Vegas Spread"
-                      hide
+                    <XAxis 
+                        type="number" 
+                        dataKey="predictedDiff" 
+                        name="Predicted Differential"
+                        domain={[-30, 30]}
                     />
-                    <YAxis type="number" dataKey="modelDiff" name="Model Diff" />
+                    <YAxis 
+                        type="number" 
+                        dataKey="actualDiff" 
+                        name="Actual Differential"
+                        domain={[-30, 30]}
+                    />
+                    <Line
+                        type="monotone"
+                        dataKey="reference"
+                        stroke="#666"
+                        strokeDasharray="3 3"
+                        data={[
+                        { x: -30, y: -30 },
+                        { x: 30, y: 30 }
+                        ]}
+                    />
                     <Tooltip
-                      cursor={{ strokeDasharray: "3 3" }}
-                      content={<CustomScatterTooltip />}
+                        cursor={{ strokeDasharray: "3 3" }}
+                        content={({ active, payload }) => {
+                        if (active && payload && payload.length) {
+                            const data = payload[0].payload;
+                            return (
+                            <div className="custom-tooltip bg-stone-900 border-[#4BFFBA] text-white p-2">
+                                <p>{`Game: ${data.game}`}</p>
+                                <p>{`Predicted Differential: ${data.predictedDiff.toFixed(2)}`}</p>
+                                <p>{`Actual Differential: ${data.actualDiff}`}</p>
+                                <p>{`Error: ${(Math.abs(data.actualDiff - data.predictedDiff)).toFixed(2)}`}</p>
+                            </div>
+                            );
+                        }
+                        return null;
+                        }}
                     />
                     <Scatter
-                      name="Games"
-                      data={comparisonData}
-                      fill="#4BFFBA"
-                    />
-                  </ScatterChart>
+                        name="Games"
+                        data={predictions.map(game => {
+                        const [awayTeam, homeTeam] = game.game.split(" @ ");
+                        const homeScore = game.actual.score[homeTeam];
+                        const awayScore = game.actual.score[awayTeam];
+                        const actualDiff = homeScore - awayScore;
+                        const homePredicted = game.projectedScore[homeTeam];
+                        const awayPredicted = game.projectedScore[awayTeam];
+                        const predictedDiff = homePredicted - awayPredicted;
+                        
+                        return {
+                            game: game.game,
+                            predictedDiff,
+                            actualDiff,
+                            error: Math.abs(actualDiff - predictedDiff)
+                        };
+                        })}
+                    >
+                        {predictions.map((game, index) => {
+                        const [awayTeam, homeTeam] = game.game.split(" @ ");
+                        const homeScore = game.actual.score[homeTeam];
+                        const awayScore = game.actual.score[awayTeam];
+                        const actualDiff = homeScore - awayScore;
+                        const homePredicted = game.projectedScore[homeTeam];
+                        const awayPredicted = game.projectedScore[awayTeam];
+                        const predictedDiff = homePredicted - awayPredicted;
+                        const error = Math.abs(actualDiff - predictedDiff);
+                        
+                        let fillColor = "#4BFFBA";  // Good prediction
+                        if (error >= 14) {
+                            fillColor = "#FF6B6B";  // Large error
+                        } else if (error >= 7) {
+                            fillColor = "#FFD700";  // Moderate error
+                        }
+                        
+                        return <Cell key={`cell-${index}`} fill={fillColor} />;
+                        })}
+                    </Scatter>
+                    </ScatterChart>
                 </ResponsiveContainer>
-              </ChartContainer>
+                </ChartContainer>
             </CardContent>
-          </Card>
-
+            {/* <CardFooter className="flex-col items-start gap-1">
+                <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-[#4BFFBA]" />
+                <CardDescription>Error &lt; 7 points</CardDescription>
+                </div>
+                <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-[#FFD700]" />
+                <CardDescription>Error 7-14 points</CardDescription>
+                </div>
+                <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-[#FF6B6B]" />
+                <CardDescription>Error &gt; 14 points</CardDescription>
+                </div>
+            </CardFooter> */}
+            </Card>
           {/* Distribution of Net Winnings */}
           <Card className="flex flex-col bg-transparent shadow-lg border-none mb-6 break-inside-avoid">
             <CardHeader>
