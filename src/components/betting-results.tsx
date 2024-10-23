@@ -299,98 +299,13 @@ export default function BettingResults() {
       </Header>
       <div className="chart-wrapper mx-auto max-w-7xl p-6 sm:p-8">
         <div className="w-full gap-6 columns-1 sm:columns-2 lg:columns-3">
-          {/* Net Winnings Per Game */}
-          <Card className="flex flex-col bg-transparent shadow-lg border-none mb-6 break-inside-avoid">
-            <CardHeader>
-              <CardTitle>Net Winnings Per Game</CardTitle>
-              <CardDescription>
-                Net profit or loss for each game based on $10 bets.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ChartContainer
-                config={{
-                  moneylineNet: {
-                    label: "Moneyline",
-                    color: "#4BFFBA",
-                  },
-                  spreadNet: {
-                    label: "Spread",
-                    color: "#4BFFBA",
-                  },
-                  ouNet: {
-                    label: "Over/Under",
-                    color: "#4BFFBA",
-                  },
-                }}
-              >
-                <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={netWinningsData} margin={{
-                        left: -20,
-                        right: 0,
-                        top: 0,
-                        bottom: 10,
-                    }}>
-                    <CartesianGrid
-                      strokeDasharray="3 3"
-                      vertical={false}
-                      stroke="#ccc"
-                      strokeOpacity={0.5}
-                    />
-                    <XAxis dataKey="game" hide />
-                    <YAxis />
-                    <Tooltip
-                      content={
-                        <ChartTooltipContent
-                          className="bg-stone-900 border-[#4BFFBA] text-white"
-                        />
-                      }
-                    />
-                    <Bar dataKey="moneylineNet" name="Moneyline" radius={[5, 5, 0, 0]}>
-                      {netWinningsData.map((entry, index) => (
-                        <Cell
-                          key={`cell-moneyline-${index}`}
-                          fill={entry.moneylineNet >= 0 ? "#4BFFBA" : "#FF6B6B"}
-                        />
-                      ))}
-                    </Bar>
-                    <Bar dataKey="spreadNet" name="Spread" radius={[5, 5, 0, 0]}>
-                      {netWinningsData.map((entry, index) => (
-                        <Cell
-                          key={`cell-spread-${index}`}
-                          fill={entry.spreadNet >= 0 ? "#4BFFBA" : "#FF6B6B"}
-                        />
-                      ))}
-                    </Bar>
-                    <Bar dataKey="ouNet" name="Over/Under" radius={[5, 5, 0, 0]}>
-                      {netWinningsData.map((entry, index) => (
-                        <Cell
-                          key={`cell-ou-${index}`}
-                          fill={entry.ouNet >= 0 ? "#4BFFBA" : "#FF6B6B"}
-                        />
-                      ))}
-                    </Bar>
-                  </BarChart>
-                </ResponsiveContainer>
-              </ChartContainer>
-            </CardContent>
-            <CardFooter className="flex-col items-start gap-1">
-              <CardDescription>
-                Total Net Winnings:{" "}
-                <span className="font-medium text-foreground">
-                  ${totalNetWinnings.toFixed(2)}
-                </span>
-              </CardDescription>
-            </CardFooter>
-          </Card>
-
 
           {/* Cumulative Net Winnings */}
           <Card className="flex flex-col bg-transparent shadow-lg border-none mb-6 break-inside-avoid">
             <CardHeader>
               <CardTitle>Cumulative Net Winnings</CardTitle>
               <CardDescription>
-                Cumulative net winnings over the week.
+                Cumulative net winnings over the weeks.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -440,14 +355,14 @@ export default function BettingResults() {
                 </ResponsiveContainer>
               </ChartContainer>
             </CardContent>
-            {/* <CardFooter className="flex-col items-start gap-1">
+            <CardFooter className="flex-col items-start gap-1">
               <CardDescription>
                 Final Cumulative Net Winnings:{" "}
                 <span className="font-medium text-foreground">
                   ${totalNetWinnings.toFixed(2)}
                 </span>
               </CardDescription>
-            </CardFooter> */}
+            </CardFooter>
           </Card>
 
           {/* Return on Investment (ROI) Over Time */}
@@ -455,7 +370,7 @@ export default function BettingResults() {
             <CardHeader>
               <CardTitle>Return on Investment (ROI)</CardTitle>
               <CardDescription>
-                ROI progression over the week.
+                ROI progression over the weeks.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -636,60 +551,59 @@ export default function BettingResults() {
           {/* Distribution of Net Winnings */}
           <Card className="flex flex-col bg-transparent shadow-lg border-none mb-6 break-inside-avoid">
             <CardHeader>
-              <CardTitle>Net Winnings Distribution</CardTitle>
-              <CardDescription>
+                <CardTitle>Net Winnings Distribution</CardTitle>
+                <CardDescription>
                 Distribution of net winnings per game.
-              </CardDescription>
+                </CardDescription>
             </CardHeader>
             <CardContent>
-              <ChartContainer
+                <ChartContainer
                 config={{
-                  gameNet: {
+                    gameNet: {
                     label: "Net Winnings",
                     color: "#4BFFBA",
-                  },
+                    },
                 }}
-              >
+                >
                 <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={betResults} margin={{
-                        left: -20,
-                        right: 0,
-                        top: 0,
-                        bottom: 10,
+                    <BarChart data={betResults} margin={{
+                    left: -20,
+                    right: 0,
+                    top: 0,
+                    bottom: 10,
                     }}>
                     <CartesianGrid
-                      strokeDasharray="3 3"
-                      vertical={false}
-                      stroke="#ccc"
-                      strokeOpacity={0.5}
+                        strokeDasharray="3 3"
+                        vertical={false}
+                        stroke="#ccc"
+                        strokeOpacity={0.5}
                     />
                     <XAxis dataKey="game" hide />
                     <YAxis />
                     <Tooltip
-                      content={
+                        content={
                         <ChartTooltipContent
-                          className="bg-stone-900 border-[#4BFFBA] text-white"
+                            className="bg-stone-900 border-[#4BFFBA] text-white"
                         />
-                      }
+                        }
                     />
                     <Bar
-                      dataKey="gameNet"
-                      fill="#4BFFBA"
-                      name="Net Winnings"
-                      radius={[5, 5, 0, 0]}
-                    >
-                      {/* <LabelList
                         dataKey="gameNet"
-                        position="top"
-                        fill="#fff"
-                        formatter={(value: number) => `$${value.toFixed(2)}`}
-                      /> */}
+                        name="Net Winnings"
+                        radius={[5, 5, 0, 0]}
+                    >
+                        {betResults.map((entry, index) => (
+                        <Cell 
+                            key={`cell-${index}`}
+                            fill={entry.gameNet >= 0 ? "#4BFFBA" : "#FF6B6B"}
+                        />
+                        ))}
                     </Bar>
-                  </BarChart>
+                    </BarChart>
                 </ResponsiveContainer>
-              </ChartContainer>
+                </ChartContainer>
             </CardContent>
-          </Card>
+            </Card>
         </div>
       </div>
     </div>
