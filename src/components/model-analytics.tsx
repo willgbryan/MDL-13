@@ -241,7 +241,7 @@ return (
               <div>
                 <CardDescription>Moneyline Accuracy</CardDescription>
                 <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                  77.33%
+                  74.75%
                   <span className="text-sm font-normal tracking-normal text-muted-foreground">
                     %
                   </span>
@@ -250,7 +250,7 @@ return (
               <div>
                 <CardDescription>O/U Accuracy</CardDescription>
                 <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                  69.67%
+                  70.50%
                   <span className="text-sm font-normal tracking-normal text-muted-foreground">
                     %
                   </span>
@@ -293,6 +293,11 @@ return (
                       date: "Week 6",
                       Moneyline: 92,
                       OU: 77,
+                    },
+                    {
+                      date: "Week 7",
+                      Moneyline: 67,
+                      OU: 73,
                     },
                   ]}
                 >
@@ -462,7 +467,7 @@ return (
                 <div className="grid flex-1 auto-rows-min gap-0.5">
                   <div className="text-xs text-muted-foreground">Test Accuracy</div>
                   <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                    65
+                    68.09
                     <span className="text-sm font-normal text-muted-foreground">
                       %
                     </span>
