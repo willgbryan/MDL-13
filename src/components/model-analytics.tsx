@@ -160,6 +160,12 @@ return (
                       catboost: 68,
                       lightgbm: 65,
                     },
+                    {
+                      date: "Week 8",
+                      xgboost: 64,
+                      catboost: 66,
+                      lightgbm: 66,
+                    },
                   ]}
                 >
                   <Bar
@@ -529,32 +535,32 @@ return (
                   data={[
                     {
                       activity: "Total Line",
-                      value: 79.0,
-                      label: "79.0",
+                      value: 55.0,
+                      label: "55.0",
                       fill: "var(--color-feature_3)",
                     },
                     {
-                      activity: "Away Moneyline",
-                      value: 39.4,
-                      label: "39.4",
+                      activity: "Away QB",
+                      value: 46.4,
+                      label: "46.4",
                       fill: "var(--color-feature_2)",
                     },
                     {
-                      activity: "Away QB",
-                      value: 35.0,
-                      label: "35.0",
+                      activity: "Away Moneyline",
+                      value: 29.0,
+                      label: "29.0",
                       fill: "var(--color-feature_1)",
                     },
                     {
-                        activity: "Home QB",
-                        value: 29.5,
-                        label: "29.5",
+                        activity: "Home Moneyline",
+                        value: 28.5,
+                        label: "28.5",
                         fill: "var(--color-feature_2)",
                       },
                       {
-                        activity: "Away coach",
-                        value: 23.0,
-                        label: "23.0",
+                        activity: "Spread Line",
+                        value: 25.0,
+                        label: "25.0",
                         fill: "var(--color-feature_1)",
                       },
                   ]}
