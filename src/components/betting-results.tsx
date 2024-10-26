@@ -305,7 +305,7 @@ export default function BettingResults() {
             <CardHeader>
               <CardTitle>Cumulative Net Winnings</CardTitle>
               <CardDescription>
-                Cumulative net winnings based on $10 bets for: O/U, winner, spread to cover for the winner.
+                Cumulative net winnings based on $10 bets for: O/U, winner, spread according to predicted difference for the winner.
               </CardDescription>
             </CardHeader>
             <CardContent>
