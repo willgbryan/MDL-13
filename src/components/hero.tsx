@@ -173,7 +173,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2, delay: 0.5 }}
-          className="mt-4 max-w-lg text-center text-lg sm:text-base text-gray-600 dark:text-gray-200"
+          className="mt-4 max-w-lg text-center text- sm:text-base text-gray-600 dark:text-gray-200"
         >
           Machine learning for sports analytics
         </motion.p>
