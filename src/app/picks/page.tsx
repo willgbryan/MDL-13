@@ -8,7 +8,7 @@ export default function PicksPage() {
   const [currentWeek, setCurrentWeek] = useState('9');
 
   const WeekComponent = dynamic(() => import(`./week-${currentWeek}/week-${currentWeek}`), {
-    loading: () => <p>Loading week content...</p>,
+    loading: () => <p></p>,
   });
 
   return (
