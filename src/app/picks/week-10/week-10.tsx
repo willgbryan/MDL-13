@@ -184,7 +184,7 @@ export default function Picks() {
         <div className="flex min-h-screen w-full flex-col items-center justify-center py-20 bg-transparent">
           <Header>
             <h2 className="font-sans text-bold text-xl text-center md:text-4xl w-fit mx-auto font-bold tracking-tight text-neutral-800 dark:text-neutral-100">
-              Week 9 Predictions
+              Week 10 Predictions
             </h2>
           </Header>
           <div className="w-full max-w-7xl px-4 py-8">
@@ -192,7 +192,7 @@ export default function Picks() {
               <CardHeader>
                 <CardTitle>MDL Predictions</CardTitle>
                 <CardDescription>
-                  MDL-13 predictions for Week 9 NFL games. These picks are based on historical data, use your own best judgement if bets are placed.
+                  MDL-13 predictions for Week 10 NFL games. These picks are based on historical data, use your own best judgement if bets are placed.
                 </CardDescription>
               </CardHeader>
               <CardContent className="overflow-x-auto">
