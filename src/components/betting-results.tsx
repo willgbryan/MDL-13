@@ -318,7 +318,228 @@ export default function BettingResults() {
         { game: "DET @ GB", moneyline: { DET: -175, GB: 145 }, spread: { favorite: "DET", line: 3.5 }, ou: { line: 48.5, prediction: "Under" }, pointDiff: 4.63, winner: "DET", projectedScore: { DET: 24.63, GB: 20.00 }, actual: { winner: "DET", score: { DET: 24, GB: 14 }, total: 38 } },
         { game: "LA @ SEA", moneyline: { LA: -120, SEA: 100 }, spread: { favorite: "LA", line: 1.5 }, ou: { line: 48.0, prediction: "Under" }, pointDiff: 0.24, winner: "SEA", projectedScore: { LA: 21.07, SEA: 21.31 }, actual: { winner: "LA", score: { LA: 26, SEA: 20 }, total: 46 } },
         { game: "IND @ MIN", moneyline: { IND: 185, MIN: -225 }, spread: { favorite: "MIN", line: 5.0 }, ou: { line: 46.5, prediction: "Over" }, pointDiff: 5.53, winner: "MIN", projectedScore: { IND: 22.61, MIN: 28.14 }, actual: { winner: "MIN", score: { MIN: 21, IND: 13 }, total: 34 } },
-        { game: "TB @ KC", moneyline: { TB: 360, KC: -470 }, spread: { favorite: "KC", line: 8.5 }, ou: { line: 45.5, prediction: "Under" }, pointDiff: 2.87, winner: "KC", projectedScore: { TB: 20.81, KC: 23.68 }, actual: { winner: "KC", score: { KC: 30, TB: 24 }, total: 54 } }
+        { game: "TB @ KC", moneyline: { TB: 360, KC: -470 }, spread: { favorite: "KC", line: 8.5 }, ou: { line: 45.5, prediction: "Under" }, pointDiff: 2.87, winner: "KC", projectedScore: { TB: 20.81, KC: 23.68 }, actual: { winner: "KC", score: { KC: 30, TB: 24 }, total: 54 } },
+        { 
+            game: "CIN @ BAL", 
+            moneyline: { CIN: 210, BAL: -258 }, 
+            spread: { favorite: "BAL", line: 6.0 }, 
+            ou: { line: 48.53, prediction: "Under" }, 
+            pointDiff: 8.07,
+            winner: "BAL", 
+            projectedScore: { CIN: 20.40, BAL: 28.47 },
+            actual: { 
+                winner: "BAL", 
+                score: { 
+                    BAL: 35, 
+                    CIN: 34 
+                }, 
+                total: 69 
+            }
+        },
+        { 
+            game: "NYG @ CAR", 
+            moneyline: { NYG: -290, CAR: 235 }, 
+            spread: { favorite: "NYG", line: 6.5 }, 
+            ou: { line: 40.5, prediction: "Over" }, 
+            pointDiff: 2.85,
+            winner: "NYG", 
+            projectedScore: { NYG: 23.81, CAR: 20.96 },
+            actual: { 
+                winner: "CAR", 
+                score: { 
+                    CAR: 20, 
+                    NYG: 17 
+                }, 
+                total: 37 
+            }
+        },
+        { 
+            game: "NE @ CHI", 
+            moneyline: { NE: 235, CHI: -290 }, 
+            spread: { favorite: "CHI", line: 6.8 }, 
+            ou: { line: 38.5, prediction: "Over" }, 
+            pointDiff: 8.48,
+            winner: "CHI", 
+            projectedScore: { NE: 18.36, CHI: 26.84 },
+            actual: { 
+                winner: "NE", 
+                score: { 
+                    NE: 19, 
+                    CHI: 3 
+                }, 
+                total: 22 
+            }
+        },
+        { 
+            game: "BUF @ IND", 
+            moneyline: { BUF: -198, IND: 164 }, 
+            spread: { favorite: "BUF", line: 4.1 }, 
+            ou: { line: 48, prediction: "Over" }, 
+            pointDiff: 1.25,
+            winner: "BUF", 
+            projectedScore: { BUF: 23.88, IND: 22.63 },
+            actual: { 
+                winner: "BUF", 
+                score: { 
+                    BUF: 30, 
+                    IND: 20 
+                }, 
+                total: 50 
+            }
+        },
+        {
+            game: "MIN @ JAX",
+            moneyline: { MIN: -198, JAX: 164 },
+            spread: { favorite: "MIN", line: 4.3 },
+            ou: { line: 45, prediction: "Under" },
+            pointDiff: 3.09,
+            winner: "MIN",
+            projectedScore: { MIN: 23.96, JAX: 20.87 },
+            actual: {
+                winner: "MIN",
+                score: {
+                    MIN: 12,
+                    JAX: 7
+                },
+                total: 19
+            }
+        },
+        {
+            game: "DEN @ KC",
+            moneyline: { DEN: 295, KC: -375 },
+            spread: { favorite: "KC", line: 7.5 },
+            ou: { line: 42, prediction: "Over" },
+            pointDiff: 4.09,
+            winner: "KC",
+            projectedScore: { DEN: 19.97, KC: 24.06 },
+            actual: {
+                winner: "KC",
+                score: {
+                    KC: 16,
+                    DEN: 14
+                },
+                total: 30
+            }
+        },
+        {
+            game: "ATL @ NO",
+            moneyline: { ATL: -198, NO: 164 },
+            spread: { favorite: "ATL", line: 3.5 },
+            ou: { line: 46, prediction: "Under" },
+            pointDiff: 1.54,
+            winner: "ATL",
+            projectedScore: { ATL: 23.14, NO: 21.60 },
+            actual: {
+                winner: "NO",
+                score: {
+                    NO: 20,
+                    ATL: 17
+                },
+                total: 37
+            }
+        },
+        {
+            game: "SF @ TB",
+            moneyline: { SF: -278, TB: 225 },
+            spread: { favorite: "SF", line: 6.4 },
+            ou: { line: 50.5, prediction: "Under" },
+            pointDiff: 4.51,
+            winner: "SF",
+            projectedScore: { SF: 24.32, TB: 19.81 },
+            actual: {
+                winner: "SF",
+                score: {
+                    SF: 23,
+                    TB: 20
+                },
+                total: 43
+            }
+        },
+        {
+            game: "PIT @ WAS",
+            moneyline: { PIT: 124, WAS: -148 },
+            spread: { favorite: "WAS", line: 3.0 },
+            ou: { line: 45.5, prediction: "Under" },
+            pointDiff: 0.45,
+            winner: "PIT",
+            projectedScore: { PIT: 21.37, WAS: 20.92 },
+            actual: {
+                winner: "PIT",
+                score: {
+                    PIT: 28,
+                    WSH: 27
+                },
+                total: 55
+            }
+        },
+        {
+            game: "TEN @ LAC",
+            moneyline: { TEN: 280, LAC: -355 },
+            spread: { favorite: "LAC", line: 7.5 },
+            ou: { line: 39, prediction: "Over" },
+            pointDiff: 7.24,
+            winner: "LAC",
+            projectedScore: { TEN: 18.88, LAC: 26.12 },
+            actual: {
+                winner: "LAC",
+                score: {
+                    LAC: 27,
+                    TEN: 17
+                },
+                total: 44
+            }
+        },
+        {
+            game: "NYJ @ ARI",
+            moneyline: { NYJ: -118, ARI: -102 },
+            spread: { favorite: "NYJ", line: 1.0 },
+            ou: { line: 46, prediction: "Under" },
+            pointDiff: 0.22,
+            winner: "NYJ",
+            projectedScore: { NYJ: 22.90, ARI: 22.68 },
+            actual: {
+                winner: "ARI",
+                score: {
+                    ARI: 31,
+                    NYJ: 6
+                },
+                total: 37
+            }
+        },
+        {
+            game: "PHI @ DAL",
+            moneyline: { PHI: -360, DAL: 285 },
+            spread: { favorite: "PHI", line: 7.2 },
+            ou: { line: 43, prediction: "Over" },
+            pointDiff: 2.17,
+            winner: "PHI",
+            projectedScore: { PHI: 24.23, DAL: 22.06 },
+            actual: {
+                winner: "PHI",
+                score: {
+                    PHI: 34,
+                    DAL: 6
+                },
+                total: 40
+            }
+        },
+        {
+            game: "DET @ HOU",
+            moneyline: { DET: -192, HOU: 160 },
+            spread: { favorite: "DET", line: 3.5 },
+            ou: { line: 49, prediction: "Under" },
+            pointDiff: 0.76,
+            winner: "DET",
+            projectedScore: { DET: 24.10, HOU: 23.34 },
+            actual: {
+                winner: "DET",
+                score: {
+                    DET: 26,
+                    HOU: 23
+                },
+                total: 49
+            }
+        },
     
   ];
 
