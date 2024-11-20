@@ -250,7 +250,7 @@ return (
             <CardFooter className="flex-col items-start gap-1">
                 <CardDescription>
                 MDL-13 evaluates{" "}
-                <span className="font-medium text-foreground">304,101</span> data points and counting.
+                <span className="font-medium text-foreground">397,122</span> data points and counting.
                 </CardDescription>
                 <CardDescription>
                 This dataset is <span className="font-medium text-foreground">small</span>{" "}
