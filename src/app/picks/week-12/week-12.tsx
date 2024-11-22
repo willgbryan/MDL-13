@@ -90,7 +90,7 @@ export default function Picks() {
     const router = useRouter();
 
     const predictions = [
-      { game: "PIT @ CLE", moneyline: { PIT: -192, CLE: 160 }, spread: { favorite: "PIT", line: 3.5 }, ou: { line: 37.0, prediction: "Under" }, pointDiff: 0.59, winner: "PIT", projectedScore: { PIT: 18.40, CLE: 17.81 } },
+      { game: "PIT @ CLE", moneyline: { PIT: -192, CLE: 160 }, spread: { favorite: "PIT", line: 3.5 }, ou: { line: 37.0, prediction: "Under" }, pointDiff: 0.59, winner: "CLE", projectedScore: { PIT: 17.81, CLE: 18.40 } },
       { game: "KC @ CAR", moneyline: { KC: -675, CAR: 490 }, spread: { favorite: "KC", line: 11.0 }, ou: { line: 43.0, prediction: "Over" }, pointDiff: 6.21, winner: "KC", projectedScore: { KC: 25.74, CAR: 19.53 } },
       { game: "MIN @ CHI", moneyline: { MIN: -175, CHI: 145 }, spread: { favorite: "MIN", line: 3.5 }, ou: { line: 39.0, prediction: "Under" }, pointDiff: 2.07, winner: "MIN", projectedScore: { MIN: 20.67, CHI: 18.61 } },
       { game: "TEN @ HOU", moneyline: { TEN: 295, HOU: -375 }, spread: { favorite: "HOU", line: 8.0 }, ou: { line: 40.5, prediction: "Over" }, pointDiff: 7.33, winner: "HOU", projectedScore: { TEN: 19.33, HOU: 26.67 } },
