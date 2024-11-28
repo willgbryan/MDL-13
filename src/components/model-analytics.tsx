@@ -184,6 +184,12 @@ return (
                       catboost: 67,
                       lightgbm: 68,
                     },
+                    {
+                      date: "Week 12",
+                      xgboost: 62,
+                      catboost: 65,
+                      lightgbm: 63,
+                    },
                   ]}
                 >
                   <Bar
@@ -265,7 +271,7 @@ return (
               <div>
                 <CardDescription>Moneyline Accuracy</CardDescription>
                 <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                  73.38%
+                  73.78%
                   <span className="text-sm font-normal tracking-normal text-muted-foreground">
                     %
                   </span>
@@ -274,7 +280,7 @@ return (
               <div>
                 <CardDescription>O/U Accuracy</CardDescription>
                 <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                  60.63%
+                  59.89%
                   <span className="text-sm font-normal tracking-normal text-muted-foreground">
                     %
                   </span>
@@ -342,6 +348,11 @@ return (
                       date: "Week 11",
                       Moneyline: 79,
                       OU: 57,
+                    },
+                    {
+                      date: "Week 12",
+                      Moneyline: 77,
+                      OU: 54,
                     },
                   ]}
                 >
