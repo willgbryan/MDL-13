@@ -90,21 +90,23 @@ export default function Picks() {
     const router = useRouter();
 
     const predictions = [
-      { game: "PIT @ CLE", moneyline: { PIT: -192, CLE: 160 }, spread: { favorite: "PIT", line: 3.5 }, ou: { line: 37.0, prediction: "Under" }, pointDiff: 0.59, winner: "CLE", projectedScore: { PIT: 17.81, CLE: 18.40 } },
-      { game: "KC @ CAR", moneyline: { KC: -675, CAR: 490 }, spread: { favorite: "KC", line: 11.0 }, ou: { line: 43.0, prediction: "Over" }, pointDiff: 6.21, winner: "KC", projectedScore: { KC: 25.74, CAR: 19.53 } },
-      { game: "MIN @ CHI", moneyline: { MIN: -175, CHI: 145 }, spread: { favorite: "MIN", line: 3.5 }, ou: { line: 39.0, prediction: "Under" }, pointDiff: 2.07, winner: "MIN", projectedScore: { MIN: 20.67, CHI: 18.61 } },
-      { game: "TEN @ HOU", moneyline: { TEN: 295, HOU: -375 }, spread: { favorite: "HOU", line: 8.0 }, ou: { line: 40.5, prediction: "Over" }, pointDiff: 7.33, winner: "HOU", projectedScore: { TEN: 19.33, HOU: 26.67 } },
-      { game: "DET @ IND", moneyline: { DET: -410, IND: 320 }, spread: { favorite: "DET", line: 7.5 }, ou: { line: 50.5, prediction: "Under" }, pointDiff: 3.45, winner: "DET", projectedScore: { DET: 25.32, IND: 21.86 } },
-      { game: "NE @ MIA", moneyline: { NE: 310, MIA: -395 }, spread: { favorite: "MIA", line: 7.5 }, ou: { line: 46.0, prediction: "Under" }, pointDiff: 4.01, winner: "MIA", projectedScore: { NE: 20.48, MIA: 24.48 } },
-      { game: "TB @ NYG", moneyline: { TB: -265, NYG: 215 }, spread: { favorite: "TB", line: 6.0 }, ou: { line: 41.0, prediction: "Under" }, pointDiff: 5.06, winner: "TB", projectedScore: { TB: 23.59, NYG: 18.54 } },
-      { game: "DAL @ WAS", moneyline: { DAL: 440, WAS: -600 }, spread: { favorite: "WAS", line: 10.5 }, ou: { line: 45.5, prediction: "Over" }, pointDiff: 2.85, winner: "WAS", projectedScore: { DAL: 20.62, WAS: 23.46 } },
-      { game: "DEN @ LV", moneyline: { DEN: -270, LV: 220 }, spread: { favorite: "DEN", line: 6.0 }, ou: { line: 41.0, prediction: "Over" }, pointDiff: 3.05, winner: "DEN", projectedScore: { DEN: 24.04, LV: 20.99 } },
-      { game: "SF @ GB", moneyline: { SF: 105, GB: -125 }, spread: { favorite: "GB", line: 1.5 }, ou: { line: 47.5, prediction: "Under" }, pointDiff: 0.70, winner: "GB", projectedScore: { SF: 21.83, GB: 22.53 } },
-      { game: "ARI @ SEA", moneyline: { ARI: -108, SEA: -112 }, spread: { favorite: "SEA", line: 1.0 }, ou: { line: 47.5, prediction: "Under" }, pointDiff: 0.54, winner: "ARI", projectedScore: { ARI: 21.79, SEA: 21.25 } },
-      { game: "PHI @ LA", moneyline: { PHI: -155, LA: 130 }, spread: { favorite: "PHI", line: 2.5 }, ou: { line: 49.0, prediction: "Under" }, pointDiff: 1.24, winner: "PHI", projectedScore: { PHI: 22.14, LA: 20.90 } },
-      { game: "BAL @ LAC", moneyline: { BAL: -135, LAC: 114 }, spread: { favorite: "BAL", line: 2.5 }, ou: { line: 51.0, prediction: "Under" }, pointDiff: 1.84, winner: "BAL", projectedScore: { BAL: 22.31, LAC: 20.47 } }
+      { game: "CHI @ DET", moneyline: { CHI: 390, DET: -520 }, spread: { favorite: "DET", line: 9.5 }, ou: { line: 47.5, prediction: getOUPrediction(51.64, 47.5) }, pointDiff: 6.72, winner: "DET", projectedScore: { CHI: 20.89, DET: 27.61 } },
+      { game: "NYG @ DAL", moneyline: { NYG: 160, DAL: -192 }, spread: { favorite: "DAL", line: 3.5 }, ou: { line: 37.5, prediction: getOUPrediction(46.72, 37.5) }, pointDiff: 9.43, winner: "DAL", projectedScore: { NYG: 18.97, DAL: 28.40 } },
+      { game: "MIA @ GB", moneyline: { MIA: 150, GB: -180 }, spread: { favorite: "GB", line: 3.5 }, ou: { line: 47.5, prediction: getOUPrediction(49.42, 47.5) }, pointDiff: 4.43, winner: "GB", projectedScore: { MIA: 21.64, GB: 26.07 } },
+      { game: "LV @ KC", moneyline: { LV: 525, KC: -750 }, spread: { favorite: "KC", line: 13.0 }, ou: { line: 42.5, prediction: getOUPrediction(45.11, 42.5) }, pointDiff: 4.14, winner: "KC", projectedScore: { LV: 19.99, KC: 24.13 } },
+      { game: "LAC @ ATL", moneyline: { LAC: -120, ATL: 100 }, spread: { favorite: "LAC", line: 1.0 }, ou: { line: 47.5, prediction: getOUPrediction(47.71, 47.5) }, pointDiff: 1.03, winner: "LAC", projectedScore: { LAC: 22.35, ATL: 21.32 } },
+      { game: "PIT @ CIN", moneyline: { PIT: 136, CIN: -162 }, spread: { favorite: "CIN", line: 3.0 }, ou: { line: 47.5, prediction: getOUPrediction(44.34, 47.5) }, pointDiff: 3.37, winner: "CIN", projectedScore: { PIT: 21.07, CIN: 24.44 } },
+      { game: "HOU @ JAX", moneyline: { HOU: -185, JAX: 154 }, spread: { favorite: "HOU", line: 3.5 }, ou: { line: 44.0, prediction: getOUPrediction(40.95, 44.0) }, pointDiff: 3.64, winner: "HOU", projectedScore: { HOU: 23.53, JAX: 19.89 } },
+      { game: "ARI @ MIN", moneyline: { ARI: 140, MIN: -166 }, spread: { favorite: "MIN", line: 3.5 }, ou: { line: 45.0, prediction: getOUPrediction(44.79, 45.0) }, pointDiff: 1.37, winner: "MIN", projectedScore: { ARI: 21.33, MIN: 22.70 } },
+      { game: "IND @ NE", moneyline: { IND: -142, NE: 120 }, spread: { favorite: "IND", line: 2.5 }, ou: { line: 42.5, prediction: getOUPrediction(41.48, 42.5) }, pointDiff: 0.13, winner: "NE", projectedScore: { IND: 20.57, NE: 20.70 } },
+      { game: "SEA @ NYJ", moneyline: { SEA: -130, NYJ: 110 }, spread: { favorite: "SEA", line: 2.5 }, ou: { line: 42.0, prediction: getOUPrediction(40.61, 42.0) }, pointDiff: 1.95, winner: "SEA", projectedScore: { SEA: 20.89, NYJ: 18.94 } },
+      { game: "TEN @ WAS", moneyline: { TEN: 200, WAS: -245 }, spread: { favorite: "WAS", line: 5.5 }, ou: { line: 44.5, prediction: getOUPrediction(45.67, 44.5) }, pointDiff: 1.32, winner: "WAS", projectedScore: { TEN: 21.19, WAS: 22.51 } },
+      { game: "TB @ CAR", moneyline: { TB: -245, CAR: 200 }, spread: { favorite: "TB", line: 5.5 }, ou: { line: 46.5, prediction: getOUPrediction(44.45, 46.5) }, pointDiff: 5.13, winner: "TB", projectedScore: { TB: 24.27, CAR: 19.14 } },
+      { game: "LA @ NO", moneyline: { LA: -148, NO: 124 }, spread: { favorite: "LA", line: 2.5 }, ou: { line: 49.5, prediction: getOUPrediction(44.87, 49.5) }, pointDiff: 1.56, winner: "LA", projectedScore: { LA: 22.35, NO: 20.79 } },
+      { game: "PHI @ BAL", moneyline: { PHI: 130, BAL: -155 }, spread: { favorite: "BAL", line: 3.0 }, ou: { line: 50.5, prediction: getOUPrediction(44.63, 50.5) }, pointDiff: 2.68, winner: "BAL", projectedScore: { PHI: 21.37, BAL: 24.06 } },
+      { game: "SF @ BUF", moneyline: { SF: 250, BUF: -310 }, spread: { favorite: "BUF", line: 7.0 }, ou: { line: 44.5, prediction: getOUPrediction(46.04, 44.5) }, pointDiff: 3.87, winner: "BUF", projectedScore: { SF: 20.82, BUF: 24.69 } },
+      { game: "CLE @ DEN", moneyline: { CLE: 190, DEN: -230 }, spread: { favorite: "DEN", line: 5.5 }, ou: { line: 41.5, prediction: getOUPrediction(44.38, 41.5) }, pointDiff: 4.70, winner: "DEN", projectedScore: { CLE: 20.73, DEN: 25.43 } }
     ];
-  
   
     // useEffect(() => {
     //   async function checkAuthAndPayment() {
