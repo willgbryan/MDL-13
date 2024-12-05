@@ -5,7 +5,7 @@ import { PicksTabs } from "@/components/picks-tabs";
 import dynamic from 'next/dynamic';
 
 export default function PicksPage() {
-  const [currentWeek, setCurrentWeek] = useState('12');
+  const [currentWeek, setCurrentWeek] = useState('14');
 
   const WeekComponent = dynamic(() => import(`./week-${currentWeek}/week-${currentWeek}`), {
     loading: () => <p></p>,

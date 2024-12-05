@@ -190,6 +190,12 @@ return (
                       catboost: 65,
                       lightgbm: 63,
                     },
+                    {
+                      date: "Week 13",
+                      xgboost: 61,
+                      catboost: 63,
+                      lightgbm: 61,
+                    },
                   ]}
                 >
                   <Bar
@@ -256,7 +262,7 @@ return (
             <CardFooter className="flex-col items-start gap-1">
                 <CardDescription>
                 MDL-13 evaluates{" "}
-                <span className="font-medium text-foreground">397,122</span> data points and counting.
+                <span className="font-medium text-foreground">411,183</span> data points and counting.
                 </CardDescription>
                 <CardDescription>
                 This dataset is <span className="font-medium text-foreground">small</span>{" "}
@@ -271,7 +277,7 @@ return (
               <div>
                 <CardDescription>Moneyline Accuracy</CardDescription>
                 <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                  73.78%
+                  74.50%
                   <span className="text-sm font-normal tracking-normal text-muted-foreground">
                     %
                   </span>
@@ -280,7 +286,7 @@ return (
               <div>
                 <CardDescription>O/U Accuracy</CardDescription>
                 <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                  59.89%
+                  58.30%
                   <span className="text-sm font-normal tracking-normal text-muted-foreground">
                     %
                   </span>
@@ -353,6 +359,11 @@ return (
                       date: "Week 12",
                       Moneyline: 77,
                       OU: 54,
+                    },
+                    {
+                      date: "Week 13",
+                      Moneyline: 81,
+                      OU: 44,
                     },
                   ]}
                 >

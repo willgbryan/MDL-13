@@ -6,7 +6,7 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 
-const weeks = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+const weeks = [6, 7, 8, 9, 10, 11, 12, 13, 14];
 
 interface PicksTabsProps {
   currentWeek: string;
@@ -15,19 +15,27 @@ interface PicksTabsProps {
 
 export function PicksTabs({ currentWeek, onWeekChange }: PicksTabsProps) {
   return (
-    <Tabs value={currentWeek} onValueChange={onWeekChange} className="w-full max-w-5xl mx-auto bg-transparent">
-      <TabsList className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 border-[#4BFFBA]">
-        {weeks.map((week) => (
-          <TabsTrigger 
-            key={week} 
-            value={week.toString()}
-            disabled={week === 4 || week === 5}
-            className={`${(week === 4 || week === 5) ? 'opacity-50 cursor-not-allowed' : ''}`}
-          >
-            Week {week}
-          </TabsTrigger>
-        ))}
-      </TabsList>
+    <Tabs 
+      value={currentWeek} 
+      onValueChange={onWeekChange} 
+      className="w-full max-w-7xl mx-auto bg-transparent"
+    >
+      <div className="overflow-x-auto">
+        <TabsList className="inline-flex min-w-fit border-[#4BFFBA] w-full">
+          {weeks.map((week) => (
+            <TabsTrigger
+              key={week}
+              value={week.toString()}
+              disabled={week === 4 || week === 5}
+              className={`flex-1 min-w-[100px] ${
+                (week === 4 || week === 5) ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
+            >
+              Week {week}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+      </div>
     </Tabs>
   );
 }
