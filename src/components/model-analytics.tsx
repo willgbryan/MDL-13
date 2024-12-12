@@ -196,6 +196,18 @@ return (
                       catboost: 63,
                       lightgbm: 61,
                     },
+                    {
+                      date: "Week 14",
+                      xgboost: 68,
+                      catboost: 67,
+                      lightgbm: 68,
+                    },
+                    {
+                      date: "Week 15",
+                      xgboost: 62,
+                      catboost: 65,
+                      lightgbm: 63,
+                    },
                   ]}
                 >
                   <Bar
@@ -277,16 +289,7 @@ return (
               <div>
                 <CardDescription>Moneyline Accuracy</CardDescription>
                 <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                  74.50%
-                  <span className="text-sm font-normal tracking-normal text-muted-foreground">
-                    %
-                  </span>
-                </CardTitle>
-              </div>
-              <div>
-                <CardDescription>O/U Accuracy</CardDescription>
-                <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                  58.30%
+                  74.55%
                   <span className="text-sm font-normal tracking-normal text-muted-foreground">
                     %
                   </span>
@@ -299,10 +302,6 @@ return (
                   Moneyline: {
                     label: "Moneyline",
                     color: "hsl(var(--chart-3))",
-                  },
-                  OU: {
-                    label: "OU",
-                    color: "hsl(var(--chart-2))",
                   },
                 }}
                 className="w-full"
@@ -318,52 +317,46 @@ return (
                     {
                       date: "Week 4",
                       Moneyline: 65,
-                      OU: 62,
                     },
                     {
                       date: "Week 5",
                       Moneyline: 75,
-                      OU: 70,
                     },
                     {
                       date: "Week 6",
                       Moneyline: 92,
-                      OU: 77,
                     },
                     {
                       date: "Week 7",
                       Moneyline: 67,
-                      OU: 73,
                     },
                     {
                       date: "Week 8",
                       Moneyline: 60,
-                      OU: 53,
                     },
                     {
                       date: "Week 9",
                       Moneyline: 80,
-                      OU: 47,
                     },
                     {
                       date: "Week 10",
                       Moneyline: 69,
-                      OU: 46,
                     },
                     {
                       date: "Week 11",
                       Moneyline: 79,
-                      OU: 57,
                     },
                     {
                       date: "Week 12",
                       Moneyline: 77,
-                      OU: 54,
                     },
                     {
                       date: "Week 13",
                       Moneyline: 81,
-                      OU: 44,
+                    },
+                    {
+                      date: "Week 14",
+                      Moneyline: 75,
                     },
                   ]}
                 >
@@ -533,7 +526,7 @@ return (
                 <div className="grid flex-1 auto-rows-min gap-0.5">
                   <div className="text-xs text-muted-foreground">Test Accuracy</div>
                   <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                    68.09
+                    71.09
                     <span className="text-sm font-normal text-muted-foreground">
                       %
                     </span>
