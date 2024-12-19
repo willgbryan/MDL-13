@@ -289,7 +289,7 @@ return (
               <div>
                 <CardDescription>Moneyline Accuracy</CardDescription>
                 <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                  74.55%
+                  74.58%
                   <span className="text-sm font-normal tracking-normal text-muted-foreground">
                     %
                   </span>
@@ -358,6 +358,10 @@ return (
                       date: "Week 14",
                       Moneyline: 75,
                     },
+                    {
+                      date: "Week 15",
+                      Moneyline: 75,
+                    }
                   ]}
                 >
                   <CartesianGrid
