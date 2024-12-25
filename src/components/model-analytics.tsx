@@ -208,6 +208,12 @@ return (
                       catboost: 65,
                       lightgbm: 63,
                     },
+                    {
+                      date: "Week 16",
+                      xgboost: 63,
+                      catboost: 65,
+                      lightgbm: 64,
+                    },
                   ]}
                 >
                   <Bar
@@ -289,7 +295,7 @@ return (
               <div>
                 <CardDescription>Moneyline Accuracy</CardDescription>
                 <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                  74.58%
+                  74.15%
                   <span className="text-sm font-normal tracking-normal text-muted-foreground">
                     %
                   </span>
@@ -361,7 +367,11 @@ return (
                     {
                       date: "Week 15",
                       Moneyline: 75,
-                    }
+                    },
+                    {
+                      date: "Week 16",
+                      Moneyline: 69,
+                    },
                   ]}
                 >
                   <CartesianGrid
