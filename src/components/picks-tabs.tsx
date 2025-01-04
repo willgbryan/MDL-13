@@ -6,7 +6,7 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 
-const weeks = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
+const weeks = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
 
 interface PicksTabsProps {
   currentWeek: string;
